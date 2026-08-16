@@ -22,19 +22,16 @@ class MBTextWithSelect extends StatelessWidget {
         onTap: onChange,
         child: Row(
           children: [
-            Expanded(
-              child: Text(
-                text,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontFamily: 'SFMono',
-                  letterSpacing: -0.5,
-                  color: Color(0xFF111827),
-                ),
+            MBMainSelector(value: value ?? 'off'),
+            const SizedBox(width: 8),
+            Text(
+              text,
+              style: const TextStyle(
+                fontSize: 13,
+                fontFamily: 'Lexend',
+                color: Color(0xFF111827),
               ),
             ),
-            const SizedBox(width: 8),
-            IgnorePointer(child: MBMainSelector(value: value ?? 'off')),
           ],
         ),
       ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_boxy_ds/components/buttons/mb_main_btn.dart';
 import 'package:my_boxy_ds/components/cards/mb_list_component_card.dart';
 void main() {
   runApp(const MyApp());

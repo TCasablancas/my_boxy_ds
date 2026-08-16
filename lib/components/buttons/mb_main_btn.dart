@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'mb_button_tokens.dart';
 
 enum MBMainButtonType { normal, dark, light, disabled, custom, outlined }
@@ -59,6 +58,7 @@ class MBMainButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         child: Container(
           height: 50,
+          width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
