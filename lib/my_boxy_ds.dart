@@ -1,3 +1,6 @@
+export 'components/buttons/buttons.dart';
+export 'components/selectors/selectors.dart';
+
 /// A Calculator.
 class Calculator {
   /// Returns [value] plus 1.
