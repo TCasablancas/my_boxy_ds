@@ -4,11 +4,13 @@ import 'package:my_boxy_ds/ui/mb_typography.dart';
 class MBTitleSubtitled extends StatelessWidget {
   final String title;
   final String description;
+  final TextAlign textAlign;
 
   const MBTitleSubtitled({
     super.key,
     required this.title,
     this.description = '',
+    this.textAlign = TextAlign.left,
   });
 
   @override
@@ -16,13 +18,21 @@ class MBTitleSubtitled extends StatelessWidget {
     return (
       Column(
         children: [
-          Text(
-            title,
-            style: AppTypography.h2Fn(Colors.grey[600]),
+          SizedBox(
+            width: double.infinity,
+            child: Text(
+              title,
+              textAlign: textAlign,
+              style: AppTypography.h2Fn(Colors.grey[800], FontWeight.w800),
+            )
           ),
-          Text(
-            description,
-            style: AppTypography.descriptionFn(Colors.grey[400]),
+          SizedBox(
+            width: double.infinity,
+            child: Text(
+              description,
+              textAlign: textAlign,
+              style: AppTypography.descriptionFn(Colors.grey[400]),
+            )
           )
         ]
       )

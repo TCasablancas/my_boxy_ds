@@ -4,6 +4,7 @@ export 'mb_favorite_icon_btn.dart';
 export 'mb_floating_cart_btn.dart';
 export 'mb_main_btn.dart';
 export 'mb_main_info_square_btn.dart';
+export 'mb_outlined_round_btn.dart';
 export 'mb_outlined_sm_btn.dart';
 export 'mb_play_pause_btn.dart';
 export 'mb_rounded_icon_btn.dart';

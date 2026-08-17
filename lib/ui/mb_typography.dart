@@ -29,7 +29,7 @@ class AppTypography {
       fontFamily: fontFamily,
       fontWeight: weight,
       color: color,
-      letterSpacing: -0.3,
+      letterSpacing: -0.75,
     );
   }
 
