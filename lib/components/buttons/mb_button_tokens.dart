@@ -17,18 +17,18 @@ abstract final class MBButtonColors {
   static const disabledText = Color(0xFF9CA3AF);
 }
 
-const _fontFamily = 'SFMono';
+const _fontFamily = 'Lexend';
 
 TextStyle mbButtonTextStyle({
   required double fontSize,
   required Color color,
-  FontWeight fontWeight = FontWeight.normal,
+  FontWeight fontWeight = FontWeight.w500,
 }) {
   return TextStyle(
     color: color,
     fontSize: fontSize,
     fontFamily: _fontFamily,
     fontWeight: fontWeight,
-    letterSpacing: -0.5,
+    letterSpacing: -0.2,
   );
 }

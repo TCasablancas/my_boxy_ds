@@ -4,6 +4,45 @@ import 'package:flutter/material.dart';
 class AppTypography {
   static final fontFamily = 'Lexend';
 
+  static TextStyle setSnackbarStyle(Color? color) {
+    return TextStyle(
+      fontSize: 13,
+      fontFamily: fontFamily,
+      fontWeight: FontWeight.w500,
+      letterSpacing: -0.2,
+      height: 1.4,
+      color: color,
+    );
+  }
+
+  static TextStyle setInputStyle() {
+    return TextStyle(
+      color: Colors.grey[700],
+      fontFamily: 'Lexend',
+      fontWeight: FontWeight.w300,
+    );
+  }
+
+  static TextStyle h2Fn(Color? color, [FontWeight weight = FontWeight.w800]) {
+    return TextStyle(
+      fontSize: 24,
+      fontFamily: fontFamily,
+      fontWeight: weight,
+      color: color,
+      letterSpacing: -0.3,
+    );
+  }
+
+  static TextStyle descriptionFn(Color? color) {
+    return TextStyle(
+      fontSize: 13,
+      fontFamily: fontFamily,
+      fontWeight: FontWeight.normal,
+      color: color,
+      height: 1.3,
+    );
+  }
+
   static const h1 = TextStyle(
     fontSize: 32,
     fontWeight: FontWeight.bold,

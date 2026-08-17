@@ -2,9 +2,9 @@ import 'mb_typography.dart';
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const primary = Color(0xFFDE2B3C);
-  static const primaryLight = Color(0xFFDA7B7C);
-  static const primaryDark = Color(0xFF73020C);
+  static const primary = Color(0xFF6ABA02);
+  static const primaryLight = Color(0xFFBFF578);
+  static const primaryDark = Color(0xFF1F6607);
 
   static const secondary = Color(0xFFBDB1A3);
   static const accent = Color(0xFF58ADB2);
@@ -26,6 +26,10 @@ class AppColors {
   static const success = Color(0xFF4CAF50);
   static const warning = Color(0xFFFFC107);
   static const error = Color(0xFFFF5252);
+  static const errorLight = Color(0xFFFFD9D9);
+
+  static const focus = Color(0xFF2F80ED);
+  static const focusLight = Color(0xFFD6E4FF);
 
   static const gradientStart = Color(0xFF5B5FED);
   static const gradientEnd = Color(0xFF8B5FED);

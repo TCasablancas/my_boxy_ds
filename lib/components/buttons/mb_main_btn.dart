@@ -52,10 +52,10 @@ class MBMainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final button = Material(
       color: _backgroundColor,
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(8),
       child: InkWell(
         onTap: buttonType == MBMainButtonType.disabled ? null : onPressed,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(8),
         child: Container(
           height: 50,
           width: double.infinity,
@@ -63,8 +63,7 @@ class MBMainButton extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             border: buttonType == MBMainButtonType.outlined
-                ? Border.all(color: MBButtonColors.primary)
-                : null,
+              ? Border.all(color: MBButtonColors.primary) : null,
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'mb_main_selector.dart';
 
 class MBTextWithSelect extends StatelessWidget {
@@ -20,6 +19,10 @@ class MBTextWithSelect extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onChange,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+        focusColor: Colors.transparent,
         child: Row(
           children: [
             MBMainSelector(value: value ?? 'off'),
@@ -27,9 +30,11 @@ class MBTextWithSelect extends StatelessWidget {
             Text(
               text,
               style: const TextStyle(
-                fontSize: 13,
+                fontSize: 14,
                 fontFamily: 'Lexend',
                 color: Color(0xFF111827),
+                letterSpacing: -0.2,
+                fontWeight: FontWeight.w300,
               ),
             ),
           ],
