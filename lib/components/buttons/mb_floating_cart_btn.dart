@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'mb_button_tokens.dart';
 
 class MBFloatingCartButton extends StatelessWidget {

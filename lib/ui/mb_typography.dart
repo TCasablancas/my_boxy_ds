@@ -66,6 +66,7 @@ class AppTypography {
   static const body1 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.normal,
+    fontFamily: 'Lexend',
     color: AppColors.textPrimary,
     height: 1.5,
   );
@@ -87,6 +88,7 @@ class AppTypography {
   static const descritpion = TextStyle(
     fontSize: 13,
     fontWeight: FontWeight.normal,
+    fontFamily: 'Lexend',
     color: AppColors.textSecondary,
     height: 1.3,
   );
@@ -94,6 +96,7 @@ class AppTypography {
   static const caption = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.normal,
+    fontFamily: 'Lexend',
     color: AppColors.textTertiary,
   );
 

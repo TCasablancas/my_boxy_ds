@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -17,9 +18,10 @@ dev_dependencies:
   flutter_lints: ^6.0.0
 
 flutter:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  uses-material-design: true
+  
+  assets:
+    - assets/images/mb_icon.svg
   
   fonts:
     - family: Lexend
