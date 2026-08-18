@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:my_boxy_ds/components/buttons/buttons.dart';
-import 'package:my_boxy_ds/components/buttons/mb_rounded_icon_btn.dart';
 import 'package:my_boxy_ds/ui/mb_typography.dart';
 
 class MBHomeHeader extends StatefulWidget {

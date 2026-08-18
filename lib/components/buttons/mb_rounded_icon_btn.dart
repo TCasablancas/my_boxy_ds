@@ -6,6 +6,7 @@ class MBRoundedIconButton extends StatelessWidget {
   final Widget icon;
   final int? quantity;
   final Color? backgroundColor;
+  final bool? shadow;
   final VoidCallback onPressed;
 
   const MBRoundedIconButton({
@@ -13,6 +14,7 @@ class MBRoundedIconButton extends StatelessWidget {
     required this.icon,
     this.quantity,
     this.backgroundColor,
+    this.shadow = false,
     required this.onPressed,
   });
 
@@ -21,14 +23,27 @@ class MBRoundedIconButton extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        Material(
-          color: backgroundColor ?? MBButtonColors.border,
-          shape: const CircleBorder(),
-          child: InkWell(
-            onTap: onPressed,
-            customBorder: const CircleBorder(),
-            child: const SizedBox(width: 40, height: 40, child: Center()),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12.0),
+            boxShadow: [
+              BoxShadow(
+                color: (shadow ?? false) ? Colors.black.withValues(alpha: 0.1) : Colors.transparent,
+                blurRadius: 8.0,
+                spreadRadius: 2.0,
+                offset: const Offset(0, 3),
+              ),
+            ],
           ),
+          child: Material(
+            color: backgroundColor ?? MBButtonColors.border,
+            shape: const CircleBorder(),
+            child: InkWell(
+              onTap: onPressed,
+              customBorder: const CircleBorder(),
+              child: const SizedBox(width: 40, height: 40, child: Center()),
+            ),
+          )
         ),
         Positioned.fill(
           child: IgnorePointer(

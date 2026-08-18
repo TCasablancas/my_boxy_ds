@@ -138,7 +138,7 @@ class _MBCollapsibleSidebarState extends State<MBCollapsibleSidebar>
                     width: width,
                     height: double.infinity,
                     child: Material(
-                      color: Colors.grey[200],
+                      color: Colors.grey[800],
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         child: Column(
@@ -147,9 +147,9 @@ class _MBCollapsibleSidebarState extends State<MBCollapsibleSidebar>
                             Align(
                               alignment: Alignment.centerRight,
                               child: IconButton(
-                                icon: const Icon(
+                                icon: Icon(
                                   Icons.close,
-                                  color: Colors.white,
+                                  color: Colors.grey[500],
                                 ),
                                 onPressed: widget.controller.close,
                               ),

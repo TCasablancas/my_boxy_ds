@@ -20,13 +20,13 @@ class MBFloatingCartButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
-            boxShadow: const [
-              BoxShadow(
-                color: Color.fromRGBO(23, 149, 19, .3),
-                offset: Offset(0, 4),
-                blurRadius: 12,
-              ),
-            ],
+            // boxShadow: const [
+            //   BoxShadow(
+            //     color: Color.fromRGBO(23, 149, 19, .3),
+            //     offset: Offset(0, 4),
+            //     blurRadius: 12,
+            //   ),
+            // ],
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
