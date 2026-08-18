@@ -34,8 +34,8 @@ class MBRoundedIconButton extends StatelessWidget {
           child: IgnorePointer(
             child: Center(
               child: SizedBox(
-                width: 22,
-                height: 22,
+                width: 24,
+                height: 24,
                 child: Center(child: icon),
               ),
             ),
@@ -57,8 +57,10 @@ class MBRoundedIconButton extends StatelessWidget {
                 '$quantity',
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 10,
+                  fontFamily: 'SFMono',
+                  fontSize: 9,
                   fontWeight: FontWeight.bold,
+                  letterSpacing: -0.5,
                 ),
               ),
             ),

@@ -7,11 +7,13 @@ import 'package:my_boxy_ds/ui/mb_typography.dart';
 class MBHomeHeader extends StatefulWidget {
   final String userName;
   final String userAlias;
+  final List<Widget>? rightBtns;
 
   const MBHomeHeader({ 
     super.key,
     required this.userName,
     required this.userAlias,
+    this.rightBtns,
   });
 
   @override
@@ -24,7 +26,7 @@ class _MBHomeHeaderState extends State<MBHomeHeader> {
   Widget build(BuildContext context) {
     return(
       Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(16),
         child: Row(
           spacing: 8,
           children: [
@@ -38,18 +40,22 @@ class _MBHomeHeaderState extends State<MBHomeHeader> {
               children: [
                 Row(
                   children: [
-                    Text('Olá, ${widget.userName}', style: AppTypography.body1),
+                    Text('Olá, ', style: AppTypography.body1Fn(Colors.grey[600])),
+                    Text(
+                      widget.userName, 
+                      style: AppTypography.body1Fn(Colors.grey[900], FontWeight.w700)
+                    ),
                     Icon(Icons.arrow_drop_down)
                   ],
                 ),
-                Text('@${widget.userAlias}', style: AppTypography.caption)
+                Text(
+                  '@${widget.userAlias}', 
+                  style: AppTypography.captionFn(Colors.grey[500], 'SFMono')
+                )
               ],
             ),
             Spacer(),
-            MBRoundedIconButton(
-              icon: Icon(Icons.search), 
-              onPressed: () => {}
-            ),
+            ...widget.rightBtns ?? []
           ],
         ),
       )

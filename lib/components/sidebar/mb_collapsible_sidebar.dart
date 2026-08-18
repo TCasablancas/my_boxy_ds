@@ -111,11 +111,11 @@ class _MBCollapsibleSidebarState extends State<MBCollapsibleSidebar>
                   onTap: widget.controller.close,
                   child: BackdropFilter(
                     filter: ImageFilter.blur(
-                      sigmaX: 3 * progress,
-                      sigmaY: 3 * progress,
+                      sigmaX: 2 * progress,
+                      sigmaY: 2 * progress,
                     ),
                     child: Container(
-                      color: Colors.black.withValues(alpha: 0.4 * progress),
+                      color: Colors.black.withValues(alpha: 0.7 * progress),
                     ),
                   ),
                 ),

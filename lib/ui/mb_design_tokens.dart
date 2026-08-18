@@ -9,7 +9,7 @@ class AppColors {
   static const secondary = Color(0xFFBDB1A3);
   static const accent = Color(0xFF58ADB2);
 
-  static const background = Color.fromARGB(250, 240, 240, 240);
+  static const background = Color.fromARGB(250, 247, 247, 245);
   static const lightBackground = Color(0xFFF5F6FA);
   static const surface = Color(0xFFFFFFFF);
   static const surfaceVariant = Color(0xFFF8F9FB);

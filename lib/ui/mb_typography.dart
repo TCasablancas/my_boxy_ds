@@ -33,6 +33,19 @@ class AppTypography {
     );
   }
 
+  static TextStyle body1Fn(
+    Color? color, 
+    [FontWeight weight = FontWeight.normal, String fontFamily = 'Lexend']
+  ) {
+    return TextStyle(
+      fontSize: 16,
+      fontWeight: weight,
+      fontFamily: fontFamily,
+      color: color,
+      height: 1.5,
+    );
+  }
+
   static TextStyle descriptionFn(Color? color) {
     return TextStyle(
       fontSize: 13,
@@ -40,6 +53,17 @@ class AppTypography {
       fontWeight: FontWeight.normal,
       color: color,
       height: 1.3,
+    );
+  }
+
+  static TextStyle captionFn(Color? color, [String fontFamily = 'Lexend']) {
+    return TextStyle(
+      height: 0.75,
+      fontSize: 12,
+      fontWeight: FontWeight.normal,
+      fontFamily: fontFamily,
+      letterSpacing: -0.2,
+      color: color,
     );
   }
 
