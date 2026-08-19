@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:my_boxy_ds/ui/mb_typography.dart';
 import 'mb_button_tokens.dart';
 
 enum MBMainInfoSquareButtonType {
@@ -68,11 +68,11 @@ class MBMainInfoSquareButton extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: 46,
-                    height: 46,
+                    width: 46, height: 46,
                     alignment: Alignment.center,
                     decoration: const BoxDecoration(
                       color: Colors.white,
@@ -87,19 +87,14 @@ class MBMainInfoSquareButton extends StatelessWidget {
               Text(
                 title,
                 style: mbButtonTextStyle(
-                  fontSize: 14,
+                  fontSize: 16,
                   color: _titleColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 8),
               Text(
                 description,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
-                  color: _descriptionColor,
-                ),
+                style: AppTypography.captionFn(_descriptionColor),
               ),
             ],
           ),

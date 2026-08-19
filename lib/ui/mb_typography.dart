@@ -58,7 +58,7 @@ class AppTypography {
 
   static TextStyle captionFn(Color? color, [String fontFamily = 'Lexend']) {
     return TextStyle(
-      height: 0.75,
+      height: 1.2,
       fontSize: 12,
       fontWeight: FontWeight.normal,
       fontFamily: fontFamily,
@@ -109,7 +109,7 @@ class AppTypography {
     height: 1.3,
   );
 
-  static const descritpion = TextStyle(
+  static const description = TextStyle(
     fontSize: 13,
     fontWeight: FontWeight.normal,
     fontFamily: 'Lexend',

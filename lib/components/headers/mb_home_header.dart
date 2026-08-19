@@ -21,7 +21,7 @@ class MBHomeHeader extends StatefulWidget {
 
 class _MBHomeHeaderState extends State<MBHomeHeader> {
 
-  bool isCollapsed = false;
+  bool isCollapsed = true;
 
   @override
   Widget build(BuildContext context) {
