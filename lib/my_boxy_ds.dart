@@ -1,3 +1,4 @@
+export 'components/bottomsheet/bottomsheet.dart';
 export 'components/buttons/buttons.dart';
 export 'components/caroussels/caroussels.dart';
 export 'components/cards/cards.dart';
