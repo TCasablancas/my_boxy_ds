@@ -106,16 +106,18 @@ class _MBCollapsibleSidebarState extends State<MBCollapsibleSidebar>
             return Positioned.fill(
               child: IgnorePointer(
                 ignoring: progress == 0,
-                child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: widget.controller.close,
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(
-                      sigmaX: 2 * progress,
-                      sigmaY: 2 * progress,
-                    ),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 2 * progress, sigmaY: 2 * progress,
+                  ),
+                  child: GestureDetector(
+                    onHorizontalDragStart: _onDragStart,
+                    onHorizontalDragUpdate: _onDragUpdate,
+                    onHorizontalDragEnd: _onDragEnd,
+                    behavior: HitTestBehavior.opaque,
+                    onTap: widget.controller.close,
                     child: Container(
-                      color: Colors.black.withValues(alpha: 0.7 * progress),
+                      color: Colors.black.withAlpha((0.7 * 255 * progress).toInt()),
                     ),
                   ),
                 ),
@@ -124,44 +126,43 @@ class _MBCollapsibleSidebarState extends State<MBCollapsibleSidebar>
           },
         ),
         Positioned.fill(
-          child: IgnorePointer(
-            ignoring: !widget.controller.value,
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: SlideTransition(
-                position: _slide,
-                child: GestureDetector(
-                  onHorizontalDragStart: _onDragStart,
-                  onHorizontalDragUpdate: _onDragUpdate,
-                  onHorizontalDragEnd: _onDragEnd,
-                  child: SizedBox(
-                    width: width,
-                    height: double.infinity,
-                    child: Material(
-                      color: Colors.grey[800],
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: IconButton(
-                                icon: Icon(
-                                  Icons.close,
-                                  color: Colors.grey[500],
-                                ),
-                                onPressed: widget.controller.close,
-                              ),
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: SlideTransition(
+              position: _slide,
+              child: GestureDetector(
+                onHorizontalDragStart: _onDragStart,
+                onHorizontalDragUpdate: _onDragUpdate,
+                onHorizontalDragEnd: _onDragEnd,
+                behavior: HitTestBehavior.opaque,
+                child: SizedBox(
+                  width: width,
+                  height: double.infinity,
+                  child: Material(
+                    color: Colors.grey[800],
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 60, 0, 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: IconButton(
+                              icon: Icon(Icons.close, color: Colors.grey[500]),
+                              onPressed: widget.controller.close,
                             ),
-                            Spacer(),
-                            Column(
-                              spacing: 12,
+                          ),
+                          Spacer(),
+                          GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onTap: () {},
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: widget.items.map(_buildItem).toList(),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -183,12 +184,12 @@ class _MBCollapsibleSidebarState extends State<MBCollapsibleSidebar>
         splashFactory: NoSplash.splashFactory,
         overlayColor: Colors.transparent,
       ),
-      onPressed: () => {}, 
+      onPressed: item.onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
-          spacing: 12,
+          spacing: 8,
           children: [
             Icon(item.icon),
             Text(

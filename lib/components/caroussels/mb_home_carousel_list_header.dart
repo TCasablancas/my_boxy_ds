@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
 
 const double _sidePeekPercent = 0.1;
 const double _cardHeight = 240;
@@ -246,7 +247,7 @@ class _MBCarouselCard extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
           child: Container(
-            color: const Color(0xFFD8D8D8),
+            color: AppColors.background,
             child: Stack(
               fit: StackFit.expand,
               children: [
@@ -254,30 +255,28 @@ class _MBCarouselCard extends StatelessWidget {
                   item.imageUrl,
                   fit: BoxFit.cover,
                   errorBuilder: (_, _, _) =>
-                      const ColoredBox(color: Color(0xFFD8D8D8)),
+                    const ColoredBox(color: Color(0xFFD8D8D8)),
                 ),
-                Container(color: const Color.fromRGBO(0, 0, 0, 0.45)),
+                Container(color: const Color.fromRGBO(0, 0, 0, 0.15)),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 12,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          _MBStoreBadge(
-                            storeImageUrl: item.storeImageUrl ?? '',
-                            storeName: item.storeName ?? '',
-                          ),
-                          const SizedBox(width: 8),
-                          _MBRatingBadge(reviewCount: item.reviewCount ?? 12),
+                          // _MBStoreBadge(
+                          //   storeImageUrl: item.storeImageUrl ?? '',
+                          //   storeName: item.storeName ?? '',
+                          // ),
+                          // const SizedBox(width: 8),
+                          if (item.reviewCount != null)
+                            _MBRatingBadge(reviewCount: item.reviewCount ?? 12),
                         ],
                       ),
-                      _MBCarouselTextBlur(item: item),
+                      // _MBCarouselTextBlur(item: item),
                     ],
                   ),
                 ),
