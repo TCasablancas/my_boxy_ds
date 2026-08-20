@@ -37,25 +37,8 @@ class MBUserHomeCarouselCard extends StatelessWidget {
                 Container(color: const Color.fromRGBO(0, 0, 0, 0.15)),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          // _MBStoreBadge(
-                          //   storeImageUrl: item.storeImageUrl ?? '',
-                          //   storeName: item.storeName ?? '',
-                          // ),
-                          // const SizedBox(width: 8),
-                          if (item.rating != null)
-                            MBRatingBadge(rating: item.rating ?? 0.0),
-                        ],
-                      ),
-                      // _MBCarouselTextBlur(item: item),
-                    ],
-                  ),
+                  child: item.rating != null
+                      ? MBRatingBadge(rating: item.rating ?? 0.0) : const SizedBox.shrink(),
                 ),
               ],
             ),
