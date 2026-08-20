@@ -1,6 +1,6 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
+import 'package:my_boxy_ds/components/cards/mb_user_home_carousel_card.dart';
+import 'package:my_boxy_ds/components/caroussels/mb_carousel_progress_dot.dart';
 
 const double _sidePeekPercent = 0.1;
 const double _cardHeight = 240;
@@ -9,19 +9,19 @@ const Duration _defaultAutoPlayDuration = Duration(milliseconds: 4500);
 
 class MBHomeCarouselItem {
   final String id;
-  final String title;
+  final String? title;
   final String imageUrl;
   final String? storeImageUrl;
   final String? storeName;
-  final int? reviewCount;
+  final double? rating;
 
   const MBHomeCarouselItem({
     required this.id,
-    required this.title,
+    this.title,
     required this.imageUrl,
     this.storeImageUrl,
     this.storeName,
-    this.reviewCount,
+    this.rating,
   });
 }
 
@@ -196,7 +196,7 @@ class _MBHomeCarouselListHeaderState extends State<MBHomeCarouselListHeader>
               onPageChanged: _handlePageChanged,
               itemBuilder: (context, index) {
                 final item = _sourceItems[index % _loopLength];
-                return _MBCarouselCard(
+                return MBUserHomeCarouselCard(
                   item: item,
                   gap: _cardGap,
                   onPressed: () => _handlePressItem(item),
@@ -212,7 +212,7 @@ class _MBHomeCarouselListHeaderState extends State<MBHomeCarouselListHeader>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 for (var i = 0; i < _sourceItems.length; i++) ...[
-                  _MBCarouselProgressDot(
+                  MBCarouselProgressDot(
                     active: i == _activeIndex,
                     progress: _progressController,
                     onPressed: () => _goToLogicalIndex(i),
@@ -223,247 +223,6 @@ class _MBHomeCarouselListHeaderState extends State<MBHomeCarouselListHeader>
             ),
           ),
       ],
-    );
-  }
-}
-
-class _MBCarouselCard extends StatelessWidget {
-  final MBHomeCarouselItem item;
-  final double gap;
-  final VoidCallback onPressed;
-
-  const _MBCarouselCard({
-    required this.item,
-    required this.gap,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: gap),
-      child: GestureDetector(
-        onTap: onPressed,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(16),
-          child: Container(
-            color: AppColors.background,
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                Image.network(
-                  item.imageUrl,
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, _, _) =>
-                    const ColoredBox(color: Color(0xFFD8D8D8)),
-                ),
-                Container(color: const Color.fromRGBO(0, 0, 0, 0.15)),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          // _MBStoreBadge(
-                          //   storeImageUrl: item.storeImageUrl ?? '',
-                          //   storeName: item.storeName ?? '',
-                          // ),
-                          // const SizedBox(width: 8),
-                          if (item.reviewCount != null)
-                            _MBRatingBadge(reviewCount: item.reviewCount ?? 12),
-                        ],
-                      ),
-                      // _MBCarouselTextBlur(item: item),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _MBStoreBadge extends StatelessWidget {
-  final String storeImageUrl;
-  final String storeName;
-
-  const _MBStoreBadge({required this.storeImageUrl, required this.storeName});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(left: 2, right: 8, top: 2, bottom: 2),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(100),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ClipOval(
-            child: Image.network(
-              storeImageUrl,
-              width: 16,
-              height: 16,
-              fit: BoxFit.cover,
-              errorBuilder: (_, _, _) =>
-                  const ColoredBox(color: Color(0xFFCCCCCC)),
-            ),
-          ),
-          const SizedBox(width: 4),
-          Text(
-            storeName,
-            style: const TextStyle(
-              fontSize: 10,
-              fontFamily: 'SFMono',
-              letterSpacing: -0.5,
-              color: Color(0xFF4C4C4C),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _MBRatingBadge extends StatelessWidget {
-  final int reviewCount;
-
-  const _MBRatingBadge({required this.reviewCount});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(left: 4, right: 8, top: 2, bottom: 2),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(100),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Icon(Icons.star, size: 16, color: Color(0xFFFBBF24)),
-          const SizedBox(width: 2),
-          Text(
-            '$reviewCount',
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF007BFF),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _MBCarouselTextBlur extends StatelessWidget {
-  final MBHomeCarouselItem item;
-
-  const _MBCarouselTextBlur({required this.item});
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(16),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-        child: Container(
-          color: Colors.white.withValues(alpha: 0.08),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
-                child: Text(
-                  item.title,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: Color(0xFFFBBF24),
-                    fontSize: 22,
-                    fontFamily: 'SFMono',
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: -0.5,
-                    height: 1.0,
-                    shadows: [
-                      Shadow(
-                        color: Color.fromRGBO(0, 0, 0, 0.2),
-                        offset: Offset(0, 2),
-                        blurRadius: 12,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(12, 0, 12, 8),
-                child: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                  style: TextStyle(
-                    fontFamily: 'SFMono',
-                    letterSpacing: -0.5,
-                    color: Colors.white,
-                    fontSize: 14,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _MBCarouselProgressDot extends StatelessWidget {
-  static const double _height = 4;
-  static const double _inactiveWidth = 8;
-  static const double _activeWidth = 44;
-
-  final bool active;
-  final Animation<double> progress;
-  final VoidCallback onPressed;
-
-  const _MBCarouselProgressDot({
-    required this.active,
-    required this.progress,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      behavior: HitTestBehavior.opaque,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        width: active ? _activeWidth : _inactiveWidth,
-        height: _height,
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          color: const Color(0xFFE0E0E0),
-          borderRadius: BorderRadius.circular(_height / 2),
-        ),
-        child: active
-            ? AnimatedBuilder(
-                animation: progress,
-                builder: (context, _) => FractionallySizedBox(
-                  alignment: Alignment.centerLeft,
-                  widthFactor: progress.value.clamp(0.0, 1.0),
-                  child: const ColoredBox(color: Color(0xFF007AFF)),
-                ),
-              )
-            : null,
-      ),
     );
   }
 }

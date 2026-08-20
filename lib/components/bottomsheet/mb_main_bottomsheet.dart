@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'mb_bottomsheet_handler.dart';
 import 'package:my_boxy_ds/components/labels/mb_title_subtitled_label.dart';
 
-enum MBBottomsheetHeightStyle { adaptive, full90 }
+enum MBBottomsheetHeightStyle { adaptive, full }
 
 class MBMainBottomsheet extends StatefulWidget {
   final String? title;
   final String? description;
   final Widget child;
   final MBBottomsheetHeightStyle heightStyle;
+  final TextAlign? textAlign;
   final Animation<double>? transitionAnimation;
 
   const MBMainBottomsheet({
@@ -18,6 +19,7 @@ class MBMainBottomsheet extends StatefulWidget {
     this.description,
     required this.child,
     this.heightStyle = MBBottomsheetHeightStyle.adaptive,
+    this.textAlign,
     this.transitionAnimation,
   });
 
@@ -26,6 +28,7 @@ class MBMainBottomsheet extends StatefulWidget {
     String? description,
     required Widget child,
     MBBottomsheetHeightStyle heightStyle = MBBottomsheetHeightStyle.adaptive,
+    TextAlign? textAlign,
   }) {
     return showGeneralDialog<T>(
       context: context,
@@ -37,6 +40,7 @@ class MBMainBottomsheet extends StatefulWidget {
           title: title,
           description: description,
           heightStyle: heightStyle,
+          textAlign: textAlign,
           transitionAnimation: animation,
           child: child,
         ),
@@ -123,7 +127,7 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
                     constraints: BoxConstraints(maxHeight: maxHeight),
                     child: Container(
                       width: double.infinity,
-                      height: widget.heightStyle == MBBottomsheetHeightStyle.full90
+                      height: widget.heightStyle == MBBottomsheetHeightStyle.full
                         ? maxHeight : null,
                       decoration: const BoxDecoration(
                         color: Colors.white,
@@ -154,7 +158,7 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
       mainAxisSize: MainAxisSize.min,
       children: [
         MBBottomsheetHandler(),
-        widget.heightStyle == MBBottomsheetHeightStyle.full90
+        widget.heightStyle == MBBottomsheetHeightStyle.full
           ? Expanded(
               child: SingleChildScrollView(
                 padding: padding,
@@ -178,10 +182,17 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (title.isNotEmpty && description.isNotEmpty) 
-            MBTitleSubtitled(
-              title: title,
-              description: description,
-              textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 16.0),
+              child: MBTitleSubtitled(
+                title: title,
+                description: description,
+                textAlign: widget.textAlign ?? TextAlign.center,
+              ),
+            ),
+            Container(
+              height: 1, width: double.infinity,
+              decoration: BoxDecoration(color: Colors.grey[200]),
             ),
           widget.child,
         ],

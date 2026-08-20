@@ -47,6 +47,7 @@ class MBTitleSubtitled extends StatelessWidget {
                 fontSize: _titleStyle.fontSize,
                 fontFamily: _titleStyle.fontFamily,
                 fontWeight: FontWeight.w700,
+                letterSpacing: -0.5,
                 color: color,
               )
             )
@@ -60,6 +61,7 @@ class MBTitleSubtitled extends StatelessWidget {
                 fontSize: _descriptionStyle.fontSize,
                 fontFamily: _descriptionStyle.fontFamily,
                 fontWeight: _descriptionStyle.fontWeight,
+                letterSpacing: -0.2,
                 color: Colors.grey[500],
               ),
             )

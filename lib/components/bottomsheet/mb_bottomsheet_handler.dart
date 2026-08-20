@@ -9,7 +9,7 @@ class MBBottomsheetHandler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.only(top: 10),
       alignment: Alignment.center,
       child: Container(
         width: 40, height: 4,
