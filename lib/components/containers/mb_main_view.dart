@@ -36,10 +36,16 @@ class _MBMainViewState extends State<MBMainView> {
         title: widget.viewTitle != null ? Text(widget.viewTitle!, style: _appBarStyle()) : null,
         automaticallyImplyLeading: false, 
         leading: widget.backButton != false
-          ? MBRoundedIconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () => Navigator.of(context).pop(),
-            ) : null,
+          ? Container(
+              margin: const EdgeInsets.only(left: 16.0),
+              alignment: Alignment.centerLeft,
+              child: MBRoundedIconButton(
+                icon: Icon(Icons.arrow_back, color: Colors.grey[700]),
+                // buttonSize: MBRoundedIconButtonSize.small,
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            )
+          : null,
         actions: widget.rightActions,
         backgroundColor: widget.backgroundColor ?? AppColors.lightBackground,
       ),

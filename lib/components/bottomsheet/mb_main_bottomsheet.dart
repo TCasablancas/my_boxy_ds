@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'mb_bottomsheet_handler.dart';
 import 'package:my_boxy_ds/components/labels/mb_title_subtitled_label.dart';
@@ -113,7 +114,8 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
             AnimatedPositioned(
               duration: _dragging ? Duration.zero : const Duration(milliseconds: 250),
               curve: Curves.easeOut,
-              left: 8, right: 8, bottom: 8 - _dragExtent,
+              left: 8, right: 8, 
+              bottom: Platform.isAndroid ? 8 - _dragExtent : -_dragExtent,
               child: AnimatedBuilder(
                 animation: animation,
                 builder: (context, sheet) => Transform.translate(
@@ -137,8 +139,7 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
                         ),
                       ),
                       child: _buildBottomsheetContent(
-                        widget.title ?? '', 
-                        widget.description ?? ''
+                        widget.title ?? '', widget.description ?? ''
                       ),
                     ),
                   ),
@@ -161,13 +162,13 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
         widget.heightStyle == MBBottomsheetHeightStyle.full
           ? Expanded(
               child: SingleChildScrollView(
-                padding: padding,
+                padding: Platform.isAndroid ? padding : const EdgeInsets.only(bottom: 16.0),
                 child: _buildContentWithText(title, description),
               ),
             )
           : Flexible(
               child: Padding(
-                padding: padding,
+                padding: Platform.isAndroid ? padding : const EdgeInsets.only(bottom: 16.0),
                 child: _buildContentWithText(title, description),
               ),
             ),

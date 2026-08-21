@@ -17,17 +17,22 @@ class MBPillBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color ?? Theme.of(context).primaryColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+        decoration: BoxDecoration(
+          color: color ?? Colors.grey[300],
+          borderRadius: BorderRadius.circular(16.0),
         ),
-      ),
-      child: Text(
-        text,
-        style: AppTypography.descriptionFn(textColor ?? Colors.white),
+        child: Text(
+          text,
+          style: TextStyle(
+            color: textColor ?? Colors.white,
+            fontFamily: AppTypography.fontFamily,
+            letterSpacing: -0.2,
+          ),
+        ),
       ),
     );
   }

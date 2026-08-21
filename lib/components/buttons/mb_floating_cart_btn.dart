@@ -16,7 +16,7 @@ class MBFloatingCartButton extends StatelessWidget {
         onTap: onPressed,
         borderRadius: BorderRadius.circular(100),
         child: Container(
-          height: 40,
+          height: 50,
           padding: const EdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),

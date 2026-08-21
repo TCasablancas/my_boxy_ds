@@ -11,7 +11,7 @@ class MBSidebarController extends ValueNotifier<bool> {
 }
 
 class MBSidebarItem {
-  final IconData? icon;
+  final Icon? icon;
   final String title;
   final Color? color;
   final VoidCallback onTap;
@@ -191,7 +191,7 @@ class _MBCollapsibleSidebarState extends State<MBCollapsibleSidebar>
           mainAxisAlignment: MainAxisAlignment.end,
           spacing: 8,
           children: [
-            Icon(item.icon),
+            item.icon ?? const SizedBox.shrink(),
             Text(
               item.title,
               style: TextStyle(

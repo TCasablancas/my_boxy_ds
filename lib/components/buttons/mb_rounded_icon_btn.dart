@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-
 import 'mb_button_tokens.dart';
+
+enum MBRoundedIconButtonSize { small, medium, large }
 
 class MBRoundedIconButton extends StatelessWidget {
   final Widget icon;
   final int? quantity;
   final Color? backgroundColor;
   final bool? shadow;
+  final MBRoundedIconButtonSize buttonSize;
   final VoidCallback onPressed;
 
   const MBRoundedIconButton({
@@ -15,11 +17,27 @@ class MBRoundedIconButton extends StatelessWidget {
     this.quantity,
     this.backgroundColor,
     this.shadow = false,
+    this.buttonSize = MBRoundedIconButtonSize.medium,
     required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
+
+    double size = 40.0;
+
+    switch (buttonSize) {
+      case MBRoundedIconButtonSize.small:
+        size = 24.0;
+        break;
+      case MBRoundedIconButtonSize.medium:
+        size = 36.0;
+        break;
+      case MBRoundedIconButtonSize.large:
+        size = 48.0;
+        break;
+    }
+
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -28,7 +46,7 @@ class MBRoundedIconButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.0),
             boxShadow: [
               BoxShadow(
-                color: (shadow ?? false) ? Colors.black.withValues(alpha: 0.1) : Colors.transparent,
+                color: (shadow ?? false) ? Colors.black.withAlpha(25) : Colors.transparent,
                 blurRadius: 8.0,
                 spreadRadius: 2.0,
                 offset: const Offset(0, 3),
@@ -41,7 +59,7 @@ class MBRoundedIconButton extends StatelessWidget {
             child: InkWell(
               onTap: onPressed,
               customBorder: const CircleBorder(),
-              child: const SizedBox(width: 40, height: 40, child: Center()),
+                child: SizedBox(width: size, height: size, child: Center()),
             ),
           )
         ),

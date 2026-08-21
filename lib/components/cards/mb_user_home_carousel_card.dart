@@ -34,11 +34,14 @@ class MBUserHomeCarouselCard extends StatelessWidget {
                   errorBuilder: (_, _, _) =>
                     const ColoredBox(color: Color(0xFFD8D8D8)),
                 ),
-                Container(color: const Color.fromRGBO(0, 0, 0, 0.15)),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                Container(
+                  color: const Color.fromRGBO(0, 0, 0, 0.15),
+                ),
+                Positioned(
+                  top: 16, right: 16,
                   child: item.rating != null
-                      ? MBRatingBadge(rating: item.rating ?? 0.0) : const SizedBox.shrink(),
+                      ? MBRatingBadge(rating: item.rating ?? 0.0)
+                      : const SizedBox.shrink(),
                 ),
               ],
             ),
