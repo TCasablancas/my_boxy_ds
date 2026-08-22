@@ -33,6 +33,16 @@ class AppTypography {
     );
   }
 
+  static TextStyle h3Fn(Color? color, [FontWeight weight = FontWeight.w800]) {
+    return TextStyle(
+      fontSize: 20,
+      fontFamily: fontFamily,
+      fontWeight: weight,
+      color: color,
+      letterSpacing: -0.75,
+    );
+  }
+
   static TextStyle body1Fn(
     Color? color, 
     [FontWeight weight = FontWeight.normal, String fontFamily = 'Lexend']

@@ -24,13 +24,15 @@ class MBFavoriteButton extends StatelessWidget {
       height: 36,
       decoration: BoxDecoration(
         color: background ? MBButtonColors.backgroundAlt : Colors.transparent,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(100),
       ),
       alignment: Alignment.center,
-      child: MBFavoriteIconButton(
-        isActive: isActive,
-        defaultActive: defaultActive,
-        onPressed: onPressed,
+      child: Center(
+        child: MBFavoriteIconButton(
+          isActive: isActive,
+          defaultActive: defaultActive,
+          onPressed: onPressed,
+        ),
       ),
     );
   }

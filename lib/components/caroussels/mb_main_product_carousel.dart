@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/components/buttons/mb_play_pause_btn.dart';
 
-class MBMainHomeCarouselItem {
+class MBMainProductCarouselItem {
   final String id;
   final String imageUrl;
 
-  const MBMainHomeCarouselItem({required this.id, required this.imageUrl});
+  const MBMainProductCarouselItem({required this.id, required this.imageUrl});
 }
 
-class MBMainHomeCarouselTag {
+class MBMainProductCarouselTag {
   final String id;
   final String label;
   final Widget? icon;
 
-  const MBMainHomeCarouselTag({
+  const MBMainProductCarouselTag({
     required this.id,
     required this.label,
     this.icon,
@@ -21,32 +21,32 @@ class MBMainHomeCarouselTag {
 }
 
 const _defaultItems = [
-  MBMainHomeCarouselItem(
+  MBMainProductCarouselItem(
     id: 'default-1',
     imageUrl:
         'https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=1200&auto=format&fit=crop',
   ),
-  MBMainHomeCarouselItem(
+  MBMainProductCarouselItem(
     id: 'default-2',
     imageUrl:
         'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=1200&auto=format&fit=crop',
   ),
-  MBMainHomeCarouselItem(
+  MBMainProductCarouselItem(
     id: 'default-3',
     imageUrl:
         'https://images.unsplash.com/photo-1470246973918-29a93221c455?q=80&w=1200&auto=format&fit=crop',
   ),
 ];
 
-class MBMainHomeCarousel extends StatefulWidget {
-  final List<MBMainHomeCarouselItem>? items;
+class MBMainProductCarousel extends StatefulWidget {
+  final List<MBMainProductCarouselItem>? items;
   final String? title;
   final String? subtitle;
   final Duration autoPlayDuration;
-  final List<MBMainHomeCarouselTag>? tags;
+  final List<MBMainProductCarouselTag>? tags;
   final double height;
 
-  const MBMainHomeCarousel({
+  const MBMainProductCarousel({
     super.key,
     this.items = _defaultItems,
     this.title,
@@ -57,12 +57,12 @@ class MBMainHomeCarousel extends StatefulWidget {
   });
 
   @override
-  State<MBMainHomeCarousel> createState() => _MBMainHomeCarouselState();
+  State<MBMainProductCarousel> createState() => _MBMainProductCarouselState();
 }
 
-class _MBMainHomeCarouselState extends State<MBMainHomeCarousel>
+class _MBMainProductCarouselState extends State<MBMainProductCarousel>
     with SingleTickerProviderStateMixin {
-  late final List<MBMainHomeCarouselItem> _items =
+  late final List<MBMainProductCarouselItem> _items =
       ((widget.items != null && widget.items!.isNotEmpty)
               ? widget.items!
               : _defaultItems)
@@ -350,7 +350,7 @@ class _MBProgressDot extends StatelessWidget {
 }
 
 class _MBCarouselTagChip extends StatelessWidget {
-  final MBMainHomeCarouselTag tag;
+  final MBMainProductCarouselTag tag;
 
   const _MBCarouselTagChip({required this.tag});
 

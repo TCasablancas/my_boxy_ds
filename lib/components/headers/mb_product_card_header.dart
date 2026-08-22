@@ -16,38 +16,41 @@ class MBProductCardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      spacing: 4,
-      children: [
-        MBStoreImageSmallContainer(url: storeImageURL ?? ''),
-        Expanded(
-          child: Text(
-            storeName,
-            style: const TextStyle(
-              fontSize: 10,
-              fontFamily: 'SFMono',
-              letterSpacing: -0.5,
-              color: Color(0xFF111827),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+      child: Row(
+        spacing: 4,
+        children: [
+          MBStoreImageSmallContainer(url: storeImageURL ?? ''),
+          Expanded(
+            child: Text(
+              storeName,
+              style: const TextStyle(
+                fontSize: 10,
+                fontFamily: 'SFMono',
+                letterSpacing: -0.5,
+                color: Color(0xFF111827),
+              ),
             ),
           ),
-        ),
-        if (rating != null) ...[
-          const Icon(
-            Icons.star,
-            size: 12,
-            color: Color(0xFFFBBF24),
-          ),
-          Text(
-            '$rating',
-            style: const TextStyle(
-              fontSize: 11,
-              fontFamily: 'SFMono',
-              letterSpacing: -0.5,
-              color: Color(0xFF4C4C4C),
+          if (rating != null) ...[
+            const Icon(
+              Icons.star,
+              size: 12,
+              color: Color(0xFFFBBF24),
             ),
-          ),
+            Text(
+              '$rating',
+              style: const TextStyle(
+                fontSize: 11,
+                fontFamily: 'SFMono',
+                letterSpacing: -0.5,
+                color: Color(0xFF4C4C4C),
+              ),
+            ),
+          ],
         ],
-      ],
+      )
     );
   }
 }

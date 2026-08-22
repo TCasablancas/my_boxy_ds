@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
 import 'package:my_boxy_ds/ui/mb_typography.dart';
 
 class MBPriceValueLabel extends StatelessWidget {
@@ -21,18 +20,16 @@ class MBPriceValueLabel extends StatelessWidget {
     return RichText(
       text: TextSpan(
         children: [
-          TextSpan(
-            text: 'R\$',
-            style: AppTypography.captionFn(AppColors.accent),
-          ),
+          TextSpan(text: 'R\$',),
           TextSpan(
             text: _formattedPrice,
-            style: AppTypography.body1Fn(Colors.blue, FontWeight.w700),
+            style: AppTypography.h3Fn(Colors.blueAccent, FontWeight.w900),
           ),
         ],
         style: TextStyle(
-          color: Colors.blue,
+          color: Colors.blueAccent,
           height: 20 / 16,
+          fontFamily: 'SFMono'
         ),
       ),
     );

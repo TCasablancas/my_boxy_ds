@@ -1,6 +1,7 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:my_boxy_ds/components/buttons/mb_menu_slider_btn.dart';
+import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
 
 class MBSidebarController extends ValueNotifier<bool> {
   MBSidebarController() : super(false);
@@ -13,13 +14,11 @@ class MBSidebarController extends ValueNotifier<bool> {
 class MBSidebarItem {
   final Icon? icon;
   final String title;
-  final Color? color;
   final VoidCallback onTap;
 
   const MBSidebarItem({
     this.icon,
     required this.title,
-    this.color,
     required this.onTap,
   });
 }
@@ -75,10 +74,7 @@ class _MBCollapsibleSidebarState extends State<MBCollapsibleSidebar>
   void _onDragEnd(DragEndDetails details) {
     final velocity = details.primaryVelocity ?? 0;
     final shouldOpen = velocity < -200
-        ? true
-        : velocity > 200
-        ? false
-        : _controller.value > 0.5;
+      ? true : velocity > 200 ? false : _controller.value > 0.5;
     widget.controller.value = shouldOpen;
   }
 
@@ -139,9 +135,9 @@ class _MBCollapsibleSidebarState extends State<MBCollapsibleSidebar>
                   width: width,
                   height: double.infinity,
                   child: Material(
-                    color: Colors.grey[800],
+                    color: Colors.grey[700]?.withAlpha(250),
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 60, 0, 16),
+                      padding: const EdgeInsets.fromLTRB(16, 60, 16, 36),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -155,11 +151,18 @@ class _MBCollapsibleSidebarState extends State<MBCollapsibleSidebar>
                           Spacer(),
                           GestureDetector(
                             behavior: HitTestBehavior.opaque,
-                            onTap: () {},
+                            onTap: () { widget.controller.close(); },
                             child: Column(
+                              spacing: 16,
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.end,
-                              children: widget.items.map(_buildItem).toList(),
+                              children: widget.items.map(
+                                (item) => MBMenuSliderBtn(
+                                  item: item, 
+                                  background: widget.items.last == item 
+                                    ? AppColors.primaryLight : null,
+                                ),
+                              ).toList(),
                             ),
                           ),
                         ],
@@ -172,37 +175,6 @@ class _MBCollapsibleSidebarState extends State<MBCollapsibleSidebar>
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildItem(MBSidebarItem item) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        elevation: 0,
-        shadowColor: Colors.transparent,
-        backgroundColor: Colors.transparent,
-        splashFactory: NoSplash.splashFactory,
-        overlayColor: Colors.transparent,
-      ),
-      onPressed: item.onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          spacing: 8,
-          children: [
-            item.icon ?? const SizedBox.shrink(),
-            Text(
-              item.title,
-              style: TextStyle(
-                fontFamily: 'Lexend',
-                fontSize: 22,
-                color: item.color ?? Colors.grey[500],
-              ),
-            )
-          ],
-        ),
-      )
     );
   }
 }

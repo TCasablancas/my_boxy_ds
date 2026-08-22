@@ -14,42 +14,40 @@ class MBMainProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 160,
-      child: InkWell(
-        onTap: product.onPressed,
-        borderRadius: BorderRadius.circular(8),
-        child: Column(
-          spacing: 8,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            MBProductCardHeader(
-              storeImageURL: product.storeImageUrl,
-              storeName: product.storeName,
-              rating: 4.5,
-            ),
-            Stack(
-              children: [
-                MBProductCardImageContainer(url: product.imageUrl),
-                Positioned(
-                  top: 4, right: 8,
-                  child: MBFavoriteButton(
-                    isActive: product.isFavorite,
-                    defaultActive: product.isFavorite ?? false,
-                    onPressed: product.onFavoriteChanged,
-                  ),
+    return InkWell(
+      onTap: product.onPressed,
+      borderRadius: BorderRadius.circular(8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          MBProductCardHeader(
+            storeImageURL: product.storeImageUrl,
+            storeName: product.storeName,
+            rating: 4.5,
+          ),
+          
+          Stack(
+            children: [
+              MBProductCardImageContainer(url: product.imageUrl),
+              Positioned(
+                top: 8, right: 8,
+                child: MBFavoriteButton(
+                  isActive: product.isFavorite,
+                  defaultActive: product.isFavorite ?? false,
+                  background: true,
+                  onPressed: product.onFavoriteChanged,
                 ),
-                Positioned(
-                  bottom: 8, right: 8,
-                  child: MBAddToCartBtn(onPress: () => {})
-                )
-              ],
-            ),
-            MBProductCardLabel(
-              title: product.title, price: product.price
-            ),
-          ],
-        ),
+              ),
+              Positioned(
+                bottom: 8, right: 8,
+                child: MBAddToCartBtn(onPress: onAddToCart)
+              )
+            ],
+          ),
+          MBProductCardLabel(
+            title: product.title, price: product.price
+          ),
+        ],
       ),
     );
   }

@@ -35,8 +35,29 @@ class MBUserHomeCarouselCard extends StatelessWidget {
                     const ColoredBox(color: Color(0xFFD8D8D8)),
                 ),
                 Container(
-                  color: const Color.fromRGBO(0, 0, 0, 0.15),
+                  color: const Color.fromRGBO(0, 0, 0, 0.25),
                 ),
+                if (item.title != null && item.title!.isNotEmpty)
+                  Positioned(
+                    top: 16, left: 24,
+                    child: Container(
+                      width: 260,
+                      // padding: const EdgeInsets.only(right: 24),
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        item.title ?? '',
+                        softWrap: true,
+                        style: TextStyle(
+                          color: Colors.white.withAlpha(230),
+                          fontSize: 46,
+                          fontWeight: FontWeight.w900,
+                          fontFamily: 'SFMono',
+                          letterSpacing: -0.75,
+                          height: 1.0,
+                        ),
+                      ),
+                    ),
+                  ),
                 Positioned(
                   top: 16, right: 16,
                   child: item.rating != null

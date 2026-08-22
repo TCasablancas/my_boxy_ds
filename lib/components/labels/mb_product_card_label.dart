@@ -17,17 +17,36 @@ class MBProductCardLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: AppTypography.captionFn(AppColors.textTertiary)
+      child: Container(
+        height: 48,
+        width: double.infinity,
+        padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
+        alignment: Alignment.centerLeft,
+        decoration: BoxDecoration(
+          color: AppColors.background,
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(8.0),
+            bottomRight: Radius.circular(8.0),
           ),
-          MBPriceValueLabel(price: price)
-        ],
+          border: Border(
+            bottom: BorderSide(
+              color: Colors.grey[300]!, // Choose your border color
+              width: 1.0,          // Choose your border thickness
+            ),
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppTypography.captionFn(AppColors.textPrimary)
+            ),
+            MBPriceValueLabel(price: price)
+          ],
+        ),
       ),
     );
   }

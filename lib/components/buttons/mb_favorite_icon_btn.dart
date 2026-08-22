@@ -67,7 +67,7 @@ class _MBFavoriteIconButtonState extends State<MBFavoriteIconButton>
             opacity: _isActive ? 1 : .7,
             child: Icon(
               _isActive ? Icons.favorite : Icons.favorite_border,
-              size: 24,
+              size: 20,
               color: _isActive
                   ? MBButtonColors.mainRed
                   : MBButtonColors.textSecondary,
