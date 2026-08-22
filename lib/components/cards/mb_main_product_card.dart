@@ -25,7 +25,6 @@ class MBMainProductCard extends StatelessWidget {
             storeName: product.storeName,
             rating: 4.5,
           ),
-          
           Stack(
             children: [
               MBProductCardImageContainer(url: product.imageUrl),

@@ -18,34 +18,22 @@ class MBCategoryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      borderRadius: BorderRadius.circular(8),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 220),
-        width: 80,
-        height: 60,
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-            color: isSelected ? activeBorderColor : const Color(0xFFDADADA),
-            width: 2,
-          ),
+    return Container(
+      padding: const EdgeInsets.only(left: 8.0, right: 12.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(100),
+        border: Border.all(
+          color: isSelected ? activeBorderColor : const Color(0xFFDADADA),
+          width: 2,
         ),
-        child: Column(
+      ),
+      child: SizedBox(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: Center(
-                child: SizedBox(
-                  width: 40,
-                  height: 40,
-                  child: Center(child: icon),
-                ),
-              ),
-            ),
-            const SizedBox(height: 4),
+            SizedBox(height: 40, child: icon,),
+            const SizedBox(width: 4),
             Text(
               title,
               textAlign: TextAlign.center,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_boxy_ds/components/sidebar/mb_collapsible_sidebar.dart';
+import 'package:my_boxy_ds/components/menus/mb_collapsible_sidebar.dart';
 import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
 
 class MBMenuSliderBtn extends StatelessWidget {
@@ -30,13 +30,13 @@ class MBMenuSliderBtn extends StatelessWidget {
               const SizedBox(width: 8),
             ],
             Text(
-              item.title,
+              item.title.toUpperCase(),
               style: TextStyle(
                 fontFamily: 'SFMono',
                 fontSize: 22,
-                fontWeight: FontWeight.w900,
+                fontWeight: FontWeight.w700,
                 letterSpacing: -0.5,
-                color: background != null ? AppColors.focus : AppColors.primaryLight,
+                color: background != null ? AppColors.primaryDark : AppColors.primaryLight,
               ),
             )
           ],
