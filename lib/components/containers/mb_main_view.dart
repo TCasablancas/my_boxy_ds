@@ -85,7 +85,7 @@ class _MBMainViewState extends State<MBMainView> {
               child: Column(
                 children: [
                   widget.header ?? const SizedBox.shrink(),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 16),
                   Expanded(
                     child: widget.child,
                   ),

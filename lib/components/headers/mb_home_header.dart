@@ -28,8 +28,7 @@ class _MBHomeHeaderState extends State<MBHomeHeader> {
     return(
       Padding(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-        child: Column(
-          children: [
+        child:
             Row(
               spacing: 8,
               children: [
@@ -38,66 +37,50 @@ class _MBHomeHeaderState extends State<MBHomeHeader> {
                   package: 'my_boxy_ds',
                   width: 40, height: 40,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isCollapsed = !isCollapsed;
-                    });
-                  },
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text('Olá, ', style: AppTypography.body1Fn(Colors.grey[600])),
-                          Text(
-                            widget.userName, 
-                            style: AppTypography.body1Fn(Colors.grey[900], FontWeight.w700)
-                          ),
-                          Icon(Icons.arrow_drop_down)
-                        ],
-                      ),
-                      Text(
-                        '@${widget.userAlias}', 
-                        style: AppTypography.captionFn(Colors.grey[500], 'SFMono')
-                      )
-                    ],
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text('Olá, ', style: AppTypography.body1Fn(Colors.grey[600])),
+                        Text(
+                          widget.userName, 
+                          style: AppTypography.body1Fn(
+                            Colors.grey[900], FontWeight.w700
+                          ).copyWith(letterSpacing: -0.5)
+                        ),
+                        Icon(Icons.arrow_drop_down)
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          '@${widget.userAlias}', 
+                          style: AppTypography.captionFn(
+                            Colors.grey[500], 'Lexend'
+                          ).copyWith(letterSpacing: -0.2)
+                        ),
+                        Container(
+                          width: 8,
+                          height: 16,
+                          margin: const EdgeInsets.only(left: 8),
+                          child: Icon(Icons.location_pin, size: 8, color: Colors.grey[500]),
+                        ),
+                        Text(
+                          'Santos - SP', 
+                          style: AppTypography.captionFn(
+                            Colors.grey[500], 'Lexend'
+                          ).copyWith(letterSpacing: -0.2)
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
                 Spacer(),
                 ...widget.rightBtns ?? []
               ],
             ),
-            const SizedBox(height: 16),
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-              height: isCollapsed ? 0 : 80,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(8)
-              ),
-              child: Row(
-                children: [
-                  MBPillBtn(
-                    text: 'Compartilhar Perfil',
-                    onPressed: () {},
-                    color: Colors.grey[400],
-                    textColor: Colors.grey[800],
-                  ),
-                  MBPillBtn(
-                    text: 'Criar caixa',
-                    onPressed: () {},
-                    color: Colors.grey[400],
-                    textColor: Colors.grey[800],
-                  ),
-                ],
-              )
-            ),
-          ]
         )
-      )
-    );
+      );
   }
 }
