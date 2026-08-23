@@ -4,6 +4,7 @@ import 'package:my_boxy_ds/components/buttons/mb_floating_cart_btn.dart';
 import 'package:my_boxy_ds/components/buttons/mb_rounded_icon_btn.dart';
 import 'package:my_boxy_ds/ui/icons/mb_icons_actions.dart';
 import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
+// import 'package:gradient_blur/gradient_blur.dart';
 
 class MBBottomFixedMenu extends StatelessWidget {
   final VoidCallback? onNotificationsTap;
@@ -19,19 +20,20 @@ class MBBottomFixedMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 268,
-      height: 68,
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(100),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(
-            sigmaX: 10.0, sigmaY: 10.0,
-          ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: 3.0, sigmaY: 3.0,
+        ),
+        child: Container(
+          width: 240.0,
+          height: 80,
+          padding: const EdgeInsets.only(bottom: 16.0),
+          // decoration: BoxDecoration(
+          //   color: AppColors.surface,
+          //   borderRadius: BorderRadius.circular(8),
+          // ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 12,
@@ -60,7 +62,7 @@ class MBBottomFixedMenu extends StatelessWidget {
                 onPressed: () => onMenuTap?.call(),
               ),
             ],
-          ),
+          ), 
         ),
       ),
     );

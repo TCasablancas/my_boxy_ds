@@ -88,6 +88,7 @@ class AppTypography {
   static const h2 = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
+    fontFamily: 'Lexend',
     color: AppColors.textPrimary,
     letterSpacing: -0.3,
   );

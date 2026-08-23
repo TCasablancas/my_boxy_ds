@@ -28,7 +28,7 @@ class AppColors {
   static const error = Color(0xFFFF5252);
   static const errorLight = Color(0xFFFFD9D9);
 
-  static const focus = Color(0xFF2F80ED);
+  static const focus = Color(0xFF007AFF);
   static const focusLight = Color(0xFFD6E4FF);
 
   static const gradientStart = Color(0xFF5B5FED);

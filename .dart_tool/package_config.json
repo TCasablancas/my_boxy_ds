@@ -68,6 +68,12 @@
       "languageVersion": "3.11"
     },
     {
+      "name": "gradient_blur",
+      "rootUri": "file:///Users/thiago/.pub-cache/hosted/pub.dev/gradient_blur-1.0.2+1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "http",
       "rootUri": "file:///Users/thiago/.pub-cache/hosted/pub.dev/http-1.6.0",
       "packageUri": "lib/",
@@ -78,6 +84,12 @@
       "rootUri": "file:///Users/thiago/.pub-cache/hosted/pub.dev/http_parser-4.1.2",
       "packageUri": "lib/",
       "languageVersion": "3.4"
+    },
+    {
+      "name": "intl",
+      "rootUri": "file:///Users/thiago/.pub-cache/hosted/pub.dev/intl-0.20.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.9"
     },
     {
       "name": "leak_tracker",

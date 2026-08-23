@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_boxy_ds/components/containers/mb_store_image_small_container.dart';
+import 'package:my_boxy_ds/components/containers/mb_store_image_container.dart';
 
 class MBProductCardHeader extends StatelessWidget {
 
@@ -21,14 +21,14 @@ class MBProductCardHeader extends StatelessWidget {
       child: Row(
         spacing: 4,
         children: [
-          MBStoreImageSmallContainer(url: storeImageURL ?? ''),
+          MBStoreImageContainer(url: storeImageURL ?? ''),
           Expanded(
             child: Text(
               storeName,
               style: const TextStyle(
-                fontSize: 10,
-                fontFamily: 'SFMono',
-                letterSpacing: -0.5,
+                fontSize: 11,
+                fontFamily: 'Lexend',
+                letterSpacing: -0.2,
                 color: Color(0xFF111827),
               ),
             ),

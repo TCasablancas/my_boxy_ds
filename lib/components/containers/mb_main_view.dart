@@ -7,6 +7,7 @@ import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
 
 class MBMainView extends StatefulWidget {
   final String? viewTitle;
+  final Widget? headerWidget;
   final bool? backButton;
   final Widget? header;
   final Widget child;
@@ -22,6 +23,7 @@ class MBMainView extends StatefulWidget {
   const MBMainView({
     super.key,
     this.viewTitle,
+    this.headerWidget,
     this.backButton,
     this.header,
     required this.child,
@@ -57,23 +59,30 @@ class _MBMainViewState extends State<MBMainView> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: widget.hasAppBar ?? true
-          ? AppBar(
-          title: widget.viewTitle != null ? Text(widget.viewTitle!, style: _appBarStyle()) : null,
-          automaticallyImplyLeading: false, 
-          leading: widget.backButton != false && widget.hasAppBar != false
-            ? Container(
-                margin: const EdgeInsets.only(left: 16.0),
-                alignment: Alignment.centerLeft,
-                child: MBRoundedIconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.grey[700]),
-                  // buttonSize: MBRoundedIconButtonSize.small,
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              )
-            : const SizedBox.shrink(),
-          actions: widget.rightActions,
-          backgroundColor: widget.backgroundColor ?? AppColors.lightBackground,
-        ) : null,
+        ? AppBar(
+        title: widget.viewTitle != null 
+          ? Text(widget.viewTitle!, style: _appBarStyle()) 
+          : widget.headerWidget,
+        automaticallyImplyLeading: false, 
+        leading: widget.backButton != false && widget.hasAppBar != false
+          ? Container(
+              margin: const EdgeInsets.only(left: 16.0),
+              alignment: Alignment.centerLeft,
+              child: MBRoundedIconButton(
+                icon: Icon(Icons.arrow_back, color: Colors.grey[700]),
+                // buttonSize: MBRoundedIconButtonSize.small,
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            )
+          : const SizedBox.shrink(),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: Row(children: widget.rightActions ?? [],),
+          ),
+        ],
+        backgroundColor: widget.backgroundColor ?? AppColors.lightBackground,
+      ) : null,
       resizeToAvoidBottomInset: false,
       backgroundColor: widget.backgroundColor ?? AppColors.lightBackground,
       body: MBCollapsibleSidebar(
@@ -85,7 +94,7 @@ class _MBMainViewState extends State<MBMainView> {
               child: Column(
                 children: [
                   widget.header ?? const SizedBox.shrink(),
-                  const SizedBox(height: 16),
+                  // const SizedBox(height: 16),
                   Expanded(
                     child: widget.child,
                   ),
@@ -94,15 +103,11 @@ class _MBMainViewState extends State<MBMainView> {
             ),
             if (widget.hasBottomMenu ?? true)
               Positioned(
-                bottom: 16,
-                left: 0,
-                right: 0,
-                child: Center(
-                  child: MBBottomFixedMenu(
-                    onNotificationsTap: widget.onNotificationsTap,
-                    onCartTap: widget.onCartTap,
-                    onMenuTap: widget.onMenuTap ?? sidebarController.toggle,
-                  ),
+                bottom: 0, left: 0, right: 0,
+                child: MBBottomFixedMenu(
+                  onNotificationsTap: widget.onNotificationsTap,
+                  onCartTap: widget.onCartTap,
+                  onMenuTap: widget.onMenuTap ?? sidebarController.toggle,
                 ),
               ),
           ],

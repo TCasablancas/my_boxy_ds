@@ -17,7 +17,7 @@ class MBFloatingCartButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(100),
         child: Container(
           height: 50,
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.only(right: 12, left: 20),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
             // boxShadow: const [
@@ -36,20 +36,19 @@ class MBFloatingCartButton extends StatelessWidget {
                 size: 16,
                 color: MBButtonColors.primary,
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: 12),
               Text(
                 'Carrinho',
                 style: mbButtonTextStyle(
-                  fontSize: 16,
+                  fontSize: 18,
                   color: MBButtonColors.primaryDark,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               if (items != null && items! > 0) ...[
-                const SizedBox(width: 8),
+                const SizedBox(width: 12),
                 Container(
-                  width: 24,
-                  height: 24,
+                  width: 24, height: 24,
                   alignment: Alignment.center,
                   decoration: const BoxDecoration(
                     color: MBButtonColors.mainRed,
