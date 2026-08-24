@@ -30,7 +30,7 @@ class MBMainInfoSquareButton extends StatelessWidget {
   Color get _backgroundColor => switch (type) {
     MBMainInfoSquareButtonType.light => MBButtonColors.primaryLight,
     MBMainInfoSquareButtonType.dark => MBButtonColors.neutral800,
-    MBMainInfoSquareButtonType.outlined => Colors.transparent,
+    MBMainInfoSquareButtonType.outlined => Colors.white,
     MBMainInfoSquareButtonType.gray => MBButtonColors.neutral200,
     MBMainInfoSquareButtonType.disabled => MBButtonColors.neutral100,
     MBMainInfoSquareButtonType.defaultType => MBButtonColors.primaryDark,
@@ -56,9 +56,14 @@ class MBMainInfoSquareButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: _backgroundColor,
-      borderRadius: BorderRadius.circular(16),
+    return Container(
+      height: 100,
+      decoration: BoxDecoration(
+        color: _backgroundColor,
+        borderRadius: BorderRadius.circular(16),
+        border: type == MBMainInfoSquareButtonType.outlined
+          ? Border.all(color: Colors.grey[200]!, width: 1) : null,
+      ),
       child: InkWell(
         onTap: type == MBMainInfoSquareButtonType.disabled ? null : onPressed,
         borderRadius: BorderRadius.circular(16),
@@ -74,8 +79,9 @@ class MBMainInfoSquareButton extends StatelessWidget {
                   Container(
                     width: 46, height: 46,
                     alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: type == MBMainInfoSquareButtonType.outlined 
+                        ? Colors.grey[200]! : Colors.white,
                       shape: BoxShape.circle,
                     ),
                     child: icon,
@@ -83,7 +89,7 @@ class MBMainInfoSquareButton extends StatelessWidget {
                   Icon(Icons.arrow_outward, size: 16, color: _titleColor),
                 ],
               ),
-              const SizedBox(height: 50),
+              const Spacer(),
               Text(
                 title,
                 style: mbButtonTextStyle(

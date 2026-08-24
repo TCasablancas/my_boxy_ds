@@ -35,6 +35,7 @@ class MBPillBtn extends StatelessWidget {
           text,
           style: TextStyle(
             color: textColor ?? Colors.white,
+            fontSize: 12,
             fontFamily: AppTypography.fontFamily,
             letterSpacing: -0.2,
           ),

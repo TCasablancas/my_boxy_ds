@@ -17,7 +17,6 @@ class MBCarouselProgressDot extends StatefulWidget {
 }
 
 class MBCarouselProgressDotState extends State<MBCarouselProgressDot> {
-
   final double _height = 4;
   final double _inactiveWidth = 8;
   final double _activeWidth = 44;

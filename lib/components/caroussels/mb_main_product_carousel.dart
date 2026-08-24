@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_boxy_ds/components/buttons/mb_pill_btn.dart';
 import 'package:my_boxy_ds/components/buttons/mb_play_pause_btn.dart';
+import 'package:my_boxy_ds/components/caroussels/mb_carousel_progress_dot.dart';
+import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
 
 class MBMainProductCarouselItem {
   final String id;
@@ -43,7 +46,7 @@ class MBMainProductCarousel extends StatefulWidget {
   final String? title;
   final String? subtitle;
   final Duration autoPlayDuration;
-  final List<MBMainProductCarouselTag>? tags;
+  final List<MBPillBtn>? tags;
   final double height;
 
   const MBMainProductCarousel({
@@ -63,11 +66,8 @@ class MBMainProductCarousel extends StatefulWidget {
 class _MBMainProductCarouselState extends State<MBMainProductCarousel>
     with SingleTickerProviderStateMixin {
   late final List<MBMainProductCarouselItem> _items =
-      ((widget.items != null && widget.items!.isNotEmpty)
-              ? widget.items!
-              : _defaultItems)
-          .take(5)
-          .toList();
+    ((widget.items != null && widget.items!.isNotEmpty)
+        ? widget.items! : _defaultItems).take(5).toList();
 
   final PageController _pageController = PageController();
   late final AnimationController _progressController = AnimationController(
@@ -258,8 +258,7 @@ class _MBMainProductCarouselState extends State<MBMainProductCarousel>
                     ),
                   ),
                 Positioned(
-                  bottom: 12,
-                  right: 12,
+                  bottom: 12, right: 12,
                   child: MBPlayPauseButton(
                     isPlaying: _isPlaying,
                     onPressed: _togglePlayPause,
@@ -267,13 +266,17 @@ class _MBMainProductCarouselState extends State<MBMainProductCarousel>
                 ),
                 if (widget.tags != null && widget.tags!.isNotEmpty)
                   Positioned(
-                    bottom: 12,
-                    left: 14,
-                    right: 90,
+                    bottom: 12, left: 14,
                     child: Row(
                       children: [
                         for (final tag in widget.tags!) ...[
-                          _MBCarouselTagChip(tag: tag),
+                          MBPillBtn(
+                            text: tag.text, 
+                            color: Colors.white,
+                            textColor: AppColors.primaryDark,
+                            borderColor: Colors.transparent,
+                            onPressed: tag.onPressed
+                          ),
                           const SizedBox(width: 8),
                         ],
                       ],
@@ -290,7 +293,7 @@ class _MBMainProductCarouselState extends State<MBMainProductCarousel>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 for (var i = 0; i < _items.length; i++) ...[
-                  _MBProgressDot(
+                  MBCarouselProgressDot(
                     active: i == _activeIndex,
                     progress: _progressController,
                     onPressed: () => _goToIndex(i),
@@ -301,99 +304,6 @@ class _MBMainProductCarouselState extends State<MBMainProductCarousel>
             ),
           ),
       ],
-    );
-  }
-}
-
-class _MBProgressDot extends StatelessWidget {
-  static const double _height = 4;
-  static const double _inactiveWidth = 8;
-  static const double _activeWidth = 44;
-
-  final bool active;
-  final Animation<double> progress;
-  final VoidCallback onPressed;
-
-  const _MBProgressDot({
-    required this.active,
-    required this.progress,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      behavior: HitTestBehavior.opaque,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        width: active ? _activeWidth : _inactiveWidth,
-        height: _height,
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-          color: const Color(0xFFE0E0E0),
-          borderRadius: BorderRadius.circular(_height / 2),
-        ),
-        child: active
-            ? AnimatedBuilder(
-                animation: progress,
-                builder: (context, _) => FractionallySizedBox(
-                  alignment: Alignment.centerLeft,
-                  widthFactor: progress.value.clamp(0.0, 1.0),
-                  child: const ColoredBox(color: Color(0xFF007AFF)),
-                ),
-              )
-            : null,
-      ),
-    );
-  }
-}
-
-class _MBCarouselTagChip extends StatelessWidget {
-  final MBMainProductCarouselTag tag;
-
-  const _MBCarouselTagChip({required this.tag});
-
-  @override
-  Widget build(BuildContext context) {
-    return Opacity(
-      opacity: 0.8,
-      child: Container(
-        height: 24,
-        padding: const EdgeInsets.all(4),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (tag.icon != null)
-              Container(
-                width: 18,
-                height: 18,
-                margin: const EdgeInsets.only(right: 4),
-                decoration: const BoxDecoration(
-                  color: Color(0xFF333333),
-                  shape: BoxShape.circle,
-                ),
-                alignment: Alignment.center,
-                child: tag.icon,
-              ),
-            Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: Text(
-                tag.label,
-                style: const TextStyle(
-                  fontSize: 12,
-                  letterSpacing: -0.5,
-                  color: Color(0xFF333333),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
