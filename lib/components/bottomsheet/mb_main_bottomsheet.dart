@@ -182,19 +182,18 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (title.isNotEmpty && description.isNotEmpty) 
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 16.0),
-              child: MBTitleSubtitled(
-                title: title,
-                description: description,
-                textAlign: widget.textAlign ?? TextAlign.center,
-              ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 16.0),
+            child: MBTitleSubtitled(
+              title: title,
+              description: description,
+              textAlign: widget.textAlign ?? TextAlign.center,
             ),
-            Container(
-              height: 1, width: double.infinity,
-              decoration: BoxDecoration(color: Colors.grey[200]),
-            ),
+          ),
+          Container(
+            height: 1, width: double.infinity,
+            decoration: BoxDecoration(color: Colors.grey[200]),
+          ),
           widget.child,
         ],
       ),

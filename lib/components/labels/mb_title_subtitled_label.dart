@@ -52,20 +52,21 @@ class MBTitleSubtitled extends StatelessWidget {
               )
             )
           ),
-          SizedBox(
-            width: double.infinity,
-            child: Text(
-              description,
-              textAlign: textAlign,
-              style: TextStyle(
-                fontSize: _descriptionStyle.fontSize,
-                fontFamily: _descriptionStyle.fontFamily,
-                fontWeight: _descriptionStyle.fontWeight,
-                letterSpacing: -0.2,
-                color: Colors.grey[500],
-              ),
+          if (description.isNotEmpty)
+            SizedBox(
+              width: double.infinity,
+              child: Text(
+                description,
+                textAlign: textAlign,
+                style: TextStyle(
+                  fontSize: _descriptionStyle.fontSize,
+                  fontFamily: _descriptionStyle.fontFamily,
+                  fontWeight: _descriptionStyle.fontWeight,
+                  letterSpacing: -0.2,
+                  color: Colors.grey[500],
+                ),
+              )
             )
-          )
         ]
       )
     );

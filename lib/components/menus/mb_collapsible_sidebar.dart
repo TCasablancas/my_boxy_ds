@@ -131,11 +131,16 @@ class _MBCollapsibleSidebarState extends State<MBCollapsibleSidebar>
                 onHorizontalDragUpdate: _onDragUpdate,
                 onHorizontalDragEnd: _onDragEnd,
                 behavior: HitTestBehavior.opaque,
-                child: SizedBox(
+                child: Container(
                   width: width,
+                  // height: MediaQuery.of(context).size.height - 100,
                   height: double.infinity,
+                  margin: const EdgeInsets.only(right: 16, top: 46, bottom: 36),
                   child: Material(
                     color: Colors.grey[700]?.withAlpha(250),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(16, 60, 16, 36),
                       child: Column(

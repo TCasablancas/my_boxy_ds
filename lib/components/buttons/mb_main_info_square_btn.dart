@@ -57,7 +57,7 @@ class MBMainInfoSquareButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 140,
       decoration: BoxDecoration(
         color: _backgroundColor,
         borderRadius: BorderRadius.circular(16),

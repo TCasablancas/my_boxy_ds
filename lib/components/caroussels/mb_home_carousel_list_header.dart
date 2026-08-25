@@ -14,6 +14,7 @@ class MBHomeCarouselItem {
   final String? storeImageUrl;
   final String? storeName;
   final double? rating;
+  final VoidCallback? onPressed;
 
   const MBHomeCarouselItem({
     required this.id,
@@ -22,6 +23,7 @@ class MBHomeCarouselItem {
     this.storeImageUrl,
     this.storeName,
     this.rating,
+    this.onPressed,
   });
 }
 
