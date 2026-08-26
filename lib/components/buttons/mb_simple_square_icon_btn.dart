@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
 
 class MBSimpleSquareIconBtn extends StatelessWidget {
-  final IconData icon;
+  // final IconData icon;
   final String title;
   final String? description;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   const MBSimpleSquareIconBtn({
     super.key,
-    required this.icon,
+    // required this.icon,
     required this.title,
     this.description,
-    required this.onPressed,
+    this.onPressed,
   });
 
   @override

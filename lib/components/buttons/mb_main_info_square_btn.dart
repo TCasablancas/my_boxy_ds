@@ -12,7 +12,7 @@ enum MBMainInfoSquareButtonType {
 }
 
 class MBMainInfoSquareButton extends StatelessWidget {
-  final Widget icon;
+  final Widget? icon;
   final String title;
   final String description;
   final MBMainInfoSquareButtonType type;
@@ -20,7 +20,7 @@ class MBMainInfoSquareButton extends StatelessWidget {
 
   const MBMainInfoSquareButton({
     super.key,
-    required this.icon,
+    this.icon,
     required this.title,
     required this.description,
     this.type = MBMainInfoSquareButtonType.defaultType,

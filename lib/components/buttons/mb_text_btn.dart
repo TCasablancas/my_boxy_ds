@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'mb_button_tokens.dart';
 
 enum MBTextButtonSize { small, medium, large, extraLarge }
 
 class MBTextButton extends StatelessWidget {
+  final IconData? icon;
   final String? title;
   final Color? textColor;
   final MBTextButtonSize size;
@@ -12,6 +12,7 @@ class MBTextButton extends StatelessWidget {
 
   const MBTextButton({
     super.key,
+    this.icon,
     this.title,
     this.textColor,
     this.size = MBTextButtonSize.medium,
@@ -27,19 +28,33 @@ class MBTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      borderRadius: BorderRadius.circular(12),
-      child: InkWell(
-        onTap: onPressed,
-        borderRadius: BorderRadius.circular(12),
-        child: Text(
-          title ?? '',
-          style: mbButtonTextStyle(
-            fontSize: _fontSize,
-            color: textColor ?? MBButtonColors.textSecondary,
-          ),
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(8),
         ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            if (icon != null) ...[
+              Icon(
+                icon, size: _fontSize,
+                color: textColor ?? MBButtonColors.textSecondary,
+              ),
+              const SizedBox(width: 4)],
+            Text(
+              title ?? '',
+              style: mbButtonTextStyle(
+                fontSize: _fontSize,
+                color: textColor ?? MBButtonColors.textSecondary,
+              ),
+            )
+          ]
+        )
       ),
     );
   }

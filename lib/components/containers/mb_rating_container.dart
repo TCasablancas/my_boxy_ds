@@ -21,8 +21,10 @@ class MBRatingBadge extends StatelessWidget {
           Text(
             '$rating',
             style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
+              fontSize: 14,
+              fontFamily: 'SFMono',
+              fontWeight: FontWeight.w400,
+              letterSpacing: -0.75,
               color: Color(0xFF007BFF),
             ),
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/components/buttons/mb_pill_btn.dart';
 import 'package:my_boxy_ds/components/buttons/mb_play_pause_btn.dart';
 import 'package:my_boxy_ds/components/caroussels/mb_carousel_progress_dot.dart';
+import 'package:my_boxy_ds/components/containers/mb_carousel_rating_container.dart';
 import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
 
 class MBMainProductCarouselItem {
@@ -262,6 +263,13 @@ class _MBMainProductCarouselState extends State<MBMainProductCarousel>
                   child: MBPlayPauseButton(
                     isPlaying: _isPlaying,
                     onPressed: _togglePlayPause,
+                  ),
+                ),
+                Positioned(
+                  top: 12, right: 12,
+                  child: MBCarouselRatingContainer(
+                    rating: 4.5,
+                    reviews: 3230,
                   ),
                 ),
                 if (widget.tags != null && widget.tags!.isNotEmpty)

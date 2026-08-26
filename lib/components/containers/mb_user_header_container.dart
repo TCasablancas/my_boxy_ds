@@ -7,6 +7,7 @@ class MBUserHeaderContainer extends StatelessWidget {
   final String imageUrl;
   final bool? hasBackground;
   final VoidCallback? onProfileTap;
+  final bool? paddingH;
 
   const MBUserHeaderContainer({
     super.key,
@@ -15,6 +16,7 @@ class MBUserHeaderContainer extends StatelessWidget {
     required this.imageUrl,
     this.hasBackground,
     this.onProfileTap,
+    this.paddingH,
   });
 
   @override
@@ -22,7 +24,9 @@ class MBUserHeaderContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onProfileTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: EdgeInsets.symmetric(
+          horizontal: paddingH == true ? 16 : 0, vertical: 12
+        ),
         decoration: BoxDecoration(
           color: hasBackground == true ? Colors.grey[100] : Colors.transparent,
           borderRadius: BorderRadius.circular(16),

@@ -33,7 +33,7 @@ class MBFullRightIconBtn extends StatelessWidget {
               Text(
                 text,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 14,
                   fontFamily: 'Lexend',
                   fontWeight: FontWeight.w500,
                   letterSpacing: -0.2,
@@ -43,7 +43,7 @@ class MBFullRightIconBtn extends StatelessWidget {
               ),
               // const Spacer(),
               const SizedBox(width: 8),
-              Icon(icon, color: AppColors.primaryDark, size: 20),
+              Icon(icon, color: AppColors.primaryDark, size: 16),
             ],
           ),
         ),

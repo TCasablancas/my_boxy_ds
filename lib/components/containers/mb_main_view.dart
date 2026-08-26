@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/components/buttons/mb_rounded_icon_btn.dart';
 import 'package:my_boxy_ds/components/menus/mb_bottom_fixed_menu.dart';
@@ -156,7 +155,6 @@ class _MBMainViewState extends State<MBMainView> {
                 child: Column(
                   children: [
                     widget.header ?? const SizedBox.shrink(),
-                    // const SizedBox(height: 16),
                     Expanded(child: widget.child),
                   ],
                 ),
