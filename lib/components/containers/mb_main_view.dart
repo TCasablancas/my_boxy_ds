@@ -22,6 +22,8 @@ class MBMainView extends StatefulWidget {
   final VoidCallback? onNotificationsTap;
   final VoidCallback? onCartTap;
   final VoidCallback? onMenuTap;
+  final Widget? floatingBottomMenu;
+  final List<Widget>? footerActions;
 
   const MBMainView({
     super.key,
@@ -39,6 +41,8 @@ class MBMainView extends StatefulWidget {
     this.onNotificationsTap,
     this.onCartTap,
     this.onMenuTap,
+    this.floatingBottomMenu,
+    this.footerActions,
   });
 
   @override
@@ -157,6 +161,8 @@ class _MBMainViewState extends State<MBMainView> {
                   ],
                 ),
               ),
+              if (widget.floatingBottomMenu != null)
+                Positioned.fill(child: widget.floatingBottomMenu!),
               if (widget.hasBottomMenu ?? true)
                 Positioned(
                   bottom: 0,
@@ -171,6 +177,24 @@ class _MBMainViewState extends State<MBMainView> {
             ],
           ),
         ),
+      ),
+      persistentFooterButtons: widget.footerActions != null
+          ? [Column(
+              spacing: 16,
+              crossAxisAlignment: CrossAxisAlignment.center, 
+              children: widget.footerActions!
+            )]
+          : null,
+      persistentFooterDecoration: BoxDecoration(
+        color: backgroundColor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withAlpha(30),
+            spreadRadius: 2,
+            blurRadius: 10,
+            offset: const Offset(0, -2), // changes position of shadow
+          ),
+        ],
       ),
     );
   }

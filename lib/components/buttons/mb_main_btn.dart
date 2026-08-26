@@ -7,7 +7,7 @@ class MBMainButton extends StatelessWidget {
   final String title;
   final String? text;
   final VoidCallback? onPressed;
-  final Widget? icon;
+  final IconData? icon;
   final TextAlign textAlign;
   final MBMainButtonType buttonType;
   final Color? backgroundColor;
@@ -61,7 +61,7 @@ class MBMainButton extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 10),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(8),
             border: buttonType == MBMainButtonType.outlined
               ? Border.all(color: MBButtonColors.primary) : null,
           ),
@@ -69,7 +69,13 @@ class MBMainButton extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (icon != null) ...[icon!, const SizedBox(width: 8)],
+              if (icon != null) ...[
+                Icon(
+                  icon,
+                  color: _textColor
+                ), 
+                const SizedBox(width: 8)
+              ],
               Flexible(
                 child: Text(
                   title,

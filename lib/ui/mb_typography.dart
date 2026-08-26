@@ -71,7 +71,7 @@ class AppTypography {
     return TextStyle(
       height: 1.2,
       fontSize: 12,
-      fontWeight: FontWeight.normal,
+      fontWeight: FontWeight.w300,
       fontFamily: fontFamily,
       letterSpacing: -0.2,
       color: color,

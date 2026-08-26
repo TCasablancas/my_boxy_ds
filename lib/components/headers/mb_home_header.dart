@@ -46,7 +46,7 @@ class _MBHomeHeaderState extends State<MBHomeHeader> {
                       Colors.grey[900], FontWeight.w700
                     ).copyWith(letterSpacing: -0.5)
                   ),
-                  Icon(Icons.arrow_drop_down)
+                  // Icon(Icons.arrow_drop_down)
                 ],
               ),
               Row(

@@ -20,14 +20,22 @@ class MBSimpleSquareIconBtn extends StatelessWidget {
     return Expanded(
       child: Container(
         height: 80,
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-            color: Colors.grey[300]!,
-            width: 1,
-          )
+          borderRadius: BorderRadius.circular(16),
+          // border: Border.all(
+          //   color: Colors.grey[300]!,
+          //   width: 1,
+          // )
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withAlpha(30),
+              spreadRadius: 2,
+              blurRadius: 10,
+              offset: const Offset(0, 2), // changes position of shadow
+            ),
+          ],
         ),
         child: GestureDetector(
           onTap: onPressed,
@@ -36,18 +44,19 @@ class MBSimpleSquareIconBtn extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(icon, color: AppColors.primaryDark, size: 24),
+                  // Icon(icon, color: AppColors.primaryDark, size: 24),
                   const Spacer(),
-                  Icon(Icons.arrow_forward_ios_rounded, color: Colors.grey[400], size: 12),
+                  Icon(Icons.arrow_outward, color: Colors.grey[400], size: 12),
                 ],
               ),
-              const SizedBox(height: 8),
+              // const SizedBox(height: 8),
+              const Spacer(),
               Text(
                 title,
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 16,
                   fontFamily: 'Lexend',
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w500,
                   letterSpacing: -0.5,
                   color: AppColors.primary,
                   height: 1
@@ -56,7 +65,7 @@ class MBSimpleSquareIconBtn extends StatelessWidget {
               description != null ? Text(
                 description ?? '',
                 style: TextStyle(
-                  fontSize: 13,
+                  fontSize: 12,
                   fontFamily: 'Lexend',
                   fontWeight: FontWeight.w300,
                   letterSpacing: -0.5,

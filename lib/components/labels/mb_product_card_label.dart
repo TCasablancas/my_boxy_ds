@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_boxy_ds/components/buttons/mb_add_cart_btn.dart';
 import 'package:my_boxy_ds/components/labels/mb_price_value_label.dart';
 import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
 import 'package:my_boxy_ds/ui/mb_typography.dart';
@@ -18,20 +19,19 @@ class MBProductCardLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        height: 48,
         width: double.infinity,
-        padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
-          color: AppColors.background,
+          color: Colors.white,
           borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(8.0),
             bottomRight: Radius.circular(8.0),
           ),
           border: Border(
             bottom: BorderSide(
-              color: Colors.grey[300]!, // Choose your border color
-              width: 1.0,          // Choose your border thickness
+              color: Colors.grey[300]!,
+              width: 1.0,
             ),
           ),
         ),
@@ -40,11 +40,22 @@ class MBProductCardLabel extends StatelessWidget {
           children: [
             Text(
               title,
-              maxLines: 1,
+              maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: AppTypography.captionFn(AppColors.textPrimary)
+              style: AppTypography.descriptionFn(AppColors.textPrimary).copyWith(
+                fontWeight: FontWeight.w300,
+                letterSpacing: -0.2,
+              ),
             ),
-            MBPriceValueLabel(price: price)
+            const Spacer(),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                MBPriceValueLabel(price: price),
+                const Spacer(),
+                MBAddToCartBtn(onPress: () {}),
+              ],
+            ),
           ],
         ),
       ),
