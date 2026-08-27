@@ -138,6 +138,13 @@ abstract final class AppTextStyles {
     letterSpacing: -0.2,
   );
 
+  static const searchInput = TextStyle(
+    fontSize: 16,
+    fontFamily: AppFonts.primary,
+    fontWeight: FontWeight.w400,
+    letterSpacing: -0.5,
+  );
+
   static const priceInstallment = TextStyle(
     fontSize: 13,
     fontFamily: AppFonts.mono,

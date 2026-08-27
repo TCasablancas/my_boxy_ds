@@ -6,3 +6,5 @@ export 'mb_list_component_card.dart';
 export 'mb_main_product_card.dart';
 export 'mb_product.dart';
 export 'mb_user_favorite_card.dart';
+export 'mb_category_hero_card.dart';
+export 'mb_category_tile_card.dart';
