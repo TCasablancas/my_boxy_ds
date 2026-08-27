@@ -80,7 +80,7 @@ class MBMainButton extends StatelessWidget {
                 child: Text(
                   title,
                   textAlign: textAlign,
-                  style: mbButtonTextStyle(fontSize: 16, color: _textColor),
+                  style: mbButtonTextStyle(fontSize: 14, color: _textColor),
                 ),
               ),
             ],

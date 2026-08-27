@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_boxy_ds/components/buttons/mb_add_cart_btn.dart';
 import 'package:my_boxy_ds/components/containers/mb_product_card_image_container.dart';
 import 'package:my_boxy_ds/components/headers/mb_product_card_header.dart';
 import 'package:my_boxy_ds/components/labels/mb_product_card_label.dart';
-import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
 import '../buttons/mb_favorite_btn.dart';
 import 'mb_product.dart';
 

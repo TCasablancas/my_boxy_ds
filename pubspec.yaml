@@ -51,3 +51,6 @@ flutter:
         - asset: assets/fonts/SFMonoMediumItalic.otf
         - asset: assets/fonts/SFMonoHeavyItalic.otf
         - asset: assets/fonts/SFMonoHeavy.otf
+    - family: Gloock
+      fonts:
+        - asset: assets/fonts/Gloock-Regular.ttf

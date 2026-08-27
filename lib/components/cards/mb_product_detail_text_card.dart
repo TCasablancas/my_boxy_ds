@@ -6,10 +6,10 @@ class MBProductDetailTextCard extends StatelessWidget {
   final String description;
 
   const MBProductDetailTextCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.description,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

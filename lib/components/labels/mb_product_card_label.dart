@@ -46,6 +46,10 @@ class MBProductCardLabel extends StatelessWidget {
                 fontWeight: FontWeight.w300,
                 letterSpacing: -0.2,
               ),
+              // style: TextStyle(
+              //   fontSize: 14,
+              //   fontFamily: 'Gloock-Regular',
+              // ),
             ),
             const Spacer(),
             Row(
