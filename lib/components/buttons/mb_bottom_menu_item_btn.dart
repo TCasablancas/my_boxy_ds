@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 
 class MBBottomMenuItemButton extends StatelessWidget {
   final IconData? icon;
@@ -14,17 +15,25 @@ class MBBottomMenuItemButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = Colors.grey[700];
 
-    return Padding(
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 4.0),
+      decoration: BoxDecoration(
+        color: Colors.grey[100]?.withAlpha(150),
+        borderRadius: BorderRadius.circular(20.0)
+      ),
+      child: Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: Row(
-        spacing: 8,
+        spacing: 12.0,
         children: [
           Container(
             width: 32,
             height: 32,
             decoration: BoxDecoration(
-              color: Colors.grey[200],
+              color: Colors.white,
               borderRadius: BorderRadius.circular(8),
+              boxShadow: AppShadows.floatingButton
             ),
             child: icon != null
                 ? Icon(icon, size: 16, color: Colors.grey[700])
@@ -35,7 +44,7 @@ class MBBottomMenuItemButton extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               fontFamily: 'Lexend',
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w400,
               color: color
             )
           ),
@@ -46,6 +55,7 @@ class MBBottomMenuItemButton extends StatelessWidget {
             color: Colors.grey[400]
           )
         ]
+      )
       )
     );
   }

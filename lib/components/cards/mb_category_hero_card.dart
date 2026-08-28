@@ -26,50 +26,68 @@ class MBCategoryHeroCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: AppRadius.allXLarge,
-      child: Container(
-        height: 180,
-        decoration: BoxDecoration(
-          color: AppColors.surface,
-          borderRadius: AppRadius.allXLarge,
-        ),
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20),
+      child: Stack(
+        children: [
+          Container(
+            height: 180,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: AppRadius.allXLarge,
+              image: DecorationImage(
+                image: NetworkImage(imageUrl),
+                fit: BoxFit.cover,
+                opacity: 0.5
+              ),
+            ),
+            child: SizedBox()
+          ),
+          Positioned(
+            top: 16, left: 16, bottom: 16, right: 16,
+            child: SizedBox(
+              height: double.infinity,
+              width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
+                    spacing: 16.0,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(title, style: AppTypography.h2Fn(AppColors.textPrimary)),
-                      const SizedBox(height: 8),
-                      SizedBox(
-                        width: 170,
-                        child: Text(subtitle, style: AppTypography.descriptionFn(AppColors.textSecondary)),
+                      Container(
+                        width: 52,
+                        height: 52,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage('https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/a952e564478599.5ad423b4b3883.jpg'),
+                            fit: BoxFit.cover,
+                          ),
+                          borderRadius: BorderRadius.circular(AppRadius.lg)
+                        ),
                       ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(title, style: AppTypography.h2Fn(Colors.white).copyWith(
+                            fontFamily: 'Gloock',
+                            fontSize: 28,
+                            letterSpacing: 0.2
+                          )),
+                          SizedBox(
+                            width: 170,
+                            child: Text(subtitle, style: AppTypography.descriptionFn(AppColors.white)),
+                          ),
+                        ],
+                      )
                     ],
                   ),
-                  _badge(badgeText),
+                  const Spacer(),
+                  _badge(badgeText)
                 ],
-              ),
+              )
             ),
-            Positioned(
-              right: 8,
-              top: -18,
-              bottom: 0,
-              child: Image.network(
-                imageUrl,
-                width: 170,
-                fit: BoxFit.contain,
-                alignment: Alignment.bottomCenter,
-                errorBuilder: (_, _, _) => const SizedBox(),
-              ),
-            ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

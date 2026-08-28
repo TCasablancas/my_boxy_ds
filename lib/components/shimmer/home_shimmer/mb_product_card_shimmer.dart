@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 import 'mb_shimmer_box.dart';
 
-/// Espelha o shape do MBMainProductCard: header (avatar + nome da loja),
-/// imagem e label (título + preço + botão). Usado na grid da home enquanto
-/// os produtos reais não chegaram.
 class MBProductCardShimmer extends StatelessWidget {
   const MBProductCardShimmer({super.key});
 
@@ -14,13 +11,7 @@ class MBProductCardShimmer extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: AppRadius.allMedium,
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.black.withAlpha(15),
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
+        boxShadow: AppShadows.card,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +28,7 @@ class MBProductCardShimmer extends StatelessWidget {
           ),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 3),
-            child: MBShimmerBox(width: double.infinity, height: 160),
+            child: MBShimmerBox(width: double.infinity, height: 158),
           ),
           Expanded(
             child: Padding(

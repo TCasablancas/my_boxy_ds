@@ -14,7 +14,7 @@ enum MBMainInfoSquareButtonType {
 class MBMainInfoSquareButton extends StatelessWidget {
   final Widget? icon;
   final String title;
-  final String description;
+  final String? description;
   final MBMainInfoSquareButtonType type;
   final VoidCallback? onPressed;
 
@@ -22,7 +22,7 @@ class MBMainInfoSquareButton extends StatelessWidget {
     super.key,
     this.icon,
     required this.title,
-    required this.description,
+    this.description,
     this.type = MBMainInfoSquareButtonType.defaultType,
     this.onPressed,
   });
@@ -98,10 +98,11 @@ class MBMainInfoSquareButton extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
-                description,
-                style: AppTypography.captionFn(_descriptionColor),
-              ),
+              if(description != null)
+                Text(
+                  description ?? '',
+                  style: AppTypography.captionFn(_descriptionColor),
+                ),
             ],
           ),
         ),

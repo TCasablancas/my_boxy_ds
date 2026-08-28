@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_boxy_ds/my_boxy_ds.dart';
 
 enum StoreImageSize {
   small,
@@ -19,15 +20,22 @@ class MBStoreImageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipOval(
-      child: Image.network(
-        url,
-        width: size == StoreImageSize.small ? 20 : size == StoreImageSize.medium ? 36 : 60,
-        height: size == StoreImageSize.small ? 20 : size == StoreImageSize.medium ? 36 : 60,
-        fit: BoxFit.cover,
-        errorBuilder: (_, _, _) =>
-            const ColoredBox(color: Color(0xFFCCCCCC)),
-      ),
+    final basedSize = size == StoreImageSize.small 
+      ? 20.0 : size == StoreImageSize.medium ? 36.0 : 60.0;
+    final basedBorder = size == StoreImageSize.small ? AppRadius.allMedium 
+      : size == StoreImageSize.medium ? AppRadius.allLarge : AppRadius.allLarge;
+
+    return ClipRRect(
+      borderRadius: basedBorder,
+      child: SizedBox(
+        width: basedSize,
+        height: basedSize,
+        child: Image.network(
+          url,
+          fit: BoxFit.cover,
+          errorBuilder: (_, _, _) => const ColoredBox(color: AppColors.errorBackground),
+        ),
+      )
     );
   }
 }

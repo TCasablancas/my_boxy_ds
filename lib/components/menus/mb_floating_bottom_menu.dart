@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-
 import 'dart:ui';
-
 import 'package:my_boxy_ds/components/bottomsheet/mb_bottomsheet_handler.dart';
+
+class MBFloatingMenuController extends ValueNotifier<bool> {
+  MBFloatingMenuController() : super(false);
+
+  void open() => value = true;
+  void close() => value = false;
+  void toggle() => value = !value;
+}
 
 class MBFloatingBottomMenu extends StatefulWidget {
   final bool isVisible;
@@ -120,9 +126,7 @@ class _MBFloatingBottomMenuState extends State<MBFloatingBottomMenu>
                   ),
                 ),
                 Positioned(
-                  bottom: 90,
-                  left: 50,
-                  right: 50,
+                  bottom: 90, left: 50, right: 50,
                   child: Transform.translate(
                     offset: Offset(0, screenHeight * _slideController.value),
                     child: GestureDetector(
@@ -139,16 +143,6 @@ class _MBFloatingBottomMenuState extends State<MBFloatingBottomMenu>
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             MBBottomsheetHandler(),
-                            const SizedBox(height: 16),
-                            Text(
-                              'Menu',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'Lexend',
-                                fontWeight: FontWeight.w700,
-                                color: Colors.grey[700],
-                              ),
-                            ),
                             widget.child,
                           ],
                         ),

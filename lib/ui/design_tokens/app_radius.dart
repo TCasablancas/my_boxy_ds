@@ -19,7 +19,7 @@ abstract final class AppRadius {
   static const allFull = BorderRadius.all(Radius.circular(full));
 
   static const topSheet = BorderRadius.only(
-    topLeft: Radius.circular(xxl),
-    topRight: Radius.circular(xxl),
+    topLeft: Radius.circular(xl),
+    topRight: Radius.circular(xl),
   );
 }
