@@ -1,10 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/components/buttons/mb_header_action_btn.dart';
-import 'package:my_boxy_ds/components/buttons/mb_rounded_icon_btn.dart';
-import 'package:my_boxy_ds/components/menus/mb_bottom_fixed_menu.dart';
-import 'package:my_boxy_ds/components/menus/mb_collapsible_sidebar.dart';
-import 'package:my_boxy_ds/components/menus/mb_floating_bottom_menu.dart';
 import 'package:my_boxy_ds/my_boxy_ds.dart';
 // import 'package:my_boxy_ds/ui/mb_typography.dart';
 // import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
@@ -228,22 +224,28 @@ class _MBMainViewState extends State<MBMainView> {
         ),
       ),
       persistentFooterButtons: widget.footerActions != null
-          ? [Column(
-              spacing: 16,
-              crossAxisAlignment: CrossAxisAlignment.center, 
-              children: widget.footerActions!
-            )]
-          : null,
+          ? [_buildFooterActions()] : null,
       persistentFooterDecoration: BoxDecoration(
         color: backgroundColor,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withAlpha(30),
+            color: Colors.grey.withAlpha(60),
             spreadRadius: 2,
             blurRadius: 10,
             offset: const Offset(0, -2), // changes position of shadow
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildFooterActions() {
+    return Padding(
+      padding: EdgeInsets.all(AppSizes.small),
+      child: Column(
+        spacing: 16,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: widget.footerActions!
       ),
     );
   }

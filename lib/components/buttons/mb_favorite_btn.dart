@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/my_boxy_ds.dart';
 
 import 'mb_button_tokens.dart';
-import 'mb_favorite_icon_btn.dart';
 
 class MBFavoriteButton extends StatelessWidget {
   final bool? isActive;

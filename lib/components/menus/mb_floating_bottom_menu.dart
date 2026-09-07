@@ -126,7 +126,7 @@ class _MBFloatingBottomMenuState extends State<MBFloatingBottomMenu>
                   ),
                 ),
                 Positioned(
-                  bottom: 90, left: 50, right: 50,
+                  bottom: 90, left: 24, right: 24,
                   child: Transform.translate(
                     offset: Offset(0, screenHeight * _slideController.value),
                     child: GestureDetector(

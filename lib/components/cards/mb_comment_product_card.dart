@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/components/containers/mb_user_header_container.dart';
 
 class MBCommentProductCard extends StatelessWidget {
+  final String? commentId;
   final String userName;
-  final String userAlias;
+  final String createdAt;
   final String imageUrl;
   final String commentText;
   final VoidCallback? onTap;
 
   const MBCommentProductCard({
     super.key,
+    this.commentId,
     required this.userName,
-    required this.userAlias,
+    required this.createdAt,
     required this.imageUrl,
     required this.commentText,
     this.onTap,
@@ -38,10 +40,11 @@ class MBCommentProductCard extends StatelessWidget {
           ],
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MBUserHeaderContainer(
               userName: userName,
-              userAlias: userAlias,
+              userAlias: createdAt,
               imageUrl: imageUrl,
               hasBackground: false,
               paddingH: false,

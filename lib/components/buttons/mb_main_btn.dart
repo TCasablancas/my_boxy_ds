@@ -52,7 +52,7 @@ class MBMainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final button = Material(
       color: _backgroundColor,
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(16.0),
       child: InkWell(
         onTap: buttonType == MBMainButtonType.disabled ? null : onPressed,
         borderRadius: BorderRadius.circular(8),

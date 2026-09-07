@@ -3,20 +3,22 @@ import 'package:flutter/material.dart';
 class MBBoxRoundedContainer extends StatelessWidget {
 
   final Widget child;
-  final EdgeInsets? paddingH;
+  final EdgeInsets? padding;
+  final Color? background;
 
   const MBBoxRoundedContainer({
     super.key,
     required this.child,
-    this.paddingH,
+    this.padding,
+    this.background,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: paddingH ?? EdgeInsets.symmetric(horizontal:  16, vertical: 8),
+      padding: padding ?? EdgeInsets.symmetric(horizontal:  16, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.grey[200],
+        color: background ?? Colors.grey[200],
         borderRadius: BorderRadius.circular(16)
       ),
       child: child

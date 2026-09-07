@@ -25,8 +25,8 @@ class MBProductCardLabel extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(8.0),
-            bottomRight: Radius.circular(8.0),
+            bottomLeft: Radius.circular(16.0),
+            bottomRight: Radius.circular(16.0),
           ),
           border: Border(
             bottom: BorderSide(
@@ -46,10 +46,6 @@ class MBProductCardLabel extends StatelessWidget {
                 fontWeight: FontWeight.w300,
                 letterSpacing: -0.2,
               ),
-              // style: TextStyle(
-              //   fontSize: 14,
-              //   fontFamily: 'Gloock-Regular',
-              // ),
             ),
             const Spacer(),
             Row(

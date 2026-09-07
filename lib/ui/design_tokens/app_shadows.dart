@@ -6,8 +6,8 @@ abstract final class AppShadows {
   static const card = [
     BoxShadow(
       color: Color(0x1E9E9E9E),
-      spreadRadius: 1,
-      blurRadius: 5,
+      spreadRadius: 2,
+      blurRadius: 8,
       offset: Offset(0, 3),
     ),
   ];

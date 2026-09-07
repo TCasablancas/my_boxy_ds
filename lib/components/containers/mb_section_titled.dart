@@ -27,11 +27,11 @@ class MBSectionTitled extends StatelessWidget {
           child: Text(
             title,
             style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
               fontFamily: 'Lexend',
-              color: AppColors.primary,
-              letterSpacing: -0.5,
+              color: AppColors.primaryDark,
+              letterSpacing: -0.2,
             ),
           )
         ),

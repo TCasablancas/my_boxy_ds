@@ -1,10 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
-
-import '../../ui/design_tokens/app_colors.dart';
-import '../../ui/design_tokens/app_radius.dart';
-import '../../ui/design_tokens/app_shadows.dart';
+import 'package:lottie/lottie.dart';
 
 class MBMainLoadingView extends StatefulWidget {
   const MBMainLoadingView({super.key, this.controller});
@@ -128,9 +125,21 @@ class _MBMainLoadingViewState extends State<MBMainLoadingView>
                     ),
                     child: Row(
                       children: [
-                        Text('Carregando', style: AppTextStyles.bodyMediumStrong,),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Carregando', style: AppTextStyles.bodyMediumStrong,),
+                            Text('Aguarde um instante...', style: AppTextStyles.labelSmall,),
+                          ],
+                        ),
                         const Spacer(),
-                        CircularProgressIndicator(color: AppColors.primary),
+                        // CircularProgressIndicator(color: AppColors.primary),
+                        Lottie.asset(
+                          'assets/animations/loading_icon_green.json',
+                          width: 26,
+                          height: 26,
+                          fit: BoxFit.contain,
+                        )
                       ]
                     ),
                   ),

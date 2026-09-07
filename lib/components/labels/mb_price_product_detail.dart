@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
-import 'package:my_boxy_ds/ui/mb_typography.dart';
+import 'package:my_boxy_ds/my_boxy_ds.dart';
+import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
+// import 'package:my_boxy_ds/ui/mb_typography.dart';
 // import 'package:intl/intl.dart';
 
 class MBPriceProductDetail extends StatelessWidget {
+
   final double price;
+  final double? priceSize;
+  final String? description;
 
   const MBPriceProductDetail({
     super.key,
     required this.price,
+    this.priceSize,
+    this.description,
   });
 
   List<String> separarValorReal(double valor) {
@@ -26,25 +32,28 @@ class MBPriceProductDetail extends StatelessWidget {
     int precoFormatado = partes.length - valMoeda;
     String parteInteira = partes[0].replaceRange(precoFormatado, precoFormatado, '.');
 
-    return Container(
-      child: Column(
+    return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 8),
+                padding: const EdgeInsets.only(bottom: 6),
                 child: Text(
                   'R\$',
-                  style: AppTypography.body1Fn(
-                    Colors.grey[600]
-                  ).copyWith(letterSpacing: -0.2)
-                )
+                  style: AppTextStyles.bodyLarge.copyWith(
+                    fontFamily: 'SFMono',
+                    letterSpacing: -0.5,
+                    color: Colors.grey[400]
+                  )
+                ),
               ),
-              const SizedBox(width: 4),
               Text(
                 partes[0].length > 3 ? parteInteira : partes[0],
-                style: AppTypography.h1.copyWith(
+                style: AppTextStyles.titleLarge.copyWith(
+                  fontSize: priceSize ?? 32,
                   fontFamily: 'SFMono',
                   letterSpacing: -0.5,
                   color: AppColors.focus
@@ -54,7 +63,7 @@ class MBPriceProductDetail extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 12),
                 child: Text(
                   ',${partes[1]}',
-                  style: AppTypography.body1.copyWith(
+                  style: AppTextStyles.bodyLarge.copyWith(
                     fontFamily: 'SFMono',
                     letterSpacing: -0.5,
                     color: Colors.blue
@@ -63,14 +72,14 @@ class MBPriceProductDetail extends StatelessWidget {
               ),
             ],
           ),
-          Text(
-            'À vista no PIX',
-            style: AppTypography.captionFn(
-              Colors.grey[500], 'Lexend'
-            ).copyWith(letterSpacing: -0.2)
-          ),
+          if (description != null)
+            Text(
+              'À vista no PIX',
+              style: AppTextStyles.labelSmall.copyWith(
+                letterSpacing: -0.2
+              )
+            ),
         ],
-      )
-    );
+      );
   }
 }

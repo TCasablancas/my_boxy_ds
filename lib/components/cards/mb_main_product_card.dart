@@ -15,11 +15,11 @@ class MBMainProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: product.onPressed,
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(8.0),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(16.0),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withAlpha(30),
@@ -52,10 +52,6 @@ class MBMainProductCard extends StatelessWidget {
                     onPressed: product.onFavoriteChanged,
                   ),
                 ),
-                // Positioned(
-                //   bottom: 8, right: 8,
-                //   child: MBAddToCartBtn(onPress: onAddToCart)
-                // )
               ],
             ),
             MBProductCardLabel(
