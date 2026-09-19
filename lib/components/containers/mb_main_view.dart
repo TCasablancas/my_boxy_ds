@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/components/buttons/mb_header_action_btn.dart';
+import 'package:my_boxy_ds/components/menus/mb_flow_bottom_menu.dart';
 import 'package:my_boxy_ds/my_boxy_ds.dart';
 // import 'package:my_boxy_ds/ui/mb_typography.dart';
 // import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
@@ -23,6 +24,7 @@ class MBMainView extends StatefulWidget {
   final Widget? floatingBottomMenu;
   final MBFloatingMenuController? floatingMenuController;
   final List<Widget>? footerActions;
+  final VoidCallback? onBackTap;
 
   const MBMainView({
     super.key,
@@ -43,6 +45,7 @@ class MBMainView extends StatefulWidget {
     this.floatingBottomMenu,
     this.floatingMenuController,
     this.footerActions,
+    this.onBackTap,
   });
 
   @override
@@ -131,13 +134,8 @@ class _MBMainViewState extends State<MBMainView> {
                       alignment: Alignment.centerLeft,
                       child: MBHeaderActionBtn(
                         icon: Icons.arrow_back, 
-                        onTap: () => Navigator.of(context).pop()
+                        onTap: widget.onBackTap ?? () => Navigator.of(context).pop()
                       ),
-                      // MBRoundedIconButton(
-                        // icon: Icon(Icons.arrow_back, color: Colors.grey[700]),
-                        // buttonSize: MBRoundedIconButtonSize.small,
-                        // onPressed: () => Navigator.of(context).pop(),
-                      // ),
                     )
                   : const SizedBox.shrink(),
               actions: [
@@ -199,11 +197,16 @@ class _MBMainViewState extends State<MBMainView> {
                   child: ValueListenableBuilder<bool>(
                     valueListenable: _floatingMenuController,
                     builder: (context, isVisible, child) {
-                      return MBFloatingBottomMenu(
+                      return MBFlowBottomMenu(
                         isVisible: isVisible,
                         onDismiss: _floatingMenuController.close,
                         child: child!,
                       );
+                      // return MBFloatingBottomMenu(
+                      //   isVisible: isVisible,
+                      //   onDismiss: _floatingMenuController.close,
+                      //   child: child!,
+                      // );
                     },
                     child: widget.floatingBottomMenu!,
                   ),

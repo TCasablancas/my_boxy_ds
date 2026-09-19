@@ -3,12 +3,7 @@ import 'package:my_boxy_ds/ui/mb_typography.dart';
 import 'mb_button_tokens.dart';
 
 enum MBMainInfoSquareButtonType {
-  defaultType,
-  light,
-  dark,
-  outlined,
-  gray,
-  disabled,
+  defaultType, light, dark, outlined, gray, disabled,
 }
 
 class MBMainInfoSquareButton extends StatelessWidget {

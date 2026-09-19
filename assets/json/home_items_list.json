@@ -1,0 +1,48 @@
+[
+  {
+    "title": "Botões",
+    "items": [
+      {
+        "icon": "person",
+        "label": "Botões Quadrados",
+        "actionIcon": "chevron_right",
+        "path": "/buttons/square"
+      },
+      {
+        "icon": "person",
+        "label": "Checkout Tile Container",
+        "actionIcon": "chevron_right",
+        "path": "/containers/checkout"
+      },
+      {
+        "icon": "person",
+        "label": "Cart Item Tile",
+        "actionIcon": "chevron_right",
+        "path": "/tiles/cart-item"
+      }
+    ]
+  },
+  {
+    "title": "Containers",
+    "items": [
+      {
+        "icon": "person",
+        "label": "Botões Quadrados",
+        "actionIcon": "chevron_right",
+        "path": "/buttons/square"
+      },
+      {
+        "icon": "person",
+        "label": "Checkout Tile Container",
+        "actionIcon": "chevron_right",
+        "path": "/containers/checkout"
+      },
+      {
+        "icon": "person",
+        "label": "Cart Item Tile",
+        "actionIcon": "chevron_right",
+        "path": "/tiles/cart-item"
+      }
+    ]
+  }
+]

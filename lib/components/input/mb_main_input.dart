@@ -1,12 +1,21 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:my_boxy_ds/ui/mb_box_decorations.dart';
-import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
-import 'package:my_boxy_ds/ui/mb_input_decorations.dart';
-import 'package:my_boxy_ds/ui/mb_typography.dart';
+import 'package:flutter/services.dart';
 
-enum MBInputFieldType { generic, usernameOrEmail, password }
+// import '../../ui/mb_box_decorations.dart';
+import '../../ui/design_tokens/design_tokens.dart';
+// import '../../ui/mb_input_decorations.dart';
+// import '../../ui/mb_typography.dart';
+
+enum MBInputFieldType {
+  generic,
+  usernameOrEmail,
+  password,
+  birthdate,
+  cpf,
+  phone,
+}
 
 const _commonEmailDomains = [
   'gmail.com',
@@ -23,6 +32,8 @@ const _commonEmailDomains = [
 
 final _emailRegex = RegExp(r'^[\w.+-]+@[\w-]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$');
 final _usernameRegex = RegExp(r'^[A-Za-z0-9_.-]+$');
+final _nonDigitsRegex = RegExp(r'\D');
+final _digitRegex = RegExp(r'\d');
 
 int _levenshtein(String a, String b) {
   final costs = List<int>.generate(b.length + 1, (i) => i);
@@ -33,7 +44,12 @@ int _levenshtein(String a, String b) {
       final current = costs[j];
       costs[j] = a[i - 1] == b[j - 1]
           ? previous
-          : 1 + [previous, costs[j], costs[j - 1]].reduce((x, y) => x < y ? x : y);
+          : 1 +
+                [
+                  previous,
+                  costs[j],
+                  costs[j - 1],
+                ].reduce((x, y) => x < y ? x : y);
       previous = current;
     }
   }
@@ -65,14 +81,133 @@ String? _validateEmail(String text) {
 String? _validateUsernameOrEmail(String text) {
   if (text.contains('@')) return _validateEmail(text);
   if (text.length < 3) return 'Usuário deve ter no mínimo 3 caracteres';
-  if (!_usernameRegex.hasMatch(text)) return 'Usuário contém caracteres inválidos';
+  if (!_usernameRegex.hasMatch(text)) {
+    return 'Usuário contém caracteres inválidos';
+  }
   return null;
+}
+
+class _BrazilianInputFormatter extends TextInputFormatter {
+  final int maxLength;
+  final String Function(String digits) format;
+
+  const _BrazilianInputFormatter({
+    required this.maxLength,
+    required this.format,
+  });
+
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    final digits = newValue.text.replaceAll(_nonDigitsRegex, '');
+    final limitedDigits = digits.substring(
+      0,
+      digits.length > maxLength ? maxLength : digits.length,
+    );
+    final formatted = format(limitedDigits);
+    final selectionEnd = newValue.selection.baseOffset.clamp(
+      0,
+      newValue.text.length,
+    );
+    final digitsBeforeSelection = newValue.text
+        .substring(0, selectionEnd)
+        .replaceAll(_nonDigitsRegex, '')
+        .length;
+
+    return TextEditingValue(
+      text: formatted,
+      selection: TextSelection.collapsed(
+        offset: _selectionOffset(formatted, digitsBeforeSelection),
+      ),
+    );
+  }
+
+  int _selectionOffset(String text, int digitCount) {
+    if (digitCount == 0) {
+      return 0;
+    }
+
+    var foundDigits = 0;
+    for (var index = 0; index < text.length; index++) {
+      if (_digitRegex.hasMatch(text[index])) {
+        foundDigits++;
+        if (foundDigits == digitCount) {
+          return index + 1;
+        }
+      }
+    }
+    return text.length;
+  }
+}
+
+String _formatBirthdate(String digits) {
+  if (digits.length <= 2) {
+    return digits;
+  }
+  if (digits.length <= 4) {
+    return '${digits.substring(0, 2)}/${digits.substring(2)}';
+  }
+  return '${digits.substring(0, 2)}/${digits.substring(2, 4)}/${digits.substring(4)}';
+}
+
+String _formatCpf(String digits) {
+  if (digits.length <= 3) {
+    return digits;
+  }
+  if (digits.length <= 6) {
+    return '${digits.substring(0, 3)}.${digits.substring(3)}';
+  }
+  if (digits.length <= 9) {
+    return '${digits.substring(0, 3)}.${digits.substring(3, 6)}.${digits.substring(6)}';
+  }
+  return '${digits.substring(0, 3)}.${digits.substring(3, 6)}.${digits.substring(6, 9)}-${digits.substring(9)}';
+}
+
+String _formatPhone(String digits) {
+  if (digits.length <= 2) {
+    return digits.isEmpty ? '' : '($digits';
+  }
+
+  final phoneNumber = digits.substring(2);
+  if (phoneNumber.length <= 4) {
+    return '(${digits.substring(0, 2)}) $phoneNumber';
+  }
+
+  final firstPartLength = digits.length <= 10 ? 4 : 5;
+  return '(${digits.substring(0, 2)}) ${phoneNumber.substring(0, firstPartLength)}-${phoneNumber.substring(firstPartLength)}';
+}
+
+List<TextInputFormatter> _inputFormattersFor(MBInputFieldType fieldType) {
+  return switch (fieldType) {
+    MBInputFieldType.birthdate => const [
+      _BrazilianInputFormatter(maxLength: 8, format: _formatBirthdate),
+    ],
+    MBInputFieldType.cpf => const [
+      _BrazilianInputFormatter(maxLength: 11, format: _formatCpf),
+    ],
+    MBInputFieldType.phone => const [
+      _BrazilianInputFormatter(maxLength: 11, format: _formatPhone),
+    ],
+    _ => const [],
+  };
+}
+
+TextInputType _keyboardTypeFor(MBInputFieldType fieldType) {
+  return switch (fieldType) {
+    MBInputFieldType.birthdate ||
+    MBInputFieldType.cpf ||
+    MBInputFieldType.phone => TextInputType.number,
+    _ => TextInputType.text,
+  };
 }
 
 class MBMainInput extends StatefulWidget {
   final String label;
   final TextEditingController controller;
   final bool obscureText;
+  final bool readOnly;
   final String placeholder;
   final String? error;
   final MBInputFieldType fieldType;
@@ -83,6 +218,7 @@ class MBMainInput extends StatefulWidget {
     required this.label,
     required this.controller,
     this.obscureText = false,
+    this.readOnly = false,
     this.placeholder = '',
     this.error,
     this.fieldType = MBInputFieldType.generic,
@@ -177,6 +313,9 @@ class _MBMainInputState extends State<MBMainInput> {
   }
 
   ({Color border, Color background}) get _visualState {
+    if (widget.readOnly) {
+      return (border: Colors.grey[400]!, background: Colors.grey[300]!);
+    }
     if (_effectiveError != null) {
       return (border: AppColors.error, background: AppColors.errorLight);
     }
@@ -191,43 +330,47 @@ class _MBMainInputState extends State<MBMainInput> {
 
   IconButton? _obscureTextIcon(bool obscureText) {
     return obscureText
-      ? IconButton(
-        icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
-        tooltip: _obscureText ? 'Mostrar senha' : 'Ocultar senha',
-        onPressed: () {
-          setState(() {
-            _obscureText = !_obscureText;
-          });
-        },
-      ) : null;
+        ? IconButton(
+            icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
+            tooltip: _obscureText ? 'Mostrar senha' : 'Ocultar senha',
+            onPressed: () {
+              setState(() {
+                _obscureText = !_obscureText;
+              });
+            },
+          )
+        : null;
   }
 
   Widget? _showErrorMessage(String? error) {
     return error != null
-      ? SizedBox(
-        width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Text(
-            error,
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              fontFamily: 'SFMono',
-              fontSize: 12,
-              fontWeight: FontWeight.w700,
-              letterSpacing: -0.75,
-              color: AppColors.error,
+        ? SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Text(
+                error,
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontFamily: 'SFMono',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: -0.75,
+                  color: AppColors.error,
+                ),
+              ),
             ),
-          ),
-        ),
-      ): null;
+          )
+        : null;
   }
 
   @override
   Widget build(BuildContext context) {
     final state = _visualState;
-    final isNeutralGray = _effectiveError == null &&
-        (!_focusNode.hasFocus || widget.controller.text.isEmpty);
+    final isNeutralGray =
+        widget.readOnly ||
+        (_effectiveError == null &&
+            (!_focusNode.hasFocus || widget.controller.text.isEmpty));
     final labelColor = isNeutralGray ? Colors.grey[500] : state.border;
 
     return Column(
@@ -244,7 +387,15 @@ class _MBMainInputState extends State<MBMainInput> {
             padding: const EdgeInsets.all(2.0),
             child: AnimatedContainer(
               duration: _duration,
-              decoration: AppBoxDecorations.borderedBoxDecoration(state.border),
+              decoration: BoxDecoration(
+                color: widget.readOnly ? AppColors.grey300 : AppColors.white,
+                border: Border.all(
+                  color: state.border,
+                  width: 1.5,
+                ),
+                borderRadius: AppRadius.allLg
+              ),
+              //AppBoxDecorations.borderedBoxDecoration(state.border),
               child: Column(
                 children: [
                   SizedBox(
@@ -254,7 +405,7 @@ class _MBMainInputState extends State<MBMainInput> {
                       child: Text(
                         widget.label,
                         textAlign: TextAlign.left,
-                        style: AppTypography.setSnackbarStyle(labelColor),
+                        style: AppTextStyles.snackbar(labelColor),
                       ),
                     ),
                   ),
@@ -262,18 +413,41 @@ class _MBMainInputState extends State<MBMainInput> {
                     padding: const EdgeInsets.only(bottom: 4),
                     child: SizedBox(
                       height: 32,
-                      child: TextField(
-                        focusNode: _focusNode,
-                        controller: widget.controller,
-                        obscureText: _obscureText,
-                        style: AppTypography.setInputStyle(),
-                        decoration: AppInputDecorations.transparentInput(
-                          _obscureTextIcon(widget.obscureText),
-                          widget.placeholder,
+                      child: IgnorePointer(
+                        ignoring: widget.readOnly,
+                        child: TextField(
+                          focusNode: _focusNode,
+                          controller: widget.controller,
+                          obscureText: _obscureText,
+                          enabled: !widget.readOnly,
+                          keyboardType: _keyboardTypeFor(widget.fieldType),
+                          inputFormatters: _inputFormattersFor(
+                            widget.fieldType,
+                          ),
+                          style: AppTextStyles.bodyLarge.copyWith(
+                            letterSpacing: -0.5,
+                          ),
+                          decoration: InputDecoration(
+                            hintText: widget.placeholder,
+                            icon: _obscureTextIcon(
+                              widget.obscureText && !widget.readOnly,
+                            ),
+                            filled: widget.readOnly,
+                            fillColor: widget.readOnly ? state.background : AppColors.grey300,
+                            border: InputBorder.none,
+                            contentPadding: const EdgeInsets.fromLTRB(8, 0, 8, 12)
+                          ),
+                          // AppInputDecorations.transparentInput(
+                          //   _obscureTextIcon(
+                          //     widget.obscureText && !widget.readOnly,
+                          //   ),
+                          //   widget.placeholder,
+                          // ),
+                          readOnly: widget.readOnly,
+                          onTapOutside: (event) {
+                            FocusManager.instance.primaryFocus?.unfocus();
+                          },
                         ),
-                        onTapOutside: (event) {
-                          FocusManager.instance.primaryFocus?.unfocus();
-                        },
                       ),
                     ),
                   ),

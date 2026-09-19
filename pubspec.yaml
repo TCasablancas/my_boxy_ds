@@ -29,6 +29,7 @@ flutter:
     - assets/images/ic_mastercard.png
     - assets/images/ic_mastercard.svg
     - assets/animations/loading_icon_green.json
+    - assets/json/home_items_list.json
   
   fonts:
     - family: Lexend

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../mb_shimmer.dart';
 import 'mb_carousel_shimmer.dart';
 import 'mb_product_card_shimmer.dart';
@@ -23,17 +24,30 @@ class MBHomeShimmerView extends StatelessWidget {
           ),
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            sliver: SliverGrid(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => const MBProductCardShimmer(),
-                childCount: gridItemCount,
-              ),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                childAspectRatio: 0.7,
-              ),
+            sliver: SliverList.builder(
+              itemCount: (gridItemCount / 2).ceil(),
+              itemBuilder: (context, rowIndex) {
+                final firstIndex = rowIndex * 2;
+                final hasSecondCard = firstIndex + 1 < gridItemCount;
+
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: IntrinsicHeight(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const Expanded(child: MBProductCardShimmer()),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: hasSecondCard
+                              ? const MBProductCardShimmer()
+                              : const SizedBox.shrink(),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
           ),
         ],

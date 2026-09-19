@@ -37,12 +37,12 @@ class MBCartItemTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: AppSizes.small,
+      spacing: AppSizes.sm,
       children: [
         Container(
           width: double.infinity,
           padding: EdgeInsets.symmetric(horizontal: 16.0),
-          margin: EdgeInsets.only(top: 8.0),
+          margin: EdgeInsets.only(top: AppSizes.sm),
           child: GestureDetector(
             onTap: () => onSelectionChanged(count),
             child: Row(
@@ -51,21 +51,18 @@ class MBCartItemTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: 20,
-                  height: 20,
+                  width: 20, height: 20,
                   child: MBMainSelector(
                     value: isSelected ? 'on' : 'off',
                     onChange: () => onSelectionChanged(count),
                   ),
                 ),
-                Container(
-                  width: 42,
-                  height: 42,
-                  decoration: BoxDecoration(
-                    color: AppColors.grey500,
-                    borderRadius: BorderRadius.circular(AppSizes.medium),
-                  ),
-                  child: Image.network(imgUrl, fit: BoxFit.cover),
+                SizedBox(
+                  width: 42, height: 42,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(AppSizes.small),
+                    child: Image.network(imgUrl, fit: BoxFit.cover),
+                  )
                 ),
                 Expanded(
                   child: Column(
@@ -82,6 +79,7 @@ class MBCartItemTile extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                               style: AppTextStyles.bodyMedium.copyWith(
                                 color: AppColors.grey900,
+                                height: 1.2
                               ),
                             ),
                           ),
@@ -116,7 +114,7 @@ class MBCartItemTile extends StatelessWidget {
             ),
           ),
         ),
-        MBSeparator(),
+        MBSeparator(color: AppColors.grey300, margin: AppSizes.sm),
       ],
     );
   }

@@ -14,9 +14,12 @@ abstract final class AppRadius {
 
   static const allSmall = BorderRadius.all(Radius.circular(sm));
   static const allMedium = BorderRadius.all(Radius.circular(medium));
+  static const allLg = BorderRadius.all(Radius.circular(lg));
   static const allLarge = BorderRadius.all(Radius.circular(xl));
   static const allCompact = BorderRadius.all(Radius.circular(compact));
   static const allXLarge = BorderRadius.all(Radius.circular(xxl));
+  static const allXXLarge = BorderRadius.all(Radius.circular(xxxl));
+  static const allRound = BorderRadius.all(Radius.circular(round));
   static const allFull = BorderRadius.all(Radius.circular(full));
 
   static const topSheet = BorderRadius.only(

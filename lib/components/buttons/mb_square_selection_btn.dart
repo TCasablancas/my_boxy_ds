@@ -11,7 +11,7 @@ class MBSquareSelectionBtn extends StatefulWidget {
     this.descriptionIcon,
     this.bottomSheetContent,
     this.actions,
-    required this.onPressed,
+    this.onPressed,
   });
 
   final String label;
@@ -21,7 +21,7 @@ class MBSquareSelectionBtn extends StatefulWidget {
   final Widget? descriptionIcon;
   final Widget? bottomSheetContent;
   final List<Widget>? actions;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   State<MBSquareSelectionBtn> createState() => _MBSquareSelectionBtnState();

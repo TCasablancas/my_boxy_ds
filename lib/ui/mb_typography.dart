@@ -20,6 +20,7 @@ class AppTypography {
       color: Colors.grey[700],
       fontFamily: 'Lexend',
       fontWeight: FontWeight.w300,
+      letterSpacing: -0.5
     );
   }
 

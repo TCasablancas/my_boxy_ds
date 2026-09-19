@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 
 class MBBottomMenuItemButton extends StatelessWidget {
+
   final IconData? icon;
   final String label;
+  final Color? backgroundColor;
 
   const MBBottomMenuItemButton({
     super.key,
     this.icon,
     required this.label,
+    this.backgroundColor,
   });
 
   @override
@@ -19,7 +22,7 @@ class MBBottomMenuItemButton extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 8.0),
       padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 4.0),
       decoration: BoxDecoration(
-        color: Colors.grey[100]?.withAlpha(150),
+        color: backgroundColor?.withAlpha(150),
         borderRadius: BorderRadius.circular(20.0)
       ),
       child: Padding(
