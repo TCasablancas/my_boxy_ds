@@ -8,7 +8,8 @@ class MBTitleSubtitled extends StatelessWidget {
   final String description;
   final Color? color;
   final TextAlign textAlign;
-  final MBTitleSubtitledLabelType type; 
+  final MBTitleSubtitledLabelType type;
+  final EdgeInsetsGeometry? padding;
 
   const MBTitleSubtitled({
     super.key,
@@ -17,6 +18,7 @@ class MBTitleSubtitled extends StatelessWidget {
     this.color = const Color(0xFF424242),
     this.textAlign = TextAlign.left,
     this.type = MBTitleSubtitledLabelType.defaultType,
+    this.padding,
   });
 
   TextStyle get _titleStyle => switch (type) {
@@ -35,8 +37,9 @@ class MBTitleSubtitled extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (
-      Column(
+    return Padding(
+      padding: padding ?? EdgeInsets.zero,
+      child: Column(
         children: [
           SizedBox(
             width: double.infinity,

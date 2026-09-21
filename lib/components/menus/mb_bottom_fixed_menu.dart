@@ -7,13 +7,15 @@ import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
 // import 'package:gradient_blur/gradient_blur.dart';
 
 class MBBottomFixedMenu extends StatelessWidget {
-  final VoidCallback? onNotificationsTap;
+  final IconData? extraActionIcon;
+  final VoidCallback? onExtraActionTap;
   final VoidCallback? onCartTap;
   final VoidCallback? onMenuTap;
 
   const MBBottomFixedMenu({
     super.key,
-    required this.onNotificationsTap,
+    this.extraActionIcon,
+    required this.onExtraActionTap,
     required this.onCartTap,
     required this.onMenuTap,
   });
@@ -40,13 +42,13 @@ class MBBottomFixedMenu extends StatelessWidget {
             children: [
               MBRoundedIconButton(
                 icon: Icon(
-                  Icons.notifications_none_outlined,
+                  extraActionIcon ?? Icons.notifications_none_outlined,
                   color: AppColors.primary,
                 ),
                 backgroundColor: Colors.white,
                 shadow: true,
                 quantity: 12,
-                onPressed: () => onNotificationsTap?.call(),
+                onPressed: () => onExtraActionTap?.call(),
               ),
               MBFloatingCartButton(
                 items: 3,

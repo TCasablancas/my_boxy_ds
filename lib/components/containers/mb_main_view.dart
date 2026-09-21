@@ -18,7 +18,8 @@ class MBMainView extends StatefulWidget {
   final bool? hasAppBar;
   final bool? hasBottomMenu;
   final bool blurAppBarOnScroll;
-  final VoidCallback? onNotificationsTap;
+  final IconData? extraActionIcon;
+  final VoidCallback? onExtraActionTap;
   final VoidCallback? onCartTap;
   final VoidCallback? onMenuTap;
   final Widget? floatingBottomMenu;
@@ -39,7 +40,8 @@ class MBMainView extends StatefulWidget {
     this.hasAppBar,
     this.hasBottomMenu,
     this.blurAppBarOnScroll = false,
-    this.onNotificationsTap,
+    this.extraActionIcon,
+    this.onExtraActionTap,
     this.onCartTap,
     this.onMenuTap,
     this.floatingBottomMenu,
@@ -172,23 +174,6 @@ class _MBMainViewState extends State<MBMainView> {
                   children: [
                     widget.header ?? const SizedBox.shrink(),
                     Expanded(child: widget.child),
-                    // Container(
-                    //   width: double.infinity,
-                    //   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    //   margin: EdgeInsets.only(bottom: 24),
-                    //   decoration: BoxDecoration(
-                    //     border: BoxBorder.all(
-                    //       width: 1,
-                    //       color: AppColors.border
-                    //     ),
-                    //   ),
-                    //   child: Text(
-                    //     'Você viu todos os itens desta loja...',
-                    //     style: AppTextStyles.labelSmall.copyWith(
-                    //       color: AppColors.border
-                    //     )
-                    //   )
-                    // ),
                   ],
                 ),
               ),
@@ -202,22 +187,16 @@ class _MBMainViewState extends State<MBMainView> {
                         onDismiss: _floatingMenuController.close,
                         child: child!,
                       );
-                      // return MBFloatingBottomMenu(
-                      //   isVisible: isVisible,
-                      //   onDismiss: _floatingMenuController.close,
-                      //   child: child!,
-                      // );
                     },
                     child: widget.floatingBottomMenu!,
                   ),
                 ),
               if (widget.hasBottomMenu ?? true)
                 Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
+                  bottom: 0, left: 0, right: 0,
                   child: MBBottomFixedMenu(
-                    onNotificationsTap: widget.onNotificationsTap,
+                    extraActionIcon: widget.extraActionIcon,
+                    onExtraActionTap: widget.onExtraActionTap,
                     onCartTap: widget.onCartTap,
                     onMenuTap: widget.onMenuTap ?? _floatingMenuController.toggle,
                   ),

@@ -212,6 +212,7 @@ class MBMainInput extends StatefulWidget {
   final String? error;
   final MBInputFieldType fieldType;
   final Future<String?> Function(String value)? onAsyncValidate;
+  final EdgeInsetsGeometry? padding;
 
   const MBMainInput({
     super.key,
@@ -223,6 +224,7 @@ class MBMainInput extends StatefulWidget {
     this.error,
     this.fieldType = MBInputFieldType.generic,
     this.onAsyncValidate,
+    this.padding,
   });
 
   @override
@@ -373,91 +375,94 @@ class _MBMainInputState extends State<MBMainInput> {
             (!_focusNode.hasFocus || widget.controller.text.isEmpty));
     final labelColor = isNeutralGray ? Colors.grey[500] : state.border;
 
-    return Column(
-      children: [
-        AnimatedContainer(
-          alignment: Alignment.centerLeft,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: state.background,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          duration: _duration,
-          child: Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: AnimatedContainer(
-              duration: _duration,
-              decoration: BoxDecoration(
-                color: widget.readOnly ? AppColors.grey300 : AppColors.white,
-                border: Border.all(
-                  color: state.border,
-                  width: 1.5,
-                ),
-                borderRadius: AppRadius.allLg
-              ),
-              //AppBoxDecorations.borderedBoxDecoration(state.border),
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(8, 4, 16, 0),
-                      child: Text(
-                        widget.label,
-                        textAlign: TextAlign.left,
-                        style: AppTextStyles.snackbar(labelColor),
-                      ),
+    return Padding(
+      padding: widget.padding ?? const EdgeInsets.all(0.0),
+      child: Column(
+        children: [
+          AnimatedContainer(
+            alignment: Alignment.centerLeft,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: state.background,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            duration: _duration,
+            child: Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: AnimatedContainer(
+                duration: _duration,
+                decoration: BoxDecoration(
+                    color: widget.readOnly ? AppColors.grey300 : AppColors.white,
+                    border: Border.all(
+                      color: state.border,
+                      width: 1.5,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 4),
-                    child: SizedBox(
-                      height: 32,
-                      child: IgnorePointer(
-                        ignoring: widget.readOnly,
-                        child: TextField(
-                          focusNode: _focusNode,
-                          controller: widget.controller,
-                          obscureText: _obscureText,
-                          enabled: !widget.readOnly,
-                          keyboardType: _keyboardTypeFor(widget.fieldType),
-                          inputFormatters: _inputFormattersFor(
-                            widget.fieldType,
-                          ),
-                          style: AppTextStyles.bodyLarge.copyWith(
-                            letterSpacing: -0.5,
-                          ),
-                          decoration: InputDecoration(
-                            hintText: widget.placeholder,
-                            icon: _obscureTextIcon(
-                              widget.obscureText && !widget.readOnly,
-                            ),
-                            filled: widget.readOnly,
-                            fillColor: widget.readOnly ? state.background : AppColors.grey300,
-                            border: InputBorder.none,
-                            contentPadding: const EdgeInsets.fromLTRB(8, 0, 8, 12)
-                          ),
-                          // AppInputDecorations.transparentInput(
-                          //   _obscureTextIcon(
-                          //     widget.obscureText && !widget.readOnly,
-                          //   ),
-                          //   widget.placeholder,
-                          // ),
-                          readOnly: widget.readOnly,
-                          onTapOutside: (event) {
-                            FocusManager.instance.primaryFocus?.unfocus();
-                          },
+                    borderRadius: AppRadius.allLg
+                ),
+                //AppBoxDecorations.borderedBoxDecoration(state.border),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 4, 16, 0),
+                        child: Text(
+                          widget.label,
+                          textAlign: TextAlign.left,
+                          style: AppTextStyles.snackbar(labelColor),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 4),
+                      child: SizedBox(
+                        height: 32,
+                        child: IgnorePointer(
+                          ignoring: widget.readOnly,
+                          child: TextField(
+                            focusNode: _focusNode,
+                            controller: widget.controller,
+                            obscureText: _obscureText,
+                            enabled: !widget.readOnly,
+                            keyboardType: _keyboardTypeFor(widget.fieldType),
+                            inputFormatters: _inputFormattersFor(
+                              widget.fieldType,
+                            ),
+                            style: AppTextStyles.bodyLarge.copyWith(
+                              letterSpacing: -0.5,
+                            ),
+                            decoration: InputDecoration(
+                                hintText: widget.placeholder,
+                                icon: _obscureTextIcon(
+                                  widget.obscureText && !widget.readOnly,
+                                ),
+                                filled: widget.readOnly,
+                                fillColor: widget.readOnly ? state.background : AppColors.grey300,
+                                border: InputBorder.none,
+                                contentPadding: const EdgeInsets.fromLTRB(8, 0, 8, 12)
+                            ),
+                            // AppInputDecorations.transparentInput(
+                            //   _obscureTextIcon(
+                            //     widget.obscureText && !widget.readOnly,
+                            //   ),
+                            //   widget.placeholder,
+                            // ),
+                            readOnly: widget.readOnly,
+                            onTapOutside: (event) {
+                              FocusManager.instance.primaryFocus?.unfocus();
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        _showErrorMessage(_effectiveError) ?? SizedBox.shrink(),
-      ],
+          _showErrorMessage(_effectiveError) ?? SizedBox.shrink(),
+        ],
+      )
     );
   }
 }

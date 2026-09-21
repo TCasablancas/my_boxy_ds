@@ -9,6 +9,7 @@ class MBSquareIconBtn extends StatelessWidget {
   final double? iconSize;
   final BorderRadiusGeometry? radius;
   final bool? hasBackground;
+  final Color? iconColor;
   final Color? backgroundColor;
   final VoidCallback? onTap;
 
@@ -20,6 +21,7 @@ class MBSquareIconBtn extends StatelessWidget {
     this.iconSize,
     this.radius,
     this.hasBackground,
+    this.iconColor,
     this.backgroundColor,
     this.onTap,
   });
@@ -38,7 +40,7 @@ class MBSquareIconBtn extends StatelessWidget {
               color: backgroundColor ?? AppColors.primaryLight,
               borderRadius: radius ?? AppRadius.allXLarge
             ) : null,
-            child: Icon(icon, size: iconSize ?? 18, color: AppColors.primaryDark)
+            child: Icon(icon, size: iconSize ?? 18, color: iconColor ?? AppColors.primaryDark)
           ),
           if (title != null)
             Text(

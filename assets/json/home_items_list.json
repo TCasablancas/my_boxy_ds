@@ -10,6 +10,12 @@
       },
       {
         "icon": "person",
+        "label": "Botão de Endereço",
+        "actionIcon": "chevron_right",
+        "path": "/buttons/address"
+      },
+      {
+        "icon": "person",
         "label": "Checkout Tile Container",
         "actionIcon": "chevron_right",
         "path": "/containers/checkout"

@@ -10,6 +10,7 @@ class MBLightItemTile extends StatelessWidget {
     this.actionIcon,
     this.iconColor,
     this.icon,
+    this.iconSize,
     this.padding,
     this.onTap,
   });
@@ -19,6 +20,7 @@ class MBLightItemTile extends StatelessWidget {
   final Color? iconColor;
   final IconData? icon;
   final IconData? actionIcon;
+  final double? iconSize;
   final EdgeInsetsGeometry? padding;
   final VoidCallback? onTap;
 
@@ -33,7 +35,7 @@ class MBLightItemTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(icon, size: 24, color: iconColor ?? AppColors.neutral900),
+            Icon(icon, size: iconSize ?? 24, color: iconColor ?? AppColors.neutral900),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

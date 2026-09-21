@@ -12,12 +12,14 @@ class MBActionTiledListView extends StatelessWidget {
     this.sectionTitle,
     required this.items,
     this.padding,
+    this.borderColor,
     this.onTap,
   });
 
   final String? sectionTitle;
   final List<MBLightItemTile> items;
   final EdgeInsetsGeometry? padding;
+  final Color? borderColor;
   final VoidCallback? onTap;
 
   @override
@@ -29,14 +31,19 @@ class MBActionTiledListView extends StatelessWidget {
         children: [
           MBTitleSubtitled(title: sectionTitle ?? ''),
           MBBoxRoundedContainer(
+            background: AppColors.grey100,
             padding: EdgeInsets.symmetric(vertical: AppSizes.md),
+            border: Border.all(
+              color: borderColor ?? AppColors.grey200,
+              width: 3
+            ),
             child: Column(
               children: items.map(
                 (item) => Column(
                   children: [
                     item,
                     if (item != items.last)
-                      MBSeparator(color: AppColors.grey400,),
+                      MBSeparator(color: AppColors.grey200,),
                   ],
                 )
               ).toList()
