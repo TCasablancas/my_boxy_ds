@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
-// import 'package:my_boxy_ds/ui/mb_typography.dart';
+import 'package:my_boxy_ds/ui/formatters/mb_brazilian_currency_formatter.dart';
 
-enum MBPriceValueLabelSize {
-  small, medium, large
-}
+enum MBPriceValueLabelSize { small, medium, large }
 
-enum MBPriceValueLabelAlignment {
-  left, center, right
-}
+enum MBPriceValueLabelAlignment { left, center, right }
 
 class MBPriceValueLabel extends StatelessWidget {
-
   final String price;
   final MBPriceValueLabelSize? size;
   final Color? color;
@@ -25,19 +20,11 @@ class MBPriceValueLabel extends StatelessWidget {
     this.alignment = .right,
   });
 
-  String get _formattedPrice {
-    final normalized = price
-        .replaceAll(RegExp(r'[^0-9,.]'), '')
-        .replaceAll(',', '.');
-        // .replaceAll('.', '');
-    final value = num.tryParse(normalized);
-    return value?.toStringAsFixed(2).replaceAll('.', ',') ?? price;
-  }
+  String get _formattedPrice => MBBrazilianCurrencyFormatter.formatPrice(price);
 
   @override
   Widget build(BuildContext context) {
-
-    double? _currencySize(MBPriceValueLabelSize? size) {
+    double? currencySize(MBPriceValueLabelSize? size) {
       return switch (size) {
         MBPriceValueLabelSize.small => 11,
         MBPriceValueLabelSize.medium => 14,
@@ -46,7 +33,7 @@ class MBPriceValueLabel extends StatelessWidget {
       };
     }
 
-    double? _fontSize(MBPriceValueLabelSize? size) {
+    double? fontSize(MBPriceValueLabelSize? size) {
       return switch (size) {
         MBPriceValueLabelSize.small => 13,
         MBPriceValueLabelSize.medium => 18,
@@ -55,7 +42,7 @@ class MBPriceValueLabel extends StatelessWidget {
       };
     }
 
-    MainAxisAlignment _axisAlignment(MBPriceValueLabelAlignment? alignment) {
+    MainAxisAlignment axisAlignment(MBPriceValueLabelAlignment? alignment) {
       return switch (alignment) {
         MBPriceValueLabelAlignment.left => MainAxisAlignment.start,
         MBPriceValueLabelAlignment.center => MainAxisAlignment.center,
@@ -64,18 +51,9 @@ class MBPriceValueLabel extends StatelessWidget {
       };
     }
 
-    CrossAxisAlignment _crossAxisAlignment(MBPriceValueLabelAlignment? alignment) {
-      return switch (alignment) {
-        MBPriceValueLabelAlignment.left => CrossAxisAlignment.start,
-        MBPriceValueLabelAlignment.center => CrossAxisAlignment.center,
-        MBPriceValueLabelAlignment.right => CrossAxisAlignment.end,
-        null => CrossAxisAlignment.end,
-      };
-    }
-
     return Row(
       spacing: 2.0,
-      mainAxisAlignment: _axisAlignment(alignment),
+      mainAxisAlignment: axisAlignment(alignment),
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Padding(
@@ -83,7 +61,7 @@ class MBPriceValueLabel extends StatelessWidget {
           child: Text(
             'R\$',
             style: AppTextStyles.price.copyWith(
-              fontSize: _currencySize(size),
+              fontSize: currencySize(size),
               fontWeight: FontWeight.w400,
               letterSpacing: -0.5,
               color: color?.withAlpha(180) ?? AppColors.focus.withAlpha(180),
@@ -94,10 +72,10 @@ class MBPriceValueLabel extends StatelessWidget {
           _formattedPrice,
           textAlign: TextAlign.left,
           style: AppTextStyles.price.copyWith(
-            fontSize: _fontSize(size),
+            fontSize: fontSize(size),
             fontWeight: FontWeight.w700,
             color: color ?? AppColors.focus,
-            letterSpacing: -0.5
+            letterSpacing: -0.5,
           ),
         ),
       ],

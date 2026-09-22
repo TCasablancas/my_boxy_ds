@@ -6,6 +6,7 @@ import 'app_radius.dart';
 abstract final class AppBorders {
   static const thin = BorderSide(color: AppColors.border, width: 1);
   static const thick = BorderSide(color: AppColors.border, width: 2);
+  static const xThickLight = BorderSide(color: AppColors.primaryLight, width: 3);
 
   static const focusThick = BorderSide(color: AppColors.primary, width: 2);
   static const errorThick = BorderSide(color: AppColors.error, width: 2);

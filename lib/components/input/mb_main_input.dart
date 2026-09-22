@@ -213,6 +213,7 @@ class MBMainInput extends StatefulWidget {
   final MBInputFieldType fieldType;
   final Future<String?> Function(String value)? onAsyncValidate;
   final EdgeInsetsGeometry? padding;
+  final double? height;
 
   const MBMainInput({
     super.key,
@@ -225,6 +226,7 @@ class MBMainInput extends StatefulWidget {
     this.fieldType = MBInputFieldType.generic,
     this.onAsyncValidate,
     this.padding,
+    this.height,
   });
 
   @override
@@ -332,38 +334,36 @@ class _MBMainInputState extends State<MBMainInput> {
 
   IconButton? _obscureTextIcon(bool obscureText) {
     return obscureText
-        ? IconButton(
-            icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
-            tooltip: _obscureText ? 'Mostrar senha' : 'Ocultar senha',
-            onPressed: () {
-              setState(() {
-                _obscureText = !_obscureText;
-              });
-            },
-          )
-        : null;
+      ? IconButton(
+          icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
+          tooltip: _obscureText ? 'Mostrar senha' : 'Ocultar senha',
+          onPressed: () {
+            setState(() {
+              _obscureText = !_obscureText;
+            });
+          },
+        ) : null;
   }
 
   Widget? _showErrorMessage(String? error) {
     return error != null
-        ? SizedBox(
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Text(
-                error,
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontFamily: 'SFMono',
-                  fontSize: 12,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: -0.75,
-                  color: AppColors.error,
-                ),
-              ),
+      ? SizedBox(
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Text(
+            error,
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontFamily: 'SFMono',
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+              letterSpacing: -0.75,
+              color: AppColors.error,
             ),
-          )
-        : null;
+          ),
+        ),
+      ) : null;
   }
 
   @override
@@ -416,7 +416,7 @@ class _MBMainInputState extends State<MBMainInput> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 4),
                       child: SizedBox(
-                        height: 32,
+                        height: widget.height ?? 32,
                         child: IgnorePointer(
                           ignoring: widget.readOnly,
                           child: TextField(
@@ -432,21 +432,15 @@ class _MBMainInputState extends State<MBMainInput> {
                               letterSpacing: -0.5,
                             ),
                             decoration: InputDecoration(
-                                hintText: widget.placeholder,
-                                icon: _obscureTextIcon(
-                                  widget.obscureText && !widget.readOnly,
-                                ),
-                                filled: widget.readOnly,
-                                fillColor: widget.readOnly ? state.background : AppColors.grey300,
-                                border: InputBorder.none,
-                                contentPadding: const EdgeInsets.fromLTRB(8, 0, 8, 12)
+                              hintText: widget.placeholder,
+                              icon: _obscureTextIcon(
+                                widget.obscureText && !widget.readOnly,
+                              ),
+                              filled: widget.readOnly,
+                              fillColor: widget.readOnly ? state.background : AppColors.grey300,
+                              border: InputBorder.none,
+                              contentPadding: const EdgeInsets.fromLTRB(8, 0, 8, 12)
                             ),
-                            // AppInputDecorations.transparentInput(
-                            //   _obscureTextIcon(
-                            //     widget.obscureText && !widget.readOnly,
-                            //   ),
-                            //   widget.placeholder,
-                            // ),
                             readOnly: widget.readOnly,
                             onTapOutside: (event) {
                               FocusManager.instance.primaryFocus?.unfocus();
