@@ -39,4 +39,34 @@ void main() {
       isTrue,
     );
   });
+
+  testWidgets('renders custom child and disables it when unselected', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            width: 250,
+            child: MBSelectorWithCounterView(
+              icon: Icons.inventory_2_outlined,
+              label: 'Entrega personalizada',
+              description: 'Configuração própria',
+              isSelected: false,
+              onSelectionChanged: (_) {},
+              child: const Text('Conteúdo personalizado'),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('Conteúdo personalizado'), findsOneWidget);
+    expect(
+      tester
+          .widgetList<IgnorePointer>(find.byType(IgnorePointer))
+          .any((widget) => widget.ignoring),
+      isTrue,
+    );
+  });
 }

@@ -214,6 +214,8 @@ class MBMainInput extends StatefulWidget {
   final Future<String?> Function(String value)? onAsyncValidate;
   final EdgeInsetsGeometry? padding;
   final double? height;
+  final String? complementaryLabel;
+  final bool? isNumber;
 
   const MBMainInput({
     super.key,
@@ -227,6 +229,8 @@ class MBMainInput extends StatefulWidget {
     this.onAsyncValidate,
     this.padding,
     this.height,
+    this.complementaryLabel,
+    this.isNumber,
   });
 
   @override
@@ -417,35 +421,54 @@ class _MBMainInputState extends State<MBMainInput> {
                       padding: const EdgeInsets.only(bottom: 4),
                       child: SizedBox(
                         height: widget.height ?? 32,
-                        child: IgnorePointer(
-                          ignoring: widget.readOnly,
-                          child: TextField(
-                            focusNode: _focusNode,
-                            controller: widget.controller,
-                            obscureText: _obscureText,
-                            enabled: !widget.readOnly,
-                            keyboardType: _keyboardTypeFor(widget.fieldType),
-                            inputFormatters: _inputFormattersFor(
-                              widget.fieldType,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Expanded(
+                              child: IgnorePointer(
+                                ignoring: widget.readOnly,
+                                child: TextField(
+                                  focusNode: _focusNode,
+                                  controller: widget.controller,
+                                  obscureText: _obscureText,
+                                  enabled: !widget.readOnly,
+                                  keyboardType: _keyboardTypeFor(widget.fieldType),
+                                  inputFormatters: _inputFormattersFor(
+                                    widget.fieldType,
+                                  ),
+                                  style: AppTextStyles.bodyLarge.copyWith(
+                                    letterSpacing: -0.5,
+                                    fontFamily: widget.isNumber ?? false ? 'SFMono' : 'Lexend'
+                                  ),
+                                  decoration: InputDecoration(
+                                    hintText: widget.placeholder,
+                                    icon: _obscureTextIcon(
+                                      widget.obscureText && !widget.readOnly,
+                                    ),
+                                    filled: widget.readOnly,
+                                    fillColor: widget.readOnly ? state.background : AppColors.grey300,
+                                    border: InputBorder.none,
+                                    contentPadding: const EdgeInsets.fromLTRB(8, 0, 8, 12)
+                                  ),
+                                  readOnly: widget.readOnly,
+                                  onTapOutside: (event) {
+                                    FocusManager.instance.primaryFocus?.unfocus();
+                                  },
+                                ),
+                              )
                             ),
-                            style: AppTextStyles.bodyLarge.copyWith(
-                              letterSpacing: -0.5,
-                            ),
-                            decoration: InputDecoration(
-                              hintText: widget.placeholder,
-                              icon: _obscureTextIcon(
-                                widget.obscureText && !widget.readOnly,
+                            if (widget.complementaryLabel != null)
+                              Padding(
+                                padding: const EdgeInsets.only(right: AppSizes.small),
+                                child: Text(
+                                  widget.complementaryLabel ?? '',
+                                  style: AppTextStyles.labelSmall.copyWith(
+                                    letterSpacing: -0.5,
+                                    color: AppColors.grey500,
+                                  ),
+                                ),
                               ),
-                              filled: widget.readOnly,
-                              fillColor: widget.readOnly ? state.background : AppColors.grey300,
-                              border: InputBorder.none,
-                              contentPadding: const EdgeInsets.fromLTRB(8, 0, 8, 12)
-                            ),
-                            readOnly: widget.readOnly,
-                            onTapOutside: (event) {
-                              FocusManager.instance.primaryFocus?.unfocus();
-                            },
-                          ),
+                          ],
                         ),
                       ),
                     ),

@@ -96,6 +96,7 @@ class AppTypography {
 
   static const h3 = TextStyle(
     fontSize: 20,
+    fontFamily: 'Lexend',
     fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
   );

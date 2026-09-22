@@ -24,14 +24,19 @@ class MBTitleSubtitled extends StatelessWidget {
   TextStyle get _titleStyle => switch (type) {
     MBTitleSubtitledLabelType.defaultType => AppTypography.body1,
     MBTitleSubtitledLabelType.small => AppTypography.description,
-    MBTitleSubtitledLabelType.big => AppTypography.h3,
+    MBTitleSubtitledLabelType.big => AppTypography.h3.copyWith(
+      fontWeight: FontWeight.w700,
+      letterSpacing: -0.5
+    ),
     MBTitleSubtitledLabelType.header => AppTypography.h2,
   };
 
   TextStyle get _descriptionStyle => switch (type) {
     MBTitleSubtitledLabelType.defaultType => AppTypography.description,
     MBTitleSubtitledLabelType.small => AppTypography.switchTag,
-    MBTitleSubtitledLabelType.big => AppTypography.body1,
+    MBTitleSubtitledLabelType.big => AppTypography.body1.copyWith(
+      letterSpacing: -0.5
+    ),
     MBTitleSubtitledLabelType.header => AppTypography.h3,
   };
 
