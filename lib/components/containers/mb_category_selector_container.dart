@@ -41,15 +41,15 @@ class _MBCategorySelectorContainerState extends State<MBCategorySelectorContaine
       child: GestureDetector(
         onTap: widget.onTap,
         child: Container(
-          height: 52,
+          height: 60,
           padding: EdgeInsets.symmetric(horizontal: AppSizes.small, vertical: AppSizes.sm),
           decoration: BoxDecoration(
-              color: widget.background ?? AppColors.grey300,
-              borderRadius: BorderRadius.circular(AppSizes.md),
-              border: Border.all(
-                  color: AppColors.grey300,
-                  width: 3
-              )
+            color: widget.background ?? AppColors.grey300,
+            borderRadius: BorderRadius.circular(AppSizes.md),
+            border: Border.all(
+              color: AppColors.grey300,
+              width: 3
+            )
           ),
           child: Row(
             children: [
@@ -59,7 +59,7 @@ class _MBCategorySelectorContainerState extends State<MBCategorySelectorContaine
                   children: [
                     Text(
                       widget.label,
-                      style: AppTextStyles.snackbar(AppColors.grey500),
+                      style: AppTextStyles.snackbar(AppColors.grey400),
                     ),
                     const Spacer(),
                     Text(
@@ -68,13 +68,14 @@ class _MBCategorySelectorContainerState extends State<MBCategorySelectorContaine
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: AppTextStyles.bodyLarge.copyWith(
-                          letterSpacing: -0.5
+                        letterSpacing: -0.5,
+                        color: AppColors.primary
                       ),
                     )
                   ],
                 ),
               ),
-              Icon(widget.actionIcon ?? LucideIcons.plus, size: 16,)
+              Icon(widget.actionIcon ?? LucideIcons.plus, size: 16, color: AppColors.grey400)
             ],
           ),
         )

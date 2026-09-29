@@ -2,7 +2,8 @@ enum HomeDestination {
   addressButtons('/buttons/address'),
   squareButtons('/buttons/square'),
   checkoutTileContainer('/containers/checkout'),
-  cartItemTile('/tiles/cart-item');
+  cartItemTile('/tiles/cart-item'),
+  onboardingCaroulsel('/carousels/onboarding');
 
   const HomeDestination(this.path);
 
@@ -14,6 +15,7 @@ enum HomeDestination {
       '/buttons/address' => addressButtons,
       '/containers/checkout' => checkoutTileContainer,
       '/tiles/cart-item' => cartItemTile,
+      '/carousels/onboarding' => onboardingCaroulsel,
       _ => throw ArgumentError.value(
           path,
           'path',

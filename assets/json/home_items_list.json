@@ -25,6 +25,12 @@
         "label": "Cart Item Tile",
         "actionIcon": "chevron_right",
         "path": "/tiles/cart-item"
+      },
+      {
+        "icon": "person",
+        "label": "Carrossel Tipo Onboarding",
+        "actionIcon": "chevron_right",
+        "path": "/carousels/onboarding"
       }
     ]
   },

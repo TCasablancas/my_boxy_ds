@@ -12,6 +12,8 @@ class MBSquareIconBtn extends StatelessWidget {
   final Color? iconColor;
   final Color? backgroundColor;
   final VoidCallback? onTap;
+  final double? width;
+  final double? height;
 
   const MBSquareIconBtn({
     super.key,
@@ -24,6 +26,8 @@ class MBSquareIconBtn extends StatelessWidget {
     this.iconColor,
     this.backgroundColor,
     this.onTap,
+    this.width,
+    this.height,
   });
 
   @override
@@ -35,7 +39,8 @@ class MBSquareIconBtn extends StatelessWidget {
         spacing: 8.0,
         children: [
           Container(
-            padding: EdgeInsets.all(padding ?? 16.0),
+            width: width, height: height,
+            padding: EdgeInsets.all(padding ?? 0.0),
             decoration: hasBackground == null ? BoxDecoration(
               color: backgroundColor ?? AppColors.primaryLight,
               borderRadius: radius ?? AppRadius.allXLarge

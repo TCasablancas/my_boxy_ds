@@ -2,8 +2,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/components/buttons/mb_floating_cart_btn.dart';
 import 'package:my_boxy_ds/components/buttons/mb_rounded_icon_btn.dart';
+import 'package:my_boxy_ds/my_boxy_ds.dart';
 import 'package:my_boxy_ds/ui/icons/mb_icons_actions.dart';
-import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
+// import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
 // import 'package:gradient_blur/gradient_blur.dart';
 
 class MBBottomFixedMenu extends StatelessWidget {
@@ -38,7 +39,7 @@ class MBBottomFixedMenu extends StatelessWidget {
           // ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            spacing: 12,
+            spacing: AppSizes.small,
             children: [
               MBRoundedIconButton(
                 icon: Icon(
@@ -46,8 +47,9 @@ class MBBottomFixedMenu extends StatelessWidget {
                   color: AppColors.primary,
                 ),
                 backgroundColor: Colors.white,
-                shadow: true,
-                quantity: 12,
+                width: 50, height: 50,
+                // shadow: false,
+                // quantity: 12,
                 onPressed: () => onExtraActionTap?.call(),
               ),
               MBFloatingCartButton(
@@ -59,8 +61,9 @@ class MBBottomFixedMenu extends StatelessWidget {
                   strokeColor: AppColors.primary,
                   size: 20,
                 ),
+                width: 50, height: 50,
                 backgroundColor: Colors.white,
-                shadow: true,
+                // shadow: false,
                 onPressed: () => onMenuTap?.call(),
               ),
             ],

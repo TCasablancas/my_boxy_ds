@@ -9,6 +9,8 @@ class MBRoundedIconButton extends StatelessWidget {
   final Color? backgroundColor;
   final bool? shadow;
   final MBRoundedIconButtonSize buttonSize;
+  final double? width;
+  final double? height;
   final VoidCallback onPressed;
 
   const MBRoundedIconButton({
@@ -18,6 +20,8 @@ class MBRoundedIconButton extends StatelessWidget {
     this.backgroundColor,
     this.shadow = false,
     this.buttonSize = MBRoundedIconButtonSize.medium,
+    this.width,
+    this.height,
     required this.onPressed,
   });
 
@@ -59,7 +63,7 @@ class MBRoundedIconButton extends StatelessWidget {
             child: InkWell(
               onTap: onPressed,
               customBorder: const CircleBorder(),
-                child: SizedBox(width: size, height: size, child: Center()),
+                child: SizedBox(width: width ?? size, height: height ?? size, child: Center()),
             ),
           )
         ),

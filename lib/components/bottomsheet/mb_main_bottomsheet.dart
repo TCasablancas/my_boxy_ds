@@ -361,18 +361,14 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
   }
 
   Widget _buildContentWithText(String title, String description) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.only(top: 16.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 16.0),
-            child: widget.actions == null ? MBTitleSubtitled(
-              title: title,
-              description: description,
-              textAlign: widget.textAlign ?? TextAlign.center,
-            ) : Row(
+            child: Row(
               children: [
                 Expanded(
                   child: MBTitleSubtitled(
@@ -381,12 +377,10 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
                     textAlign: widget.textAlign ?? TextAlign.center,
                   )
                 ),
-                Spacer(),
+                // Spacer(),
                 if (widget.actions != null)
                   Container(
-                    height: 20.0,
                     decoration: BoxDecoration(
-                      color: AppColors.grey100,
                       borderRadius: BorderRadius.circular(AppRadius.xs),
                     ),
                     child: Row(

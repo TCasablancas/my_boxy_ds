@@ -6,6 +6,7 @@ import '../containers/containers_view.dart';
 import '../tiles/cart_item_tile_view.dart';
 import 'home_destination.dart';
 import '../buttons/address_button_view.dart';
+import '../carousels/onboarding_type_carousel_view.dart';
 
 class HomeCoordinator {
   final NavigationService _navigationService;
@@ -22,6 +23,7 @@ class HomeCoordinator {
         HomeDestination.addressButtons => const AddressButtonView(),
         HomeDestination.checkoutTileContainer => const CheckoutTileContainerView(),
         HomeDestination.cartItemTile => const CartItemTileView(),
+        HomeDestination.onboardingCaroulsel => const OnboardingTypeCarouselView(),
       },
       settings: RouteSettings(name: destination.path),
     );

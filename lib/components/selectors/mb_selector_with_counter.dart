@@ -19,6 +19,7 @@ class MBSelectorWithCounter extends StatelessWidget {
     required this.onSelectionChanged,
     this.type = MBSelectorWithCounterType.checkbox,
     this.height,
+    this.width,
     this.child,
     this.inactiveBorderColor,
   }) : assert(child != null || onCountChanged != null);
@@ -33,6 +34,7 @@ class MBSelectorWithCounter extends StatelessWidget {
   final ValueChanged<bool> onSelectionChanged;
   final MBSelectorWithCounterType type;
   final double? height;
+  final double? width;
   final Widget? child;
   final Color? inactiveBorderColor;
 
@@ -53,6 +55,7 @@ class MBSelectorWithCounter extends StatelessWidget {
           duration: const Duration(milliseconds: 500),
           curve: Curves.easeInOut,
           height: height ?? 170,
+          width: width ?? double.infinity,
           padding: EdgeInsets.symmetric(
             horizontal: AppSizes.medium,
             vertical: AppSizes.md,

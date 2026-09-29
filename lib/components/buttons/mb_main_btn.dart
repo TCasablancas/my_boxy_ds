@@ -55,13 +55,13 @@ class MBMainButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(16.0),
       child: InkWell(
         onTap: buttonType == MBMainButtonType.disabled ? null : onPressed,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(16.0),
         child: Container(
           height: 50,
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 10),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(16.0),
             border: buttonType == MBMainButtonType.outlined
               ? Border.all(color: MBButtonColors.primary) : null,
           ),
