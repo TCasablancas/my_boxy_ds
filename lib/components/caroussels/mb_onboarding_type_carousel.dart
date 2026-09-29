@@ -37,8 +37,9 @@ class MBOnboardingTypeCarousel<T> extends StatefulWidget {
   final Duration transitionDuration;
   final Curve transitionCurve;
   final EdgeInsetsGeometry padding;
-  final bool allowUserScroll;
+  final bool? isSwippable;
   final MBOnboardingCarouselDisplay display;
+  final bool? showProgressBar;
 
   const MBOnboardingTypeCarousel({
     super.key,
@@ -50,12 +51,13 @@ class MBOnboardingTypeCarousel<T> extends StatefulWidget {
     this.transitionDuration = const Duration(milliseconds: 450),
     this.transitionCurve = Curves.easeOutCubic,
     this.padding = const EdgeInsets.all(AppSizes.large),
-    this.allowUserScroll = true,
+    this.isSwippable,
     this.display = MBOnboardingCarouselDisplay.fullWidth,
+    this.showProgressBar,
   }) : assert(
-         transitionDuration <= const Duration(seconds: 1),
-         'transitionDuration must not exceed one second.',
-       );
+     transitionDuration <= const Duration(seconds: 1),
+     'transitionDuration must not exceed one second.',
+   );
 
   @override
   State<MBOnboardingTypeCarousel<T>> createState() =>
@@ -154,26 +156,25 @@ class _MBOnboardingTypeCarouselState<T>
     return Column(
       // spacing: AppSizes.medium,
       children: [
-        Padding(
-          padding: EdgeInsets.only(
-            // top: resolvedPadding.top,
-            left: resolvedPadding.left,
-            right: resolvedPadding.right,
-          ),
-          child: FractionallySizedBox(
-            widthFactor: .5,
-            child: _ProgressBars(
-              count: widget.items.length,
-              activeIndex: _activeIndex,
+        if (widget.showProgressBar ?? false)
+          Padding(
+            padding: EdgeInsets.only(
+              // top: resolvedPadding.top,
+              left: resolvedPadding.left,
+              right: resolvedPadding.right,
+            ),
+            child: FractionallySizedBox(
+              widthFactor: .5,
+              child: _ProgressBars(
+                count: widget.items.length,
+                activeIndex: _activeIndex,
+              ),
             ),
           ),
-        ),
         Expanded(
           child: PageView.builder(
             controller: _pageController,
-            physics: widget.allowUserScroll
-                ? const PageScrollPhysics()
-                : const NeverScrollableScrollPhysics(),
+            physics: widget.isSwippable ?? true ? const PageScrollPhysics() : const NeverScrollableScrollPhysics(),
             itemCount: widget.items.length,
             onPageChanged: (index) => setState(() => _activeIndex = index),
             itemBuilder: (context, index) => _CarouselPage<T>(
@@ -209,20 +210,18 @@ class _MBOnboardingTypeCarouselState<T>
                   ),
                 ),
                 child: bottomWidgets.isEmpty
-                    ? const SizedBox(key: ValueKey('no-bottom-widgets'))
-                    : Column(
-                        key: ValueKey(
-                          Object.hashAll(
-                            bottomWidgets.map(
-                              (widget) => widget.key ?? widget.runtimeType,
-                            ),
-                          ),
+                  ? const SizedBox(key: ValueKey('no-bottom-widgets'))
+                  : Column(
+                      key: ValueKey(
+                        Object.hashAll(
+                          bottomWidgets.map((widget) => widget.key ?? widget.runtimeType),
                         ),
-                        children: [
-                          for (final bottomWidget in bottomWidgets)
-                            bottomWidget,
-                        ],
                       ),
+                      children: [
+                        for (final bottomWidget in bottomWidgets)
+                          bottomWidget,
+                      ],
+                    ),
               ),
             ],
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'mb_animated_btn_title.dart';
 import 'mb_button_tokens.dart';
 
 enum MBTextButtonSize { small, medium, large, extraLarge }
@@ -6,6 +7,9 @@ enum MBTextButtonSize { small, medium, large, extraLarge }
 class MBTextButton extends StatelessWidget {
   final IconData? icon;
   final String? title;
+  /// When set, replaces [title] with a slide animation. Change it from the
+  /// parent (e.g. a slider or onboarding step) to trigger the transition.
+  final String? newTitle;
   final Color? textColor;
   final MBTextButtonSize size;
   final VoidCallback? onPressed;
@@ -14,6 +18,7 @@ class MBTextButton extends StatelessWidget {
     super.key,
     this.icon,
     this.title,
+    this.newTitle,
     this.textColor,
     this.size = MBTextButtonSize.medium,
     this.onPressed,
@@ -46,8 +51,8 @@ class MBTextButton extends StatelessWidget {
                 color: textColor ?? MBButtonColors.textSecondary,
               ),
               const SizedBox(width: 4)],
-            Text(
-              title ?? '',
+            MBAnimatedButtonTitle(
+              text: newTitle ?? title ?? '',
               style: mbButtonTextStyle(
                 fontSize: _fontSize,
                 color: textColor ?? MBButtonColors.textSecondary,

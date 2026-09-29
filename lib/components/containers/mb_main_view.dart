@@ -10,6 +10,7 @@ class MBMainView extends StatefulWidget {
   final String? viewTitle;
   final Widget? headerWidget;
   final bool? backButton;
+  final IconData? backIcon;
   final Widget? header;
   final Widget child;
   final Color? backgroundColor;
@@ -26,12 +27,14 @@ class MBMainView extends StatefulWidget {
   final MBFloatingMenuController? floatingMenuController;
   final List<Widget>? footerActions;
   final VoidCallback? onBackTap;
+  final Color? footerContainerShadow;
 
   const MBMainView({
     super.key,
     this.viewTitle,
     this.headerWidget,
     this.backButton,
+    this.backIcon,
     this.header,
     required this.child,
     this.backgroundColor,
@@ -48,6 +51,7 @@ class MBMainView extends StatefulWidget {
     this.floatingMenuController,
     this.footerActions,
     this.onBackTap,
+    this.footerContainerShadow,
   });
 
   @override
@@ -125,41 +129,34 @@ class _MBMainViewState extends State<MBMainView> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: widget.hasAppBar ?? true
-          ? AppBar(
-              title: widget.viewTitle != null
-                  ? Text(widget.viewTitle!, style: AppTextStyles.appBarTitle)
-                  : widget.headerWidget,
-              automaticallyImplyLeading: false,
-              leading: widget.backButton != false && widget.hasAppBar != false
-                  ? Container(
-                      margin: const EdgeInsets.only(left: 16.0),
-                      alignment: Alignment.centerLeft,
-                      child: MBHeaderActionBtn(
-                        icon: Icons.arrow_back, 
-                        onTap: widget.onBackTap ?? () => Navigator.of(context).pop()
-                      ),
-                    )
-                  : const SizedBox.shrink(),
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Row(children: widget.rightActions ?? []),
+        ? AppBar(
+          title: widget.viewTitle != null
+            ? Text(widget.viewTitle!, style: AppTextStyles.appBarTitle)
+            : widget.headerWidget,
+          automaticallyImplyLeading: false,
+          leading: widget.backButton != false && widget.hasAppBar != false
+            ? Container(
+                margin: const EdgeInsets.only(left: 16.0),
+                alignment: Alignment.centerLeft,
+                child: MBHeaderActionBtn(
+                  icon: widget.backIcon ?? Icons.arrow_back,
+                  onTap: widget.onBackTap ?? () => Navigator.of(context).pop()
                 ),
-              ],
-              backgroundColor: widget.blurAppBarOnScroll
-                  ? Colors.transparent
-                  : backgroundColor,
-              elevation: widget.blurAppBarOnScroll ? 0 : null,
-              scrolledUnderElevation: widget.blurAppBarOnScroll ? 0 : null,
-              surfaceTintColor: widget.blurAppBarOnScroll
-                  ? Colors.transparent
-                  : null,
-              forceMaterialTransparency: widget.blurAppBarOnScroll,
-              flexibleSpace: widget.blurAppBarOnScroll
-                  ? _blurredAppBarBackground(backgroundColor)
-                  : null,
-            )
-          : null,
+              )
+            : const SizedBox.shrink(),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: Row(children: widget.rightActions ?? []),
+            ),
+          ],
+          backgroundColor: widget.blurAppBarOnScroll ? Colors.transparent : backgroundColor,
+          elevation: widget.blurAppBarOnScroll ? 0 : null,
+          scrolledUnderElevation: widget.blurAppBarOnScroll ? 0 : null,
+          surfaceTintColor: widget.blurAppBarOnScroll ? Colors.transparent : null,
+          forceMaterialTransparency: widget.blurAppBarOnScroll,
+          flexibleSpace: widget.blurAppBarOnScroll ? _blurredAppBarBackground(backgroundColor) : null,
+        ) : null,
       resizeToAvoidBottomInset: true,
       backgroundColor: backgroundColor,
       body: NotificationListener<ScrollNotification>(
@@ -211,7 +208,7 @@ class _MBMainViewState extends State<MBMainView> {
         color: backgroundColor,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withAlpha(60),
+            color: widget.footerContainerShadow ?? Colors.grey.withAlpha(60),
             spreadRadius: 2,
             blurRadius: 10,
             offset: const Offset(0, -2), // changes position of shadow
