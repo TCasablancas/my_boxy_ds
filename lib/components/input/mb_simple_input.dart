@@ -23,6 +23,7 @@ class MBSimpleInput extends StatefulWidget {
   final int maxLines;
   final int minLines;
   final int? maxLength;
+  final double? fontSize;
   final TextAlign textAlign;
   final EdgeInsetsGeometry contentPadding;
   final Duration lineAnimationDuration;
@@ -46,6 +47,7 @@ class MBSimpleInput extends StatefulWidget {
     this.minLines = 1,
     this.maxLength,
     this.textAlign = TextAlign.start,
+    this.fontSize,
     this.contentPadding = const EdgeInsets.symmetric(
       horizontal: AppSizes.small,
       vertical: AppSizes.small,
@@ -114,47 +116,42 @@ class _MBSimpleInputViewState extends State<MBSimpleInput> {
           Text(widget.label!, style: AppTextStyles.labelSmall),
           const SizedBox(height: AppSizes.small),
         ],
-        Container(
-          padding: EdgeInsets.only(bottom: 12),
-          height: 30,
-          child: TextField(
-            controller: widget.controller,
-            focusNode: _focusNode,
-            keyboardType: widget.keyboardType,
-            textInputAction: widget.textInputAction,
-            inputFormatters: widget.inputFormatters,
-            autofocus: widget.autofocus,
-            enabled: widget.enabled,
-            readOnly: widget.readOnly,
-            obscureText: widget.obscureText,
-            maxLines: widget.obscureText ? 1 : widget.maxLines,
-            minLines: widget.obscureText ? 1 : widget.minLines,
-            maxLength: widget.maxLength,
-            textAlign: widget.textAlign,
-            style: AppTextStyles.bodyLarge.copyWith(
-                fontFamily: AppFonts.primary,
-                fontSize: 14,
-                letterSpacing: -0.5,
-                height: 1.0
+        TextField(
+          controller: widget.controller,
+          focusNode: _focusNode,
+          keyboardType: widget.keyboardType,
+          textInputAction: widget.textInputAction,
+          inputFormatters: widget.inputFormatters,
+          autofocus: widget.autofocus,
+          enabled: widget.enabled,
+          readOnly: widget.readOnly,
+          obscureText: widget.obscureText,
+          maxLines: widget.obscureText ? 1 : widget.maxLines,
+          minLines: widget.obscureText ? 1 : widget.minLines,
+          maxLength: widget.maxLength,
+          textAlign: widget.textAlign,
+          style: AppTextStyles.bodyLarge.copyWith(
+            fontFamily: AppFonts.primary,
+            fontSize: widget.fontSize ?? 14,
+            letterSpacing: -0.5,
+            height: 1.2,
+          ),
+          onChanged: widget.onChanged,
+          onSubmitted: widget.onSubmitted,
+          onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+          decoration: InputDecoration(
+            hintText: widget.hintText,
+            hintStyle: AppTextStyles.bodyLarge.copyWith(
+              fontFamily: AppFonts.primary,
+              fontSize: 14,
+              color: AppColors.grey500,
             ),
-            onChanged: widget.onChanged,
-            onSubmitted: widget.onSubmitted,
-            onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
-            decoration: InputDecoration(
-              hintText: widget.hintText,
-              hintStyle: AppTextStyles.bodyLarge.copyWith(
-                fontFamily: AppFonts.primary,
-                fontSize: 14,
-                color: AppColors.grey500,
-              ),
-              // contentPadding: widget.contentPadding,
-              contentPadding:EdgeInsets.all(4.0),
-              border: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              disabledBorder: InputBorder.none,
-              counterText: '',
-            ),
+            contentPadding: widget.contentPadding,
+            border: InputBorder.none,
+            enabledBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            disabledBorder: InputBorder.none,
+            counterText: '',
           ),
         ),
         LayoutBuilder(

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 
 // import '../../ui/mb_box_decorations.dart';
 import '../../ui/design_tokens/design_tokens.dart';
@@ -337,16 +338,11 @@ class _MBMainInputState extends State<MBMainInput> {
   }
 
   IconButton? _obscureTextIcon(bool obscureText) {
-    return obscureText
-      ? IconButton(
-          icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
-          tooltip: _obscureText ? 'Mostrar senha' : 'Ocultar senha',
-          onPressed: () {
-            setState(() {
-              _obscureText = !_obscureText;
-            });
-          },
-        ) : null;
+    return obscureText ? IconButton(
+      icon: Icon(_obscureText ? LucideIcons.eye_closed : LucideIcons.eye),
+      tooltip: _obscureText ? 'Mostrar senha' : 'Ocultar senha',
+      onPressed: () { setState(() { _obscureText = !_obscureText; }); },
+    ) : null;
   }
 
   Widget? _showErrorMessage(String? error) {
@@ -374,9 +370,8 @@ class _MBMainInputState extends State<MBMainInput> {
   Widget build(BuildContext context) {
     final state = _visualState;
     final isNeutralGray =
-        widget.readOnly ||
-        (_effectiveError == null &&
-            (!_focusNode.hasFocus || widget.controller.text.isEmpty));
+      widget.readOnly || (_effectiveError == null &&
+      (!_focusNode.hasFocus || widget.controller.text.isEmpty));
     final labelColor = isNeutralGray ? Colors.grey[500] : state.border;
 
     return Padding(
@@ -442,7 +437,7 @@ class _MBMainInputState extends State<MBMainInput> {
                                   ),
                                   decoration: InputDecoration(
                                     hintText: widget.placeholder,
-                                    icon: _obscureTextIcon(
+                                    suffixIcon: _obscureTextIcon(
                                       widget.obscureText && !widget.readOnly,
                                     ),
                                     filled: widget.readOnly,

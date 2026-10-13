@@ -127,7 +127,7 @@ class _MBFlowBottomMenuState extends State<MBFlowBottomMenu> with SingleTickerPr
           ),
         ),
         Positioned(
-          bottom: 90, left: 50, right: 50,
+          bottom: 90, left: 30, right: 30,
           child: Transform.translate(
             offset: Offset(0, screenHeight * _slideController.value),
             child: GestureDetector(

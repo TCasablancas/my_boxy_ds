@@ -13,7 +13,7 @@ class MBTitleSubtitled extends StatelessWidget {
 
   const MBTitleSubtitled({
     super.key,
-    required this.title,
+    this.title = '',
     this.description = '',
     this.color = const Color(0xFF424242),
     this.textAlign = TextAlign.left,
@@ -46,20 +46,21 @@ class MBTitleSubtitled extends StatelessWidget {
       padding: padding ?? EdgeInsets.zero,
       child: Column(
         children: [
-          SizedBox(
-            width: double.infinity,
-            child: Text(
-              title,
-              textAlign: textAlign,
-              style: TextStyle(
-                fontSize: _titleStyle.fontSize,
-                fontFamily: _titleStyle.fontFamily,
-                fontWeight: FontWeight.w700,
-                letterSpacing: -0.5,
-                color: color,
+          if (title.isNotEmpty)
+            SizedBox(
+              width: double.infinity,
+              child: Text(
+                title,
+                textAlign: textAlign,
+                style: TextStyle(
+                  fontSize: _titleStyle.fontSize,
+                  fontFamily: _titleStyle.fontFamily,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: -0.5,
+                  color: color,
+                )
               )
-            )
-          ),
+            ),
           if (description.isNotEmpty)
             SizedBox(
               width: double.infinity,
