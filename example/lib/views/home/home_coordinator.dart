@@ -1,4 +1,5 @@
 import 'package:example/common/navigation_service.dart';
+import 'package:example/views/tags/all_tags_view.dart';
 import 'package:flutter/widgets.dart';
 
 import '../buttons/square_buttons.dart';
@@ -24,6 +25,7 @@ class HomeCoordinator {
         HomeDestination.checkoutTileContainer => const CheckoutTileContainerView(),
         HomeDestination.cartItemTile => const CartItemTileView(),
         HomeDestination.onboardingCaroulsel => const OnboardingTypeCarouselView(),
+        HomeDestination.allTags => const AllTagsView(),
       },
       settings: RouteSettings(name: destination.path),
     );

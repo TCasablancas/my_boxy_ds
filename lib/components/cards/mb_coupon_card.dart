@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 
 import '../buttons/mb_rounded_icon_btn.dart';
 
@@ -72,16 +73,18 @@ class MBCouponCard extends StatelessWidget {
             ),
           ),
           MBRoundedIconButton(
-            icon: const Icon(
-              Icons.visibility_outlined,
-              size: 16,
-              color: Color(0xFF007AFF),
-            ),
+            // icon: const Icon(
+            //   Icons.visibility_outlined,
+            //   size: 16,
+            //   color: Color(0xFF007AFF),
+            // ),
+            icon: LucideIcons.eye,
             onPressed: onPressed ?? () {},
           ),
           const SizedBox(width: 8),
           MBRoundedIconButton(
-            icon: const Icon(Icons.check, size: 16, color: Color(0xFF1F6607)),
+            // icon: const Icon(Icons.check, size: 16, color: Color(0xFF1F6607)),
+            icon: LucideIcons.check,
             backgroundColor: const Color(0xFFBFF578),
             onPressed: onPressed ?? () {},
           ),

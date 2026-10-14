@@ -54,6 +54,12 @@
         "label": "Cart Item Tile",
         "actionIcon": "chevron_right",
         "path": "/tiles/cart-item"
+      },
+      {
+        "icon": "tag",
+        "label": "Todas as Tags",
+        "actionIcon": "chevron_right",
+        "path": "/tags/all"
       }
     ]
   }

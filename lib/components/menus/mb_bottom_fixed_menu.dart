@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:my_boxy_ds/components/buttons/mb_floating_cart_btn.dart';
 import 'package:my_boxy_ds/components/buttons/mb_rounded_icon_btn.dart';
 import 'package:my_boxy_ds/my_boxy_ds.dart';
@@ -42,10 +43,11 @@ class MBBottomFixedMenu extends StatelessWidget {
             spacing: AppSizes.small,
             children: [
               MBRoundedIconButton(
-                icon: Icon(
-                  extraActionIcon ?? Icons.notifications_none_outlined,
-                  color: AppColors.primary,
-                ),
+                // icon: Icon(
+                //   extraActionIcon ?? Icons.notifications_none_outlined,
+                //   color: AppColors.primary,
+                // ),
+                icon: LucideIcons.bell_off,
                 backgroundColor: Colors.white,
                 width: 50, height: 50,
                 // shadow: false,
@@ -57,10 +59,11 @@ class MBBottomFixedMenu extends StatelessWidget {
                 onPressed: () => onCartTap?.call(),
               ),
               MBRoundedIconButton(
-                icon: MBIconsActions.squareFour(
-                  strokeColor: AppColors.primary,
-                  size: 20,
-                ),
+                // icon: MBIconsActions.squareFour(
+                //   strokeColor: AppColors.primary,
+                //   size: 20,
+                // ),
+                icon: LucideIcons.text_align_justify,
                 width: 50, height: 50,
                 backgroundColor: Colors.white,
                 // shadow: false,

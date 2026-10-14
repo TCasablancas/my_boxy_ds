@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import '../../ui/design_tokens/app_sizes.dart';
 import 'mb_button_tokens.dart';
 
 enum MBRoundedIconButtonSize { small, medium, large }
 
 class MBRoundedIconButton extends StatelessWidget {
-  final Widget icon;
+  final IconData icon;
   final int? quantity;
   final Color? backgroundColor;
   final bool? shadow;
@@ -73,7 +74,7 @@ class MBRoundedIconButton extends StatelessWidget {
               child: SizedBox(
                 width: 24,
                 height: 24,
-                child: Center(child: icon),
+                child: Center(child: Icon(icon, size: AppSizes.medium,)),
               ),
             ),
           ),
