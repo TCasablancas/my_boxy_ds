@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:my_boxy_ds/components/containers/mb_action_tiled_list_view.dart';
 import 'package:my_boxy_ds/components/containers/mb_main_view.dart';
 import 'package:my_boxy_ds/components/tiles/mb_light_item_tile.dart';
@@ -62,7 +61,7 @@ class _HomeViewState extends State<HomeView> {
             items: item.items.map((subItem) {
               return MBLightItemTile(
                 padding: itemPadding,
-                icon: LucideIcons.house,
+                icon: subItem.icon,
                 label: subItem.label,
                 actionIcon: subItem.actionIcon,
                 onTap: () => coordinator.navigate(subItem.path),

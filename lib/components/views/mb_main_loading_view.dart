@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 import 'package:lottie/lottie.dart';
@@ -47,8 +48,6 @@ class MBMainLoadingViewController {
 
 class _MBMainLoadingViewState extends State<MBMainLoadingView>
     with TickerProviderStateMixin {
-  static const double _containerHeight = 120.0;
-
   late final AnimationController _fadeController;
   late final AnimationController _slideController;
   late final Animation<double> _fade;
@@ -69,20 +68,16 @@ class _MBMainLoadingViewState extends State<MBMainLoadingView>
     );
 
     _fade = CurvedAnimation(parent: _fadeController, curve: Curves.easeInOut);
-    _slide = Tween<Offset>(
-      begin: const Offset(0, 1),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(parent: _slideController, curve: Curves.easeInOutCubic));
+    _slide = Tween<Offset>(begin: const Offset(0, 1), end: Offset.zero).animate(
+      CurvedAnimation(parent: _slideController, curve: Curves.easeInOutCubic),
+    );
 
     _fadeController.forward();
     _slideController.forward();
   }
 
   Future<void> _playExit() {
-    return Future.wait([
-      _slideController.reverse(),
-      _fadeController.reverse(),
-    ]);
+    return Future.wait([_slideController.reverse(), _fadeController.reverse()]);
   }
 
   @override
@@ -109,14 +104,19 @@ class _MBMainLoadingViewState extends State<MBMainLoadingView>
               ),
             ),
             Positioned(
-              bottom: 40, left: 16, right: 16,
+              bottom: 40,
+              left: 16,
+              right: 16,
               child: Align(
                 alignment: Alignment.bottomCenter,
                 heightFactor: 60,
                 child: SlideTransition(
                   position: _slide,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 36.0),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 24.0,
+                      horizontal: 36.0,
+                    ),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: AppColors.surface,
@@ -128,23 +128,30 @@ class _MBMainLoadingViewState extends State<MBMainLoadingView>
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Carregando', style: AppTextStyles.bodyMediumStrong,),
-                            Text('Aguarde um instante...', style: AppTextStyles.labelSmall,),
+                            Text(
+                              'Carregando',
+                              style: AppTextStyles.bodyMediumStrong,
+                            ),
+                            Text(
+                              'Aguarde um instante...',
+                              style: AppTextStyles.labelSmall,
+                            ),
                           ],
                         ),
                         const Spacer(),
                         // CircularProgressIndicator(color: AppColors.primary),
                         Lottie.asset(
                           'assets/animations/loading_icon_green.json',
+                          package: 'my_boxy_ds',
                           width: 26,
                           height: 26,
                           fit: BoxFit.contain,
-                        )
-                      ]
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              )
+              ),
             ),
           ],
         ),

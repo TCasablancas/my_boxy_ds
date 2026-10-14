@@ -16,9 +16,10 @@ void main() {
     expect(find.text('Botões'), findsOneWidget);
     expect(find.text('Botões Quadrados'), findsNWidgets(2));
 
-    await tester.tap(find.text('Checkout Tile Container').first);
+    await tester.tap(find.text('Teste de Câmera'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Checkout Tile Container View'), findsOneWidget);
+    expect(find.text('Teste de Câmera'), findsOneWidget);
+    expect(find.text('Upload de imagem'), findsOneWidget);
   });
 }

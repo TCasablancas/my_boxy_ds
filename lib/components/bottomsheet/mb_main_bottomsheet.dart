@@ -221,8 +221,8 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
             AnimatedPositioned(
               duration: _dragging ? Duration.zero : const Duration(milliseconds: 450),
               curve: Curves.fastOutSlowIn,
-              left: 8, right: 8,
-              bottom: Platform.isAndroid ? 8 - _dragExtent : -_dragExtent,
+              left: AppSizes.medium, right: AppSizes.medium,
+              bottom: Platform.isAndroid ? 8 - _dragExtent : -_dragExtent+30,
               child: AnimatedBuilder(
                 animation: animation,
                 builder: (context, sheet) => Transform.translate(

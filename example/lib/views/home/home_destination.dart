@@ -1,6 +1,7 @@
 enum HomeDestination {
   addressButtons('/buttons/address'),
   squareButtons('/buttons/square'),
+  cameraTest('/buttons/camera-test'),
   checkoutTileContainer('/containers/checkout'),
   cartItemTile('/tiles/cart-item'),
   onboardingCaroulsel('/carousels/onboarding'),
@@ -14,6 +15,7 @@ enum HomeDestination {
     return switch (path) {
       '/buttons/square' => squareButtons,
       '/buttons/address' => addressButtons,
+      '/buttons/camera-test' => cameraTest,
       '/containers/checkout' => checkoutTileContainer,
       '/tiles/cart-item' => cartItemTile,
       '/carousels/onboarding' => onboardingCaroulsel,

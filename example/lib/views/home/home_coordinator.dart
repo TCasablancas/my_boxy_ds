@@ -3,6 +3,7 @@ import 'package:example/views/tags/all_tags_view.dart';
 import 'package:flutter/widgets.dart';
 
 import '../buttons/square_buttons.dart';
+import '../buttons/camera_test_view.dart';
 import '../containers/containers_view.dart';
 import '../tiles/cart_item_tile_view.dart';
 import 'home_destination.dart';
@@ -22,6 +23,7 @@ class HomeCoordinator {
       switch (destination) {
         HomeDestination.squareButtons => const SquareButtons(),
         HomeDestination.addressButtons => const AddressButtonView(),
+        HomeDestination.cameraTest => const CameraTestView(),
         HomeDestination.checkoutTileContainer => const CheckoutTileContainerView(),
         HomeDestination.cartItemTile => const CartItemTileView(),
         HomeDestination.onboardingCaroulsel => const OnboardingTypeCarouselView(),

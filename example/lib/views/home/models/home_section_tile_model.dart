@@ -25,6 +25,7 @@ class HomeSectionTileModel {
   static IconData _iconFromName(String name) {
     const icons = <String, IconData>{
       'person': Icons.person,
+      'tag': Icons.tag,
       'chevron_right': Icons.chevron_right,
     };
     final icon = icons[name];

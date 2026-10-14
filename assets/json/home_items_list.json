@@ -16,6 +16,12 @@
       },
       {
         "icon": "person",
+        "label": "Teste de Câmera",
+        "actionIcon": "chevron_right",
+        "path": "/buttons/camera-test"
+      },
+      {
+        "icon": "person",
         "label": "Checkout Tile Container",
         "actionIcon": "chevron_right",
         "path": "/containers/checkout"
