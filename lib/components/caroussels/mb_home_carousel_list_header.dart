@@ -16,6 +16,9 @@ class MBHomeCarouselItem {
   final double? rating;
   final VoidCallback? onPressed;
 
+  /// Descrição da imagem para leitor de tela.
+  final String? altText;
+
   const MBHomeCarouselItem({
     required this.id,
     this.title,
@@ -24,31 +27,65 @@ class MBHomeCarouselItem {
     this.storeName,
     this.rating,
     this.onPressed,
+    this.altText,
   });
 }
 
-class MBHomeCarouselListHeader extends StatefulWidget {
+/// Monta a imagem de um card (ex.: com cache no app). Deve preencher o espaço
+/// e cuidar do próprio carregamento e erro.
+typedef MBCarouselImageBuilder = Widget Function(BuildContext context, MBHomeCarouselItem item);
+
+class MBHomeCarouselListHeader extends StatelessWidget {
   final List<MBHomeCarouselItem>? items;
   final Duration autoPlayDuration;
   final ValueChanged<MBHomeCarouselItem>? onPressItem;
+
+  /// Opcional: troca a imagem padrão (Image.network) do card.
+  final MBCarouselImageBuilder? imageBuilder;
 
   const MBHomeCarouselListHeader({
     super.key,
     this.items,
     this.autoPlayDuration = _defaultAutoPlayDuration,
     this.onPressItem,
+    this.imageBuilder,
   });
 
   @override
-  State<MBHomeCarouselListHeader> createState() =>
-      _MBHomeCarouselListHeaderState();
+  Widget build(BuildContext context) {
+    final visible = (items ?? const <MBHomeCarouselItem>[]).take(8).toList();
+    // Lista nova (ids diferentes) recria o carrossel do início
+    return _HomeCarousel(
+      key: ValueKey(visible.map((item) => item.id).join('|')),
+      items: visible,
+      autoPlayDuration: autoPlayDuration,
+      onPressItem: onPressItem,
+      imageBuilder: imageBuilder,
+    );
+  }
 }
 
-class _MBHomeCarouselListHeaderState extends State<MBHomeCarouselListHeader>
+class _HomeCarousel extends StatefulWidget {
+  final List<MBHomeCarouselItem> items;
+  final Duration autoPlayDuration;
+  final ValueChanged<MBHomeCarouselItem>? onPressItem;
+  final MBCarouselImageBuilder? imageBuilder;
+
+  const _HomeCarousel({
+    super.key,
+    required this.items,
+    required this.autoPlayDuration,
+    this.onPressItem,
+    this.imageBuilder,
+  });
+
+  @override
+  State<_HomeCarousel> createState() => _HomeCarouselState();
+}
+
+class _HomeCarouselState extends State<_HomeCarousel>
     with SingleTickerProviderStateMixin {
-  late final List<MBHomeCarouselItem> _sourceItems = (widget.items ?? const [])
-      .take(8)
-      .toList();
+  late final List<MBHomeCarouselItem> _sourceItems = widget.items;
 
   late final int _loopLength = _sourceItems.length;
   late final int _middleStartIndex = _loopLength > 1 ? _loopLength : 0;
@@ -202,6 +239,7 @@ class _MBHomeCarouselListHeaderState extends State<MBHomeCarouselListHeader>
                   item: item,
                   gap: _cardGap,
                   onPressed: () => _handlePressItem(item),
+                  image: widget.imageBuilder?.call(context, item),
                 );
               },
             ),

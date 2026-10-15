@@ -8,18 +8,25 @@ class MBUserHomeCarouselCard extends StatelessWidget {
   final double gap;
   final VoidCallback onPressed;
 
+  /// Opcional: imagem já montada (ex.: com cache). Sem ela, usa Image.network.
+  final Widget? image;
+
   const MBUserHomeCarouselCard({
     super.key,
     required this.item,
     required this.gap,
     required this.onPressed,
+    this.image,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(right: gap),
-      child: GestureDetector(
+      child: Semantics(
+        image: true,
+        label: item.altText,
+        child: GestureDetector(
         onTap: onPressed,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),
@@ -28,12 +35,15 @@ class MBUserHomeCarouselCard extends StatelessWidget {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                Image.network(
-                  item.imageUrl,
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, _, _) =>
-                    const ColoredBox(color: Color(0xFFD8D8D8)),
-                ),
+                image ??
+                    Image.network(
+                      item.imageUrl,
+                      fit: BoxFit.cover,
+                      loadingBuilder: (context, child, progress) =>
+                          progress == null ? child : const ColoredBox(color: Color(0xFFD8D8D8)),
+                      errorBuilder: (_, _, _) =>
+                        const ColoredBox(color: Color(0xFFD8D8D8)),
+                    ),
                 Container(
                   color: const Color.fromRGBO(0, 0, 0, 0.25),
                 ),
@@ -68,6 +78,7 @@ class MBUserHomeCarouselCard extends StatelessWidget {
             ),
           ),
         ),
+      ),
       ),
     );
   }
