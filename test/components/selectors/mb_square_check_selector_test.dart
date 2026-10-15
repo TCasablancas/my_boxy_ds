@@ -9,7 +9,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: MBSquareCheckSelectorView(
+          body: MBSquareCheckSelector(
             label: 'Pix',
             isSelected: false,
             onSelectionChanged: (value) => selected = value,

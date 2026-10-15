@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:my_boxy_ds/ui/formatters/mb_brazilian_currency_formatter.dart';
 

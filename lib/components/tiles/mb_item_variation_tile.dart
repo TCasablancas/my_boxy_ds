@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lucide/flutter_lucide.dart';
-import 'package:my_boxy_ds/components/containers/mb_main_view.dart';
 import 'package:my_boxy_ds/components/input/input.dart';
 import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 
-import '../buttons/mb_icon_btn.dart';
-import '../input/mb_main_input.dart';
 import '../labels/mb_title_subtitled_label.dart';
 
 class MBItemVariationTile extends StatelessWidget {

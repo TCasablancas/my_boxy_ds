@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/components/labels/mb_checkout_tile_price.dart';
-import 'package:my_boxy_ds/components/labels/mb_price_product_detail.dart';
 import 'package:my_boxy_ds/components/mb_separator.dart';
 import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 import '../labels/mb_cutted_price_label.dart';

@@ -1,10 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
-import 'package:my_boxy_ds/components/buttons/mb_floating_cart_btn.dart';
-import 'package:my_boxy_ds/components/buttons/mb_rounded_icon_btn.dart';
 import 'package:my_boxy_ds/my_boxy_ds.dart';
-import 'package:my_boxy_ds/ui/icons/mb_icons_actions.dart';
 // import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
 // import 'package:gradient_blur/gradient_blur.dart';
 

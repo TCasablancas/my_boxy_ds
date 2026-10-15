@@ -28,26 +28,6 @@ class MBSquareSelectionBtn extends StatefulWidget {
 }
 
 class _MBSquareSelectionBtnState extends State<MBSquareSelectionBtn> {
-  bool _isPressed = false;
-
-  void _handleTapDown(TapDownDetails details) {
-    setState(() {
-      _isPressed = true;
-    });
-  }
-
-  void _handleTapUp(TapUpDetails details) {
-    setState(() {
-      _isPressed = false;
-    });
-  }
-
-  void _handleTapCancel() {
-    setState(() {
-      _isPressed = false;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -55,9 +35,6 @@ class _MBSquareSelectionBtnState extends State<MBSquareSelectionBtn> {
         widget.onPressed;
         _buildBottomSheet(context);
       },
-      onTapDown: _handleTapDown,
-      onTapUp: _handleTapUp,
-      onTapCancel: _handleTapCancel,
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.white,
