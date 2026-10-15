@@ -48,7 +48,7 @@ class _CameraControls extends StatelessWidget {
   _CameraControls({required this.state});
 
   final CameraState state;
-  late bool isVideo = state.captureMode == CaptureMode.video;
+  late final bool isVideo = state.captureMode == CaptureMode.video;
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +193,7 @@ class _ShutterButton extends StatelessWidget {
   });
 
   final CameraState state;
-  late bool isVideo = state.captureMode == CaptureMode.video;
+  late final bool isVideo = state.captureMode == CaptureMode.video;
 
   @override
   Widget build(BuildContext context) {

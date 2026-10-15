@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_boxy_ds/components/mb_separator.dart';
 
 class MBCuttedPriceLabel extends StatelessWidget {
 

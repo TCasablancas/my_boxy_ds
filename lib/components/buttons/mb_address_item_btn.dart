@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:my_boxy_ds/components/buttons/mb_square_icon_btn.dart';
-import 'package:my_boxy_ds/components/mb_separator.dart';
 import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 
 class MBAddressItemButton extends StatelessWidget {

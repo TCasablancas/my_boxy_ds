@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/components/containers/mb_main_view.dart';
-import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 
 class AllTagsView extends StatefulWidget {
 
