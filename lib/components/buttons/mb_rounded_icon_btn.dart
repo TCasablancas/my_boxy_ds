@@ -6,6 +6,7 @@ enum MBRoundedIconButtonSize { small, medium, large }
 
 class MBRoundedIconButton extends StatelessWidget {
   final IconData icon;
+  final Color? iconColor;
   final int? quantity;
   final Color? backgroundColor;
   final bool? shadow;
@@ -17,6 +18,7 @@ class MBRoundedIconButton extends StatelessWidget {
   const MBRoundedIconButton({
     super.key,
     required this.icon,
+    this.iconColor,
     this.quantity,
     this.backgroundColor,
     this.shadow = false,
@@ -74,7 +76,7 @@ class MBRoundedIconButton extends StatelessWidget {
               child: SizedBox(
                 width: 24,
                 height: 24,
-                child: Center(child: Icon(icon, size: AppSizes.medium,)),
+                child: Center(child: Icon(icon, size: AppSizes.medium, color: iconColor,)),
               ),
             ),
           ),

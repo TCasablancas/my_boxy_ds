@@ -2,6 +2,8 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
+import 'package:my_boxy_ds/components/buttons/buttons.dart';
 
 import '../../ui/design_tokens/design_tokens.dart';
 
@@ -37,15 +39,11 @@ class MBUploadedImageView extends StatelessWidget {
           Positioned(
             top: AppSizes.xs,
             right: AppSizes.xs,
-            child: Material(
-              color: Colors.black.withValues(alpha: .55),
-              shape: const CircleBorder(),
-              child: IconButton(
-                tooltip: 'Excluir imagem',
-                icon: const Icon(Icons.close, color: Colors.white, size: 18),
-                onPressed: onDelete,
-              ),
-            ),
+            child: MBRoundedIconButton(
+              icon: LucideIcons.trash, onPressed: onDelete,
+              iconColor: AppColors.primary,
+              backgroundColor: AppColors.white,
+            )
           ),
         ],
       ),
@@ -74,9 +72,12 @@ class MBUploadedImageView extends StatelessWidget {
               SafeArea(
                 child: GestureDetector(
                   onTap: () {},
-                  child: Center(
-                    child: InteractiveViewer(
-                      child: Image.file(File(imagePath), fit: BoxFit.contain),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSizes.medium),
+                    child: Center(
+                      child: InteractiveViewer(
+                        child: Image.file(File(imagePath), fit: BoxFit.contain),
+                      ),
                     ),
                   ),
                 ),

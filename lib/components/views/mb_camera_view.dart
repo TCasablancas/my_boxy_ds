@@ -142,12 +142,11 @@ class _CameraControls extends StatelessWidget {
 
   Future<void> _capture(CameraState state) {
     return state.when(
-          onPhotoMode: (photoState) => photoState.takePhoto(),
-          onVideoMode: (videoState) => videoState.startRecording(),
-          onVideoRecordingMode: (recordingState) =>
-              recordingState.stopRecording(),
-        ) ??
-        Future<void>.value();
+      onPhotoMode: (photoState) => photoState.takePhoto(),
+      onVideoMode: (videoState) => videoState.startRecording(),
+      onVideoRecordingMode: (recordingState) =>
+          recordingState.stopRecording(),
+    ) ?? Future<void>.value();
   }
 }
 
@@ -161,7 +160,7 @@ class _CameraFrameMaskPainter extends CustomPainter {
     final frame = RRect.fromRectAndRadius(
       Rect.fromCenter(
         center: size.center(Offset.zero),
-        width: frameSize,
+        width: frameSize + 40,
         height: frameSize + 160,
       ),
       const Radius.circular(16),
