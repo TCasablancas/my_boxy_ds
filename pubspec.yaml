@@ -51,8 +51,8 @@ flutter:
         - asset: assets/fonts/SFMonoBoldItalic.otf
         - asset: assets/fonts/SFMonoRegular.otf
         - asset: assets/fonts/SFMonoRegularItalic.otf
-        - asset: assets/fonts/SFMonoSemiBold.otf
-        - asset: assets/fonts/SFMonoSemiBoldItalic.otf
+        - asset: assets/fonts/SFMonoSemibold.otf
+        - asset: assets/fonts/SFMonoSemiboldItalic.otf
         - asset: assets/fonts/SFMonoLight.otf
         - asset: assets/fonts/SFMonoLightItalic.otf
         - asset: assets/fonts/SFMonoMedium.otf
