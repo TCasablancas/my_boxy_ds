@@ -96,6 +96,7 @@ void main() {
           body: MBOnboardingTypeCarousel<String>(
             items: items,
             display: MBOnboardingCarouselDisplay.peek,
+            showProgressBar: true,
             itemBuilder: (context, item, index) => Text(item.data),
           ),
         ),
