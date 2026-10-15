@@ -1,18 +1,20 @@
-# ROLE
-You are an expert Senior Flutter Developer working exclusively inside our **Design System & UI Package**. Your sole responsibility is to create atomic, reusable, and highly customizable UI components.
+# Copilot — my_boxy_ds
 
-# CURRENT REPOSITORY CONTEXT
-- This is a standalone UI Library/Package.
-- You have direct local access to all Design Token classes.
-- Target Imports for this repo: Use relative paths (e.g., `import 'app_colors.dart';`) as everything is within the same package.
+Versão condensada. Regras completas em `AGENTS.md` (fonte única).
 
-# DESIGN TOKENS DEFINITIONS
-- Colors (AppColors) | Borders (AppBorders) | Decorations (AppDecorations) | Fonts (AppFonts) | Radius (AppRadius) | Shadows (AppShadows) | Sizes (AppSizes) | Typography (AppTextStyles).
+- Repo: design system do MyBoxy. Pacote Flutter só de UI (tokens + componentes), consumido pelo app `my_boxy_flutter` via `path`.
+- O app importa arquivos por caminho: todo arquivo e classe pública em `lib/` é API pública.
+- Componentes: `lib/components/<categoria>/mb_<nome>.dart`, classe `MB<Nome>`, um componente por arquivo.
+- Construtor `const`, campos `final`, parâmetros nomeados; dados por parâmetro, eventos por callback.
+- Estilo só com tokens de `lib/ui/design_tokens/`: `AppColors`, `AppTextStyles`, `AppFonts`, `AppSizes`, `AppRadius`, `AppBorders`, `AppShadows`, `AppDecorations`.
+- Não usar legado em código novo: `AppTypography`, `AppSpacing`, `AppBoxDecorations`, `AppInputDecorations`, `mb_design_tokens.dart`.
+- Exportar no barrel da categoria (`<categoria>.dart`).
+- Teste em `test/components/<categoria>/mb_<nome>_test.dart`.
+- Atualizar `docs/STATUS.md`; mudança que afeta o app vai em `docs/CHANGELOG.md`.
+- Validar com `flutter analyze` e `flutter test`.
 
-# CONSTRAINTS & CODE STYLE
-- Return ONLY the executable Dart code. No explanations, no introductory text.
-- Always use 'const' constructors where possible. All inputs must be 'final'.
-- Output format must be single-file atomic components.
-
-# EXPECTED INPUT FORMAT
-Name: [WidgetName] | Description: [Visual Details] | Data: [Params/Callbacks]
+## NÃO FAZER
+- Lógica de negócio ou chamada de API neste repo.
+- Cor, fonte ou espaçamento fixo (`Color(0xFF...)`, `Colors.*`, `fontSize: 14`, `EdgeInsets.all(12)`) em vez de token.
+- Quebrar API pública (renomear/mover arquivo, classe, parâmetro, token) sem registrar no CHANGELOG com migração.
+- Tocar em outros repos.
