@@ -3,7 +3,8 @@ import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 
 /// Tag em formato de pílula com imagem de fundo e o nome por cima (ex.: uma
 /// categoria). Sem [image], ou se a imagem falhar, usa um fundo neutro.
-/// Feita para ficar lado a lado num `MBMainHorizontalCarousel`.
+/// O nome quebra em até 2 linhas (categorias têm nomes longos) e só depois
+/// usa reticências. Feita para ficar lado a lado num `MBMainHorizontalCarousel`.
 class MBImagePillTag extends StatelessWidget {
   const MBImagePillTag({
     super.key,
@@ -11,7 +12,7 @@ class MBImagePillTag extends StatelessWidget {
     this.image,
     this.onTap,
     this.width = 132,
-    this.height = 44,
+    this.height = 56,
   });
 
   final String label;
@@ -57,10 +58,11 @@ class MBImagePillTag extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: AppSizes.medium),
                     child: Text(
                       label,
-                      maxLines: 1,
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: AppTextStyles.bodyMediumStrong.copyWith(
                         color: image != null ? AppColors.white : AppColors.textPrimary,
+                        height: 1.15,
                       ),
                     ),
                   ),
