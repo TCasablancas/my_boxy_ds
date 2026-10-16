@@ -32,7 +32,7 @@ class _MBMainHorizontalCarouselState extends State<MBMainHorizontalCarousel> {
           return widget.items[index];
         },
         separatorBuilder: (context, index) {
-          return const SizedBox(width: 16);
+          return const SizedBox(width: 0);
         },
         itemCount: widget.items.length
       ),

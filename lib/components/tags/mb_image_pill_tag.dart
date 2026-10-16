@@ -11,7 +11,7 @@ class MBImagePillTag extends StatelessWidget {
     required this.label,
     this.image,
     this.onTap,
-    this.width = 132,
+    this.width = 130,
     this.height = 56,
   });
 
@@ -34,8 +34,8 @@ class MBImagePillTag extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: ClipRRect(
-          // Raio de metade da altura: pílula em qualquer tamanho
-          borderRadius: BorderRadius.circular(height / 2),
+          // borderRadius: BorderRadius.circular(height / 2),
+          borderRadius: BorderRadius.circular(12),
           child: SizedBox(
             width: width,
             height: height,
@@ -49,8 +49,7 @@ class MBImagePillTag extends StatelessWidget {
                     fit: BoxFit.cover,
                     errorBuilder: (_, _, _) => const SizedBox.shrink(),
                   ),
-                  // Escurece a foto para o nome ter contraste
-                  ColoredBox(color: AppColors.black.withValues(alpha: 0.3)),
+                  ColoredBox(color: AppColors.black.withValues(alpha: 0.4)),
                 ],
                 Align(
                   alignment: Alignment.centerLeft,
@@ -60,9 +59,10 @@ class MBImagePillTag extends StatelessWidget {
                       label,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.bodyMediumStrong.copyWith(
+                      style: AppTextStyles.bodyLarge.copyWith(
                         color: image != null ? AppColors.white : AppColors.textPrimary,
                         height: 1.15,
+                        letterSpacing:  -0.5
                       ),
                     ),
                   ),
