@@ -81,7 +81,9 @@ class _MBMainViewState extends State<MBMainView> {
       setState(() => _isAppBarScrolled = isScrolled);
     }
 
-    final reachedBottom = notification.metrics.atEdge;
+    // `atEdge` também é true no topo; aqui só interessa o fim da lista.
+    final metrics = notification.metrics;
+    final reachedBottom = metrics.maxScrollExtent > 0 && metrics.pixels >= metrics.maxScrollExtent;
     if (reachedBottom != _displayBottomDisclaimer) {
       setState(() {
         _displayBottomDisclaimer = reachedBottom;
@@ -97,6 +99,8 @@ class _MBMainViewState extends State<MBMainView> {
       curve: Curves.easeOut,
       tween: Tween<double>(begin: 0, end: _isAppBarScrolled ? 1 : 0),
       builder: (context, value, child) {
+        // No topo não há blur: o BackdropFilter custa caro mesmo com sigma 0.
+        if (value == 0) return ColoredBox(color: backgroundColor);
         return ClipRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: value * 8, sigmaY: value * 8),
