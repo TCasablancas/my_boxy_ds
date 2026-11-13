@@ -19,7 +19,8 @@ class MBBlurredCard extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 200, sigmaY: 200),
+        // Sigma 200 custava muito no raster sem diferença visível sobre 20.
+        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
         child: Container(
           width: width,
           height: height,

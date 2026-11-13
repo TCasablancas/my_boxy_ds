@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
@@ -71,6 +70,7 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
   final ScrollController _scrollController = ScrollController();
 
   double? _measuredAdaptiveHeight;
+  bool _measureScheduled = false;
   int _snapIndex = 0;
   double _dragAccum = 0;
 
@@ -192,12 +192,12 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
         child: Stack(
           children: [
             Positioned.fill(
+              // Só escurece o fundo. Um BackdropFilter em tela cheia era
+              // recalculado a cada frame da abertura e enquanto a sheet
+              // ficava aberta (o mais caro de GPU no Flutter).
               child: FadeTransition(
-              opacity: animation,
-              child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
-                  child: Container(color: const Color.fromRGBO(0, 0, 0, 0.6)),
-                ),
+                opacity: animation,
+                child: const ColoredBox(color: Color.fromRGBO(0, 0, 0, 0.6)),
               ),
             ),
             if (_isExpandable)
@@ -334,7 +334,14 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
   }
 
   Widget _buildExpandableContent() {
-    WidgetsBinding.instance.addPostFrameCallback((_) => _measureAdaptiveHeight());
+    // Uma medição por frame no máximo, não um callback novo a cada build.
+    if (!_measureScheduled) {
+      _measureScheduled = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _measureScheduled = false;
+        if (mounted) _measureAdaptiveHeight();
+      });
+    }
 
     final header = GestureDetector(
       behavior: HitTestBehavior.opaque,
