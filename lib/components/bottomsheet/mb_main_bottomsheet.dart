@@ -222,7 +222,7 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
               duration: _dragging ? Duration.zero : const Duration(milliseconds: 450),
               curve: Curves.fastOutSlowIn,
               left: AppSizes.medium, right: AppSizes.medium,
-              bottom: Platform.isAndroid ? 8 - _dragExtent : -_dragExtent+30,
+              bottom: Platform.isAndroid ? 8 - _dragExtent : -_dragExtent+16,
               child: AnimatedBuilder(
                 animation: animation,
                 builder: (context, sheet) => Transform.translate(
@@ -249,7 +249,7 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
                         color: Colors.white,
                         borderRadius: BorderRadius.vertical(
                           top: Radius.circular(16),
-                          bottom: Radius.circular(16),
+                          bottom: Radius.circular(32),
                         ),
                       ),
                       child: _isExpandable

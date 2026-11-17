@@ -36,14 +36,14 @@ class MBUserHomeCarouselCard extends StatelessWidget {
               fit: StackFit.expand,
               children: [
                 image ??
-                    Image.network(
-                      item.imageUrl,
-                      fit: BoxFit.cover,
-                      loadingBuilder: (context, child, progress) =>
-                          progress == null ? child : const ColoredBox(color: Color(0xFFD8D8D8)),
-                      errorBuilder: (_, _, _) =>
-                        const ColoredBox(color: Color(0xFFD8D8D8)),
-                    ),
+                  Image.network(
+                    item.imageUrl,
+                    fit: BoxFit.cover,
+                    loadingBuilder: (context, child, progress) =>
+                        progress == null ? child : const ColoredBox(color: Color(0xFFD8D8D8)),
+                    errorBuilder: (_, _, _) =>
+                      const ColoredBox(color: Color(0xFFD8D8D8)),
+                  ),
                 Container(
                   color: const Color.fromRGBO(0, 0, 0, 0.25),
                 ),

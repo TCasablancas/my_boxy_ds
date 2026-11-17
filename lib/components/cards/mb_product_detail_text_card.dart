@@ -1,30 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
+import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 
 class MBProductDetailTextCard extends StatelessWidget {
   final String title;
   final String description;
+  final bool? shadow;
 
   const MBProductDetailTextCard({
     super.key,
     required this.title,
     required this.description,
+    this.shadow,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSizes.md, vertical: AppSizes.small
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withAlpha(30),
-            spreadRadius: 2,
-            blurRadius: 10,
-            offset: const Offset(0, 3),
-          ),
+          if (shadow == true)
+            BoxShadow(
+              color: Colors.grey.withAlpha(30),
+              spreadRadius: 2,
+              blurRadius: 10,
+              offset: const Offset(0, 3),
+            ),
         ],
       ),
       child: Column(
@@ -34,28 +39,19 @@ class MBProductDetailTextCard extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: Text(
-              title,
+              description,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 13,
-                fontFamily: 'Lexend',
-                fontWeight: FontWeight.w700,
-                // color: Colors.grey[500]!,
-                color: AppColors.primary,
-                letterSpacing: -0.2,
+              style: AppTextStyles.bodyMedium.copyWith(
+                letterSpacing: -0.5,
+                color: AppColors.primary
               )
             )
           ),
           Text(
-            description,
-            style: TextStyle(
-              fontSize: 14,
-              fontFamily: 'Lexend',
-              fontWeight: FontWeight.w300,
-              // color: AppColors.focus,
-              color: AppColors.primaryDark,
-              letterSpacing: -0.5,
+            title,
+            style: AppTextStyles.labelSmall.copyWith(
+              letterSpacing: -0.3
             )
           ),
         ]

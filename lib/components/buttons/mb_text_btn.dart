@@ -13,6 +13,7 @@ class MBTextButton extends StatelessWidget {
   final Color? textColor;
   final MBTextButtonSize size;
   final VoidCallback? onPressed;
+  final MainAxisAlignment? horizontalAlign;
 
   const MBTextButton({
     super.key,
@@ -22,6 +23,7 @@ class MBTextButton extends StatelessWidget {
     this.textColor,
     this.size = MBTextButtonSize.medium,
     this.onPressed,
+    this.horizontalAlign,
   });
 
   double get _fontSize => switch (size) {
@@ -42,7 +44,7 @@ class MBTextButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: horizontalAlign ?? MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             if (icon != null) ...[

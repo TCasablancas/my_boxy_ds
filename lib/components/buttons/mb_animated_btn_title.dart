@@ -85,7 +85,9 @@ class _MBAnimatedButtonTitleState extends State<MBAnimatedButtonTitle>
           child: Text(
             _isShowingOutgoing ? _outgoing : widget.text,
             textAlign: widget.textAlign,
-            style: widget.style,
+            style: widget.style?.copyWith(
+              letterSpacing: -0.5
+            ),
           ),
         ),
       ),

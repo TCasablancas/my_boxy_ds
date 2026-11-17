@@ -11,8 +11,8 @@ class MBImagePillTag extends StatelessWidget {
     required this.label,
     this.image,
     this.onTap,
-    this.width = 130,
-    this.height = 56,
+    this.width = 140,
+    this.height = 26,
   });
 
   final String label;
@@ -34,9 +34,17 @@ class MBImagePillTag extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: ClipRRect(
-          // borderRadius: BorderRadius.circular(height / 2),
-          borderRadius: BorderRadius.circular(12),
-          child: SizedBox(
+          borderRadius: BorderRadius.circular(height / 2),
+          child: Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.black.withValues(alpha: 0.7),
+                  offset: const Offset(0, 2),
+                  blurRadius: 4,
+                ),
+              ],
+            ),
             width: width,
             height: height,
             child: Stack(
@@ -49,7 +57,7 @@ class MBImagePillTag extends StatelessWidget {
                     fit: BoxFit.cover,
                     errorBuilder: (_, _, _) => const SizedBox.shrink(),
                   ),
-                  ColoredBox(color: AppColors.black.withValues(alpha: 0.4)),
+                  ColoredBox(color: AppColors.white.withValues(alpha: 0.7)),
                 ],
                 Align(
                   alignment: Alignment.centerLeft,
@@ -57,12 +65,21 @@ class MBImagePillTag extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: AppSizes.medium),
                     child: Text(
                       label,
-                      maxLines: 2,
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.bodyLarge.copyWith(
-                        color: image != null ? AppColors.white : AppColors.textPrimary,
+                      style: AppTextStyles.labelSmall.copyWith(
+                        color: image != null ? AppColors.grey900 : AppColors.textPrimary,
                         height: 1.15,
-                        letterSpacing:  -0.5
+                        letterSpacing:  -0.5,
+                        fontWeight: FontWeight.w700,
+                        shadows: image != null
+                          ? [
+                              const Shadow(
+                                color: AppColors.white,
+                                offset: Offset(0, 1),
+                                blurRadius: 8,
+                              ),
+                            ] : null
                       ),
                     ),
                   ),

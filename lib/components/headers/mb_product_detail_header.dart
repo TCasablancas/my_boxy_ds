@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:my_boxy_ds/components/containers/mb_store_image_container.dart';
 import 'package:my_boxy_ds/components/containers/mb_simple_location_container.dart';
-import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
+import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 
 class MBProductDetailHeader extends StatelessWidget {
 
@@ -24,27 +25,41 @@ class MBProductDetailHeader extends StatelessWidget {
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-        child: Row(
+        child:
+        Row(
           spacing: 8,
           children: [
-            MBStoreImageContainer(url: storeImageURL ?? '', size: StoreImageSize.medium),
+            MBStoreImageContainer(url: storeImageURL ?? '', size: .medium),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   storeName,
                   textAlign: TextAlign.left,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    fontFamily: 'Lexend',
-                    letterSpacing: -0.2,
-                    color: AppColors.primaryDark,
-                  ),
+                  style: AppTextStyles.appBarTitle.copyWith(
+                    letterSpacing: -0.5,
+                    color: AppColors.grey900
+                  )
                 ),
-                const SizedBox(height: 4),
-                MBSimpleLocationContainer(location: 'Santos - SP'),
+                Row(
+                  spacing: 2,
+                  children: [
+                    MBSimpleLocationContainer(location: 'Santos - SP  • '),
+                    Icon(Icons.star_rounded, size: 10, color: AppColors.warning,),
+                    Text(
+                      '123',
+                      style: AppTextStyles.appBarTitle.copyWith(
+                        letterSpacing: -0.5,
+                        fontSize: 12,
+                        height: 1.4,
+                        color: AppColors.grey900
+                      ),
+                    )
+                  ],
+                )
               ],
-            )
+            ),
+            Icon(LucideIcons.chevron_right, size: 12, color: AppColors.grey400,)
           ],
         )
       ),

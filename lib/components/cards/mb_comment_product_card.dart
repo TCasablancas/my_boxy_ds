@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:my_boxy_ds/components/containers/mb_user_header_container.dart';
+import 'package:my_boxy_ds/components/mb_separator.dart';
+import 'package:my_boxy_ds/my_boxy_ds.dart';
 
 class MBCommentProductCard extends StatelessWidget {
   final String? commentId;
@@ -24,20 +27,12 @@ class MBCommentProductCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 320,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        width: 300,
+        // padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withAlpha(20),
-              spreadRadius: 3,
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,19 +42,59 @@ class MBCommentProductCard extends StatelessWidget {
               userAlias: createdAt,
               imageUrl: imageUrl,
               hasBackground: false,
-              paddingH: false,
+              paddingH: true,
             ),
-            Text(
-              commentText.substring(0, commentText.length > 100 ? 100 : commentText.length) + (commentText.length > 100 ? '...' : ''),
-              style: TextStyle(
-                fontSize: 14,
-                fontFamily: 'Lexend',
-                fontWeight: FontWeight.w400,
-                letterSpacing: -0.5,
-                color: Colors.grey[700],
-              ),  
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSizes.medium),
+              child: Text(
+                  commentText,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyles.description.copyWith(
+                      letterSpacing: -0.5
+                  )
+              ),
             ),
-            
+            MBSeparator(
+              marginEdges: EdgeInsets.only(top: AppSizes.medium, bottom: AppSizes.small),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                AppSizes.medium, AppSizes.sm, AppSizes.medium, AppSizes.md
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                      child: MBTextButton(
+                        icon: LucideIcons.star,
+                        title: '1234',
+                        textColor: AppColors.grey400,
+                        onPressed: () {},
+                        horizontalAlign: .start,
+                      )
+                  ),
+                  Expanded(
+                      child: MBTextButton(
+                        icon: LucideIcons.images,
+                        title: '12',
+                        textColor: AppColors.grey400,
+                        onPressed: () {},
+                        horizontalAlign: .start,
+                      )
+                  ),
+                  Spacer(),
+                  Expanded(
+                      child: MBTextButton(
+                        icon: LucideIcons.thumbs_up,
+                        title: '543',
+                        textColor: AppColors.focus,
+                        onPressed: () {},
+                        horizontalAlign: .end,
+                      )
+                  )
+                ],
+              ),
+            )
           ]
         ),
       )

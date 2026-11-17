@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 
+import 'package:my_boxy_ds/my_boxy_ds.dart';
+
 class MBUserHeaderContainer extends StatelessWidget {
   final String userName;
   final String userAlias;
@@ -34,32 +36,27 @@ class MBUserHeaderContainer extends StatelessWidget {
         child: Row(
           children: [
             CircleAvatar(
-              radius: 20,
+              radius: 14,
               backgroundImage: Image.file(File(imageUrl)).image,
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width: 6),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     userName,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Lexend',
-                      fontWeight: FontWeight.w700,
+                    style: AppTextStyles.appBarTitle.copyWith(
                       letterSpacing: -0.5,
-                      color: Colors.black87,
-                    ),
+                      color: AppColors.grey900,
+                      height: 1.0,
+                    )
                   ),
                   Text(
                     userAlias,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontFamily: 'Lexend',
-                      fontWeight: FontWeight.w400,
-                      letterSpacing: -0.2,
-                      color: Colors.grey[700]!,
+                    style: AppTextStyles.switchTag.copyWith(
+                      letterSpacing: -0.5,
+                      color: AppColors.grey400
                     ),
                     overflow: TextOverflow.ellipsis,
                   )

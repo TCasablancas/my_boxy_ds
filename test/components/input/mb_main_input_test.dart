@@ -66,4 +66,12 @@ void main() {
     expect(input.enabled, isFalse);
     expect(inputIgnorePointer.ignoring, isTrue);
   });
+
+  testWidgets('formats CEP input', (tester) async {
+    final controller = await pumpInput(tester, MBInputFieldType.cep);
+
+    await tester.enterText(find.byType(TextField), '01310100');
+
+    expect(controller.text, '01310-100');
+  });
 }

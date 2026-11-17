@@ -3,7 +3,7 @@ import 'package:my_boxy_ds/components/cards/mb_user_home_carousel_card.dart';
 import 'package:my_boxy_ds/components/caroussels/mb_carousel_progress_dot.dart';
 
 const double _sidePeekPercent = 0.1;
-const double _cardHeight = 240;
+const double _cardHeight = 160;
 const double _cardGap = 8;
 const Duration _defaultAutoPlayDuration = Duration(milliseconds: 4500);
 

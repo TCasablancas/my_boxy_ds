@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 
 class MBBoxRoundedContainer extends StatelessWidget {
 
@@ -21,9 +22,9 @@ class MBBoxRoundedContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: padding ?? EdgeInsets.symmetric(horizontal:  16, vertical: 8),
-      margin: margin ?? EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: margin ?? EdgeInsets.all(0),
       decoration: BoxDecoration(
-        color: background ?? Colors.grey[200],
+        color: background ?? AppColors.white,
         borderRadius: BorderRadius.circular(16),
         border: border
       ),

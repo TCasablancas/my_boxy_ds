@@ -20,10 +20,11 @@ class MBStoreImageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final basedSize = size == StoreImageSize.small 
-      ? 20.0 : size == StoreImageSize.medium ? 36.0 : 60.0;
-    final basedBorder = size == StoreImageSize.small ? AppRadius.allMedium 
-      : size == StoreImageSize.medium ? AppRadius.allLarge : AppRadius.allLarge;
+    final basedSize = size == StoreImageSize.small ? 20.0
+      : size == StoreImageSize.medium ? 30.0 : 60.0;
+
+    final basedBorder = size == StoreImageSize.small ? AppRadius.allMedium
+      : size == StoreImageSize.medium ? AppRadius.allXLarge : AppRadius.allLarge;
 
     return ClipRRect(
       borderRadius: basedBorder,

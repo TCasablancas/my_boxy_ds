@@ -108,8 +108,8 @@ abstract final class AppTextStyles {
 
   static const productTitle = TextStyle(
     fontSize: 28,
-    fontFamily: AppFonts.primary,
-    fontWeight: FontWeight.w600,
+    fontFamily: AppFonts.third,
+    fontWeight: FontWeight.w500,
     color: AppColors.primaryDark,
     letterSpacing: -0.2,
   );
