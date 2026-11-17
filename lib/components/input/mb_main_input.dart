@@ -16,6 +16,7 @@ enum MBInputFieldType {
   birthdate,
   cpf,
   phone,
+  cep,
 }
 
 const _commonEmailDomains = [
@@ -180,6 +181,13 @@ String _formatPhone(String digits) {
   return '(${digits.substring(0, 2)}) ${phoneNumber.substring(0, firstPartLength)}-${phoneNumber.substring(firstPartLength)}';
 }
 
+String _formatCep(String digits) {
+  if (digits.length <= 5) {
+    return digits;
+  }
+  return '${digits.substring(0, 5)}-${digits.substring(5)}';
+}
+
 List<TextInputFormatter> _inputFormattersFor(MBInputFieldType fieldType) {
   return switch (fieldType) {
     MBInputFieldType.birthdate => const [
@@ -191,6 +199,9 @@ List<TextInputFormatter> _inputFormattersFor(MBInputFieldType fieldType) {
     MBInputFieldType.phone => const [
       _BrazilianInputFormatter(maxLength: 11, format: _formatPhone),
     ],
+    MBInputFieldType.cep => const [
+      _BrazilianInputFormatter(maxLength: 8, format: _formatCep),
+    ],
     _ => const [],
   };
 }
@@ -199,7 +210,8 @@ TextInputType _keyboardTypeFor(MBInputFieldType fieldType) {
   return switch (fieldType) {
     MBInputFieldType.birthdate ||
     MBInputFieldType.cpf ||
-    MBInputFieldType.phone => TextInputType.number,
+    MBInputFieldType.phone ||
+    MBInputFieldType.cep => TextInputType.number,
     _ => TextInputType.text,
   };
 }

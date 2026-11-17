@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_boxy_ds/my_boxy_ds.dart';
 import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
+
+import '../labels/mb_price_value_label.dart';
 
 class MBSimpleProductRelatedCard extends StatelessWidget {
   final int? index;
@@ -21,15 +24,14 @@ class MBSimpleProductRelatedCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
       margin: EdgeInsets.only(left: index == 0 ? 16.0 : 0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
-        color: Colors.white,
+        borderRadius: BorderRadius.circular(18)
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: 120,
-            height: 120,
+            width: 100,
+            height: 100,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
             ),
@@ -47,23 +49,12 @@ class MBSimpleProductRelatedCard extends StatelessWidget {
                 productName,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 13,
-                  fontFamily: 'Lexend',
-                  fontWeight: FontWeight.w400,
-                  letterSpacing: -0.2,
-                  color: AppColors.primaryDark
-                ),
+                style: AppTextStyles.bodyMedium.copyWith(
+                  letterSpacing: -0.5
+                )
               ),
-              Text(
-                productPrice.toString(),
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: 'Lexend',
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: -0.2,
-                  color: Colors.grey[500]
-                ),
+              MBPriceValueLabel(
+                price: productPrice, size: .medium,
               )
             ]
           ),

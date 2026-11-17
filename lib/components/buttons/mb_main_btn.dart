@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'mb_animated_btn_title.dart';
 import 'mb_button_tokens.dart';
+import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 
 enum MBMainButtonType { normal, dark, light, disabled, custom, outlined }
 
@@ -75,10 +76,7 @@ class MBMainButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (icon != null) ...[
-                Icon(
-                  icon,
-                  color: _textColor
-                ), 
+                Icon(icon, color: _textColor, size: AppSizes.medium,),
                 const SizedBox(width: 8)
               ],
               Flexible(

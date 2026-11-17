@@ -265,13 +265,13 @@ class _MBMainProductCarouselState extends State<MBMainProductCarousel>
                     onPressed: _togglePlayPause,
                   ),
                 ),
-                Positioned(
-                  top: 12, right: 12,
-                  child: MBCarouselRatingContainer(
-                    rating: 4.5,
-                    reviews: 3230,
-                  ),
-                ),
+                // Positioned(
+                //   top: 12, right: 12,
+                //   child: MBCarouselRatingContainer(
+                //     rating: 4.5,
+                //     reviews: 3230,
+                //   ),
+                // ),
                 if (widget.tags != null && widget.tags!.isNotEmpty)
                   Positioned(
                     bottom: 12, left: 14,

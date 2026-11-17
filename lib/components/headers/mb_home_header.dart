@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_boxy_ds/components/shimmer/home_shimmer/mb_shimmer_box.dart';
 import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 
 /// Header da home: logo, saudação, nome, @alias e local (cidade - UF).
 ///
@@ -73,8 +74,9 @@ class _HeaderTexts extends StatelessWidget {
             TextSpan(text: header.greeting, style: AppTextStyles.bodyLargeOf(AppColors.textSecondary)),
             TextSpan(
               text: header.userName,
-              style: AppTextStyles.bodyLargeOf(AppColors.textPrimary, FontWeight.w700)
-                  .copyWith(letterSpacing: -0.5),
+              style: AppTextStyles.bodyLargeOf(AppColors.textPrimary, FontWeight.w700).copyWith(
+                letterSpacing: -0.5
+              ),
             ),
           ]),
           maxLines: 1,
@@ -121,16 +123,29 @@ class _LocationLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = AppTextStyles.labelSmallOf(AppColors.textTertiary);
-    final label = Row(
+    final label = Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Icon(Icons.location_pin, size: AppSizes.small, color: AppColors.textTertiary),
-        const SizedBox(width: AppSizes.xs),
-        Flexible(
-          child: Text(location, style: style, maxLines: 1, overflow: TextOverflow.ellipsis),
+        Row(
+          children: [
+            const Icon(
+              LucideIcons.map_pin,
+              size: AppSizes.md,
+              color: AppColors.focus
+            ),
+            Flexible(
+              child: Text(
+                location,
+                style: style.copyWith(
+                  color: AppColors.focus
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis
+              ),
+            )
+          ],
         ),
         if (action != null) ...[
-          const SizedBox(width: AppSizes.sm),
           Flexible(
             child: Text(
               action!,
@@ -144,17 +159,20 @@ class _LocationLabel extends StatelessWidget {
     );
     if (onTap == null) return label;
 
-    return Semantics(
-      button: true,
-      label: action == null ? location : '$location. $action',
-      excludeSemantics: true,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: AppRadius.allMedium,
-        // Alvo de toque mínimo de 32 de altura sem mudar o layout da linha
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: AppSizes.xl),
-          child: Align(alignment: Alignment.centerLeft, widthFactor: 1, child: label),
+    return SizedBox(
+      height: 16,
+      child: Semantics(
+        button: true,
+        label: action == null ? location : '$location. $action',
+        excludeSemantics: true,
+        child: GestureDetector(
+          onTap: onTap,
+          // borderRadius: AppRadius.allMedium,
+          // Alvo de toque mínimo de 32 de altura sem mudar o layout da linha
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: AppSizes.small),
+            child: Align(alignment: Alignment.centerLeft, widthFactor: 1, child: label),
+          ),
         ),
       ),
     );

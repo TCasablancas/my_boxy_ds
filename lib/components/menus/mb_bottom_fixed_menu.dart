@@ -40,11 +40,7 @@ class MBBottomFixedMenu extends StatelessWidget {
             spacing: AppSizes.small,
             children: [
               MBRoundedIconButton(
-                // icon: Icon(
-                //   extraActionIcon ?? Icons.notifications_none_outlined,
-                //   color: AppColors.primary,
-                // ),
-                icon: LucideIcons.bell_off,
+                icon: extraActionIcon ?? LucideIcons.circle_off,
                 backgroundColor: Colors.white,
                 width: 50, height: 50,
                 // shadow: false,
