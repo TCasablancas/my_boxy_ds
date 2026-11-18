@@ -56,6 +56,7 @@ class MBSectionTitled extends StatelessWidget {
                       textColor: AppColors.focus,
                       onPressed: actionLink,
                       horizontalAlign: .end,
+                      size: .small,
                     )
                   )
                 ]

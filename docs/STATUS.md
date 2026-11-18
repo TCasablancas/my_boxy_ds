@@ -124,6 +124,7 @@ Não há token dedicado de espaçamento: hoje `AppSizes` cumpre esse papel.
 | `containers/mb_product_card_image_container.dart` | MBProductCardImageContainer | - | - |
 | `containers/mb_rating_container.dart` | MBRatingBadge | - | - |
 | `containers/mb_section_titled.dart` | MBSectionTitled | - | - |
+| `containers/mb_shrink_content.dart` | MBShrinkContentView | - | sim |
 | `containers/mb_simple_location_container.dart` | MBSimpleLocationContainer | - | - |
 | `containers/mb_simple_titled_container.dart` | MBSimpleTitledContainer | - | - |
 | `containers/mb_store_badge.dart` | MBStoreBadge | - | - |

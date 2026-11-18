@@ -20,6 +20,7 @@ Modelo:
 ## Não lançado
 
 ### Adicionado
+- `MBShrinkContentView`: conteúdo expansível com altura inicial de 80 px, animação, botão "Ver mais"/"Ver menos" e gradiente inferior.
 - `MBMainBottomsheet.show`: `entrypoint` e `asyncBuilder` opcionais, informados juntos, para apresentar conteúdo conforme o estado de uma chamada síncrona ou assíncrona. O builder decide como exibir carregamento, dados e erros; a sheet pode ser fechada durante a chamada.
 - `MBHomeHeader`: parâmetros opcionais `greeting` (padrão `'Olá, '`), `location`, `locationAction`, `onLocationTap` e `isLoading` (skeleton). Nome e alias truncam com reticências.
 - `MBHomeCarouselItem.altText` (leitor de tela) e `MBHomeCarouselListHeader.imageBuilder` (o app injeta a imagem, ex.: com cache).
