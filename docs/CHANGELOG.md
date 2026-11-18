@@ -20,6 +20,14 @@ Modelo:
 ## Não lançado
 
 ### Adicionado
+- `MBRatingDistributionCard` (`cards/mb_rating_distribution_card.dart`): barras de avaliações por nota (5 a 1), com seleção para filtro (`selectedRatings`, `onRatingTap`).
+- `MBCommentProductCard`: parâmetros opcionais `userAlias`, `rating`, `likesCount`, `photosCount`, `width` (padrão 300; `null` ocupa a largura), `maxLines` (padrão 2; `null` mostra tudo), `onLikeTap`, `onPhotosTap`.
+
+### Alterado
+- `MBCommentProductCard`: os números fixos (1234, 12, 543) viraram `rating`, `photosCount` e `likesCount` (0 quando não informados).
+- `MBUserHeaderContainer`: `imageUrl` http(s) carrega da rede; vazio mostra o avatar sem foto (antes sempre lia arquivo local).
+
+### Adicionado
 - `MBShrinkContentView`: conteúdo expansível com altura inicial de 80 px, animação, botão "Ver mais"/"Ver menos" e gradiente inferior.
 - `MBMainBottomsheet.show`: `entrypoint` e `asyncBuilder` opcionais, informados juntos, para apresentar conteúdo conforme o estado de uma chamada síncrona ou assíncrona. O builder decide como exibir carregamento, dados e erros; a sheet pode ser fechada durante a chamada.
 - `MBHomeHeader`: parâmetros opcionais `greeting` (padrão `'Olá, '`), `location`, `locationAction`, `onLocationTap` e `isLoading` (skeleton). Nome e alias truncam com reticências.

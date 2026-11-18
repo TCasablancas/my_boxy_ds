@@ -11,6 +11,17 @@ class MBCommentProductCard extends StatelessWidget {
   final String imageUrl;
   final String commentText;
   final VoidCallback? onTap;
+  /// Alias do autor. Sem ele, o header mostra [createdAt] (comportamento antigo).
+  final String? userAlias;
+  final int? rating;
+  final int? likesCount;
+  final int? photosCount;
+  /// Largura fixa no carrossel; null ocupa a largura disponível (lista).
+  final double? width;
+  /// Linhas do comentário; null mostra o texto inteiro.
+  final int? maxLines;
+  final VoidCallback? onLikeTap;
+  final VoidCallback? onPhotosTap;
 
   const MBCommentProductCard({
     super.key,
@@ -20,6 +31,14 @@ class MBCommentProductCard extends StatelessWidget {
     required this.imageUrl,
     required this.commentText,
     this.onTap,
+    this.userAlias,
+    this.rating,
+    this.likesCount,
+    this.photosCount,
+    this.width = 300,
+    this.maxLines = 2,
+    this.onLikeTap,
+    this.onPhotosTap,
   });
 
   @override
@@ -27,7 +46,7 @@ class MBCommentProductCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 300,
+        width: width,
         // padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         decoration: BoxDecoration(
@@ -39,7 +58,7 @@ class MBCommentProductCard extends StatelessWidget {
           children: [
             MBUserHeaderContainer(
               userName: userName,
-              userAlias: createdAt,
+              userAlias: userAlias ?? createdAt,
               imageUrl: imageUrl,
               hasBackground: false,
               paddingH: true,
@@ -48,8 +67,8 @@ class MBCommentProductCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: AppSizes.medium),
               child: Text(
                   commentText,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                  maxLines: maxLines,
+                  overflow: maxLines == null ? null : TextOverflow.ellipsis,
                   style: AppTextStyles.description.copyWith(
                       letterSpacing: -0.5
                   )
@@ -67,18 +86,18 @@ class MBCommentProductCard extends StatelessWidget {
                   Expanded(
                       child: MBTextButton(
                         icon: LucideIcons.star,
-                        title: '1234',
+                        title: '${rating ?? 0}',
                         textColor: AppColors.grey400,
-                        onPressed: () {},
+                        onPressed: onTap,
                         horizontalAlign: .start,
                       )
                   ),
                   Expanded(
                       child: MBTextButton(
                         icon: LucideIcons.images,
-                        title: '12',
+                        title: '${photosCount ?? 0}',
                         textColor: AppColors.grey400,
-                        onPressed: () {},
+                        onPressed: onPhotosTap,
                         horizontalAlign: .start,
                       )
                   ),
@@ -86,9 +105,9 @@ class MBCommentProductCard extends StatelessWidget {
                   Expanded(
                       child: MBTextButton(
                         icon: LucideIcons.thumbs_up,
-                        title: '543',
+                        title: '${likesCount ?? 0}',
                         textColor: AppColors.focus,
-                        onPressed: () {},
+                        onPressed: onLikeTap,
                         horizontalAlign: .end,
                       )
                   )

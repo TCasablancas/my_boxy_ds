@@ -21,6 +21,15 @@ class MBUserHeaderContainer extends StatelessWidget {
     this.paddingH,
   });
 
+  /// URL http(s) vem da rede; caminho local vem do arquivo; vazio fica sem foto.
+  ImageProvider? get _avatar {
+    if (imageUrl.isEmpty) return null;
+    if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+      return NetworkImage(imageUrl);
+    }
+    return FileImage(File(imageUrl));
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -37,7 +46,7 @@ class MBUserHeaderContainer extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 14,
-              backgroundImage: Image.file(File(imageUrl)).image,
+              backgroundImage: _avatar,
             ),
             const SizedBox(width: 6),
             Expanded(
