@@ -7,6 +7,7 @@ export 'mb_main_product_card.dart';
 export 'mb_large_rating_card.dart';
 export 'mb_product.dart';
 export 'mb_rating_stars.dart';
+export 'mb_rating_distribution_card.dart';
 export 'mb_review_count_text.dart';
 export 'mb_user_favorite_card.dart';
 export 'mb_category_hero_card.dart';

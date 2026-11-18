@@ -83,7 +83,7 @@ Não há token dedicado de espaçamento: hoje `AppSizes` cumpre esse papel.
 | `cards/mb_carousel_store_products.dart` | MBCarouselStoreProducts | sim | - |
 | `cards/mb_category_hero_card.dart` | MBCategoryHeroCard | sim | - |
 | `cards/mb_category_tile_card.dart` | MBCategoryTileCard | sim | - |
-| `cards/mb_comment_product_card.dart` | MBCommentProductCard | - | - |
+| `cards/mb_comment_product_card.dart` | MBCommentProductCard | - | sim |
 | `cards/mb_coupon_card.dart` | MBCouponCard | sim | - |
 | `cards/mb_inline_info_card.dart` | MBInlineInfoCard | sim | - |
 | `cards/mb_large_rating_card.dart` | MBLargeRatingCard | sim | sim |
@@ -92,6 +92,7 @@ Não há token dedicado de espaçamento: hoje `AppSizes` cumpre esse papel.
 | `cards/mb_product.dart` | MBProduct | sim | - |
 | `cards/mb_product_detail_text_card.dart` | MBProductDetailTextCard | - | - |
 | `cards/mb_rating_stars.dart` | MBRatingStars | sim | - |
+| `cards/mb_rating_distribution_card.dart` | MBRatingDistributionCard | sim | sim |
 | `cards/mb_review_count_text.dart` | MBReviewCountText | sim | - |
 | `cards/mb_row_action_card.dart` | MBRowActionCard | - | - |
 | `cards/mb_simple_product_related_card.dart` | MBSimpleProductRelatedCard | - | - |
