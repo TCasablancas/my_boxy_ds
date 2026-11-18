@@ -11,78 +11,75 @@ import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 class MBProductPriceDetailContainer extends StatelessWidget {
 
   final EdgeInsets? margin;
+  final double mainPrice;
+  final double? discountValue;
+  final String? reviews;
   final VoidCallback? onFretePressed;
 
   const MBProductPriceDetailContainer({
     super.key,
     this.margin,
+    required this.mainPrice,
+    this.reviews,
+    this.discountValue,
     this.onFretePressed,
   });
 
   @override
   Widget build(BuildContext context) {
+    final textStyle = AppTextStyles.labelSmall.copyWith(letterSpacing: -0.5);
+    final bodyMediumStyle = AppTextStyles.bodyMediumStrong.copyWith(letterSpacing: -0.5);
+
     return MBBoxRoundedContainer(
       margin: margin,
       child: Column(
         children: [
           Row(
             children: [
-              _mainPrice(),
+              Column(
+                // spacing: -4,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (discountValue != null)
+                    MBCuttedPriceLabel(price: discountValue ?? 0.0),
+                  MBPriceProductDetail(price: mainPrice, partDesc: 'no Pix',)
+                ]
+              ),
               Spacer(),
-              _reviews()
+              Column(
+                spacing: AppSizes.small,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  MBRatingBadge(rating: 4.5),
+                  Row(
+                    spacing: AppSizes.sm,
+                    children: [
+                      Text(reviews ?? '', style: bodyMediumStyle.copyWith(color: AppColors.focus)),
+                      Text('Aval.', style: bodyMediumStyle.copyWith(color: AppColors.grey400)),
+                      Icon(LucideIcons.chevron_right, size: AppSizes.medium, color: AppColors.grey400,)
+                    ],
+                  )
+                ],
+              )
             ],
           ),
           MBSeparator(color: AppColors.grey300),
           Row(
             children: [
-              _installmentText(),
+              Row(
+                children: [
+                  Text('até ', style: textStyle),
+                  Text('12x de ', style: textStyle),
+                  Text('R\$ 2,08 ', style: bodyMediumStyle),
+                  Text('no Crédito', style: textStyle),
+                ],
+              ),
               Spacer(),
               _freteBtn()
             ],
           ),
         ],
       ),
-    );
-  }
-
-  Widget _mainPrice() {
-    return Column(
-      // spacing: -4,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        MBCuttedPriceLabel(price: 54.0),
-        MBPriceProductDetail(price: 25.0, partDesc: 'no Pix',)
-      ]
-    );
-  }
-
-  Widget _reviews() {
-    return Column(
-      spacing: AppSizes.small,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        MBRatingBadge(rating: 4.5),
-        Row(
-          spacing: AppSizes.sm,
-          children: [
-            Text('128', style: AppTextStyles.bodyMediumStrong.copyWith(letterSpacing: -0.5)),
-            Text('Reviews', style: AppTextStyles.bodyMedium.copyWith(letterSpacing: -0.5))
-          ],
-        )
-      ],
-    );
-  }
-
-  Widget _installmentText() {
-    final textStyle = AppTextStyles.labelSmall.copyWith(letterSpacing: -0.5);
-
-    return Row(
-      children: [
-        Text('até ', style: textStyle),
-        Text('12x de ', style: textStyle),
-        Text('R\$ 2,08 ', style: AppTextStyles.bodyMedium.copyWith(letterSpacing: -0.5)),
-        Text('no Crédito', style: textStyle),
-      ],
     );
   }
 

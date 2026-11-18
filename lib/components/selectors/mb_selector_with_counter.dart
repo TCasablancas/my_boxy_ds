@@ -152,8 +152,8 @@ class _SelectorIndicator extends StatelessWidget {
       MBSelectorWithCounterType.radio => AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
-        width: AppSizes.large,
-        height: AppSizes.large,
+        width: AppSizes.medium,
+        height: AppSizes.medium,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           shape: BoxShape.circle,

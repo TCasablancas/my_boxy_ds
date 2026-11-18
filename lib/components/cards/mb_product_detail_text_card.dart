@@ -40,7 +40,7 @@ class MBProductDetailTextCard extends StatelessWidget {
             width: double.infinity,
             child: Text(
               description,
-              maxLines: 2,
+              maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: AppTextStyles.bodyMedium.copyWith(
                 letterSpacing: -0.5,

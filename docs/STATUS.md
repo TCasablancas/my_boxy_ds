@@ -43,7 +43,7 @@ Não há token dedicado de espaçamento: hoje `AppSizes` cumpre esse papel.
 | Arquivo | Classes públicas | No barrel | Teste |
 |---|---|---|---|
 | `bottomsheet/mb_bottomsheet_handler.dart` | MBBottomsheetHandler | - | - |
-| `bottomsheet/mb_main_bottomsheet.dart` | MBMainBottomsheet | sim | - |
+| `bottomsheet/mb_main_bottomsheet.dart` | MBMainBottomsheet | sim | sim |
 
 ### buttons
 

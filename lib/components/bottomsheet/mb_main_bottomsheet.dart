@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:my_boxy_ds/components/mb_separator.dart';
 import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 import 'mb_bottomsheet_handler.dart';
 import 'package:my_boxy_ds/components/labels/mb_title_subtitled_label.dart';
@@ -26,6 +28,28 @@ class MBMainBottomsheet extends StatefulWidget {
     this.actions,
   });
 
+  /// Abre o bottom sheet. O resultado de [Navigator.pop] completa o Future.
+  ///
+  /// Sem [entrypoint], exibe [child]. Com [entrypoint], [asyncBuilder] decide
+  /// como apresentar os estados e erros da chamada, em vez de [child].
+  /// O bottom sheet pode ser fechado enquanto a chamada ainda está pendente.
+  /// [entrypoint] é executado uma vez por abertura e pode retornar um valor
+  /// síncrono ou um Future. Os dois parâmetros devem ser informados juntos.
+  ///
+  /// ```dart
+  /// MBMainBottomsheet.show<void>(
+  ///   context,
+  ///   child: const SizedBox.shrink(),
+  ///   entrypoint: () => loadMessage(),
+  ///   asyncBuilder: (context, snapshot) {
+  ///     if (snapshot.hasError) return const Text('Erro ao carregar');
+  ///     if (snapshot.connectionState != ConnectionState.done) {
+  ///       return const CircularProgressIndicator();
+  ///     }
+  ///     return Text(snapshot.data as String);
+  ///   },
+  /// );
+  /// ```
   static Future<T?> show<T>(BuildContext context, {
     String? title,
     String? description,
@@ -33,13 +57,14 @@ class MBMainBottomsheet extends StatefulWidget {
     MBBottomsheetHeightStyle heightStyle = MBBottomsheetHeightStyle.adaptive,
     List<Widget>? actions,
     TextAlign? textAlign,
+    FutureOr<Object?> Function()? entrypoint,
+    AsyncWidgetBuilder<Object?>? asyncBuilder,
   }) {
-    return showGeneralDialog<T>(
-      context: context,
-      barrierDismissible: false,
-      barrierColor: Colors.transparent,
-      transitionDuration: const Duration(milliseconds: 250),
-      pageBuilder: (context, animation, secondaryAnimation) =>
+    if ((entrypoint == null) != (asyncBuilder == null)) {
+      throw ArgumentError('entrypoint e asyncBuilder devem ser informados juntos');
+    }
+
+    Widget buildSheet(Animation<double> animation, Widget content) =>
         MBMainBottomsheet(
           title: title,
           description: description,
@@ -47,14 +72,50 @@ class MBMainBottomsheet extends StatefulWidget {
           textAlign: textAlign,
           transitionAnimation: animation,
           actions: actions,
-          child: child,
-        ),
+          child: content,
+        );
+
+    return showGeneralDialog<T>(
+      context: context,
+      barrierDismissible: false,
+      barrierColor: Colors.transparent,
+      transitionDuration: const Duration(milliseconds: 250),
+      pageBuilder: (context, animation, secondaryAnimation) => entrypoint == null
+          ? buildSheet(animation, child)
+          : _MBAsyncBottomsheet(
+              entrypoint: entrypoint,
+              builder: (context, snapshot) =>
+                  buildSheet(animation, asyncBuilder!(context, snapshot)),
+            ),
       transitionBuilder: (context, animation, secondaryAnimation, child) => child,
     );
   }
 
   @override
   State<MBMainBottomsheet> createState() => _MBMainBottomsheetState();
+}
+
+class _MBAsyncBottomsheet extends StatefulWidget {
+  const _MBAsyncBottomsheet({
+    required this.entrypoint,
+    required this.builder,
+  });
+
+  final FutureOr<Object?> Function() entrypoint;
+  final AsyncWidgetBuilder<Object?> builder;
+
+  @override
+  State<_MBAsyncBottomsheet> createState() => _MBAsyncBottomsheetState();
+}
+
+class _MBAsyncBottomsheetState extends State<_MBAsyncBottomsheet> {
+  late final Future<Object?> _future = Future<Object?>.sync(widget.entrypoint);
+
+  @override
+  Widget build(BuildContext context) => FutureBuilder<Object?>(
+        future: _future,
+        builder: widget.builder,
+      );
 }
 
 class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
@@ -374,7 +435,9 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 16.0),
+            padding: const EdgeInsets.fromLTRB(
+              AppSizes.medium, 0.0, AppSizes.medium, AppSizes.medium,
+            ),
             child: Row(
               children: [
                 Expanded(
@@ -384,24 +447,15 @@ class _MBMainBottomsheetState extends State<MBMainBottomsheet> {
                     textAlign: widget.textAlign ?? TextAlign.center,
                   )
                 ),
-                // Spacer(),
                 if (widget.actions != null)
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(AppRadius.xs),
-                    ),
-                    child: Row(
-                      spacing: AppSizes.medium,
-                      children: widget.actions!,
-                    ),
-                  )
+                  Row(
+                    spacing: AppSizes.medium,
+                    children: widget.actions ?? [],
+                  ),
               ],
-            )
+            ),
           ),
-          Container(
-            height: 1, width: double.infinity,
-            decoration: BoxDecoration(color: Colors.grey[200]),
-          ),
+          MBSeparator(margin: 0),
           widget.child,
         ],
       ),
