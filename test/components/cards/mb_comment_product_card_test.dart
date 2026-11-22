@@ -12,7 +12,7 @@ void main() {
           createdAt: '2 dias atrás',
           imageUrl: '',
           commentText: 'Lindo!',
-          rating: 5,
+          rating: '5',
           photosCount: 3,
           likesCount: 12,
         ),
