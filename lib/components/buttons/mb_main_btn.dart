@@ -63,7 +63,7 @@ class MBMainButton extends StatelessWidget {
         onTap: buttonType == MBMainButtonType.disabled ? null : onPressed,
         borderRadius: BorderRadius.circular(16.0),
         child: Container(
-          height: 50,
+          height: 46,
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 10),
           decoration: BoxDecoration(

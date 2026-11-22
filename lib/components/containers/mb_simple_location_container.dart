@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:my_boxy_ds/ui/mb_typography.dart';
 
 class MBSimpleLocationContainer extends StatelessWidget {
@@ -12,8 +13,9 @@ class MBSimpleLocationContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      spacing: 2.0,
       children: [
-        Icon(Icons.location_pin, size: 10, color: Colors.grey[500]),
+        Icon(LucideIcons.map_pin, size: 10, color: Colors.grey[500]),
         Text(
           location, 
           style: AppTypography.captionFn(

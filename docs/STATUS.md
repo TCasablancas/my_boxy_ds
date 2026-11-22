@@ -84,6 +84,7 @@ Não há token dedicado de espaçamento: hoje `AppSizes` cumpre esse papel.
 | `cards/mb_category_hero_card.dart` | MBCategoryHeroCard | sim | - |
 | `cards/mb_category_tile_card.dart` | MBCategoryTileCard | sim | - |
 | `cards/mb_comment_product_card.dart` | MBCommentProductCard | - | sim |
+| `cards/mb_comment_product_stack_card.dart` | MBCommentProductStackCard | sim | sim |
 | `cards/mb_coupon_card.dart` | MBCouponCard | sim | - |
 | `cards/mb_inline_info_card.dart` | MBInlineInfoCard | sim | - |
 | `cards/mb_large_rating_card.dart` | MBLargeRatingCard | sim | sim |

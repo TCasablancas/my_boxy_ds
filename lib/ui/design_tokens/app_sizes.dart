@@ -12,4 +12,7 @@ abstract final class AppSizes {
   static const bottomMenuHeight = 60.0;
   static const otpFieldHeight = 52.0;
   static const iconButtonSize = 30.0;
+  static const commentCardWidth = 300.0;
+  static const commentCardHeight = 216.0;
+  static const commentCardStackOffset = 8.0;
 }

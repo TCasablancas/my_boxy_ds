@@ -107,7 +107,7 @@ abstract final class AppTextStyles {
   );
 
   static const productTitle = TextStyle(
-    fontSize: 28,
+    fontSize: 24,
     fontFamily: AppFonts.third,
     fontWeight: FontWeight.w500,
     color: AppColors.primaryDark,
