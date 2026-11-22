@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/my_boxy_ds.dart';
-import 'package:my_boxy_ds/ui/mb_design_tokens.dart';
 
 import '../labels/mb_price_value_label.dart';
 

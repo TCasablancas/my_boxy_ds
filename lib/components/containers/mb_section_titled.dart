@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:my_boxy_ds/my_boxy_ds.dart';
-import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 
 class MBSectionTitled extends StatelessWidget {
   final String title;
