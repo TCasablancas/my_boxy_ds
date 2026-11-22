@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
-import 'package:my_boxy_ds/components/buttons/buttons.dart';
 import 'package:my_boxy_ds/components/containers/mb_box_rounded_container.dart';
 import 'package:my_boxy_ds/components/containers/mb_rating_container.dart';
 import 'package:my_boxy_ds/components/labels/mb_cutted_price_label.dart';
@@ -81,7 +80,7 @@ class MBProductPriceDetailContainer extends StatelessWidget {
                 children: [
                   // Text('até ', style: textStyle),
                   Text('${installments}x de ', style: textStyle),
-                  Text('R\$${installmentValue} ', style: bodyMediumStyle),
+                  Text('R\$$installmentValue ', style: bodyMediumStyle),
                   Text('no Cartão', style: textStyle),
                 ],
               ),
