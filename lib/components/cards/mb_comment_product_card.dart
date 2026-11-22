@@ -44,7 +44,7 @@ class MBCommentProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorCount = photosCount! > 0 ? AppColors.grey900 : AppColors.grey400;
+    final colorCount = (photosCount ?? 0) > 0 ? AppColors.grey900 : AppColors.grey400;
 
     return GestureDetector(
       onTap: onTap,
@@ -113,7 +113,7 @@ class MBCommentProductCard extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 4.0),
                       child: MBTextButton(
                         icon: LucideIcons.images,
-                        title: '$photosCount',
+                        title: '${photosCount ?? 0}',
                         textColor: colorCount,
                         onPressed: onPhotosTap,
                         horizontalAlign: .center,
@@ -127,7 +127,7 @@ class MBCommentProductCard extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 4.0),
                       child: MBTextButton(
                         icon: LucideIcons.thumbs_up,
-                        title: '$likesCount',
+                        title: '${likesCount ?? 0}',
                         textColor: AppColors.focus,
                         onPressed: onLikeTap,
                         horizontalAlign: .center,

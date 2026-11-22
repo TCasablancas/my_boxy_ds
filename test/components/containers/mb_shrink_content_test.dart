@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:my_boxy_ds/components/containers/mb_shrink_content.dart';
+import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
+
+// Conteúdo de 240 + respiro inferior do componente (AppSizes.large).
+const _expandedHeight = 240 + AppSizes.large;
 
 void main() {
   testWidgets('starts collapsed and expands to content height', (tester) async {
@@ -37,7 +41,7 @@ void main() {
     expect(find.text('Ver menos'), findsOneWidget);
     expect(
       tester.getSize(find.byType(TweenAnimationBuilder<double>)).height,
-      288,
+      _expandedHeight,
     );
 
     await tester.tap(find.text('Ver menos'));
@@ -49,7 +53,7 @@ void main() {
     );
     expect(
       tester.getSize(find.byType(TweenAnimationBuilder<double>)).height,
-      lessThan(288),
+      lessThan(_expandedHeight),
     );
   });
 }
