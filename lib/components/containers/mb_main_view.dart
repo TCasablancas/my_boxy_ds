@@ -206,8 +206,7 @@ class _MBMainViewState extends State<MBMainView> {
           ),
         ),
       ),
-      persistentFooterButtons: widget.footerActions != null
-          ? [_buildFooterActions()] : null,
+      persistentFooterButtons: widget.footerActions != null ? [_buildFooterActions()] : null,
       persistentFooterDecoration: BoxDecoration(
         color: backgroundColor,
         boxShadow: [
@@ -224,7 +223,7 @@ class _MBMainViewState extends State<MBMainView> {
 
   Widget _buildFooterActions() {
     return Padding(
-      padding: EdgeInsets.all(AppSizes.small),
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.small),
       child: Column(
         spacing: 16,
         crossAxisAlignment: CrossAxisAlignment.center,

@@ -46,7 +46,7 @@ class MBPriceProductDetail extends StatelessWidget {
                 child: Text(
                   'R\$',
                   style: AppTextStyles.bodyMedium.copyWith(
-                    color: AppColors.focus,
+                    color: AppColors.primary,
                     letterSpacing: -0.5
                   )
                 ),
@@ -55,7 +55,7 @@ class MBPriceProductDetail extends StatelessWidget {
                 partes[0].length > 3 ? parteInteira : partes[0],
                 style: AppTextStyles.titleLarge.copyWith(
                   letterSpacing: -0.5,
-                  color: AppColors.focus
+                  color: AppColors.primary
                 )
               ),
               Padding(
@@ -69,7 +69,7 @@ class MBPriceProductDetail extends StatelessWidget {
                       ',${partes[1]}',
                       style: AppTextStyles.bodyLarge.copyWith(
                         letterSpacing: -0.5,
-                        color: AppColors.focus,
+                        color: AppColors.primary,
                         height: 1.0
                       )
                     ),

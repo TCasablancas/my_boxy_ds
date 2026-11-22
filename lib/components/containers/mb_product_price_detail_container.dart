@@ -13,16 +13,24 @@ class MBProductPriceDetailContainer extends StatelessWidget {
   final EdgeInsets? margin;
   final double mainPrice;
   final double? discountValue;
+  final int? installments;
+  final double? installmentValue;
+  final double? rating;
   final String? reviews;
-  final VoidCallback? onFretePressed;
+  final VoidCallback? onReviewsPressed;
+  final VoidCallback? onPaymentsPressed;
 
   const MBProductPriceDetailContainer({
     super.key,
     this.margin,
     required this.mainPrice,
-    this.reviews,
     this.discountValue,
-    this.onFretePressed,
+    this.installments,
+    this.installmentValue,
+    this.rating,
+    this.reviews,
+    this.onReviewsPressed,
+    this.onPaymentsPressed,
   });
 
   @override
@@ -46,20 +54,23 @@ class MBProductPriceDetailContainer extends StatelessWidget {
                 ]
               ),
               Spacer(),
-              Column(
-                spacing: AppSizes.small,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  MBRatingBadge(rating: 4.5),
-                  Row(
-                    spacing: AppSizes.sm,
-                    children: [
-                      Text(reviews ?? '', style: bodyMediumStyle.copyWith(color: AppColors.focus)),
-                      Text('Aval.', style: bodyMediumStyle.copyWith(color: AppColors.grey400)),
-                      Icon(LucideIcons.chevron_right, size: AppSizes.medium, color: AppColors.grey400,)
-                    ],
-                  )
-                ],
+              GestureDetector(
+                onTap: onReviewsPressed,
+                child: Column(
+                  spacing: AppSizes.small,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    MBRatingBadge(rating: rating ?? 0.0),
+                    Row(
+                      spacing: AppSizes.sm,
+                      children: [
+                        Text(reviews ?? '', style: bodyMediumStyle.copyWith(color: AppColors.grey400)),
+                        Text('Aval.', style: bodyMediumStyle.copyWith(color: AppColors.grey400)),
+                        Icon(LucideIcons.chevron_right, size: AppSizes.medium, color: AppColors.grey400,)
+                      ],
+                    )
+                  ],
+                ),
               )
             ],
           ),
@@ -68,10 +79,10 @@ class MBProductPriceDetailContainer extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Text('até ', style: textStyle),
-                  Text('12x de ', style: textStyle),
-                  Text('R\$ 2,08 ', style: bodyMediumStyle),
-                  Text('no Crédito', style: textStyle),
+                  // Text('até ', style: textStyle),
+                  Text('${installments}x de ', style: textStyle),
+                  Text('R\$${installmentValue} ', style: bodyMediumStyle),
+                  Text('no Cartão', style: textStyle),
                 ],
               ),
               Spacer(),
@@ -87,18 +98,19 @@ class MBProductPriceDetailContainer extends StatelessWidget {
     return SizedBox(
       height: 30,
       child: GestureDetector(
-        onTap: onFretePressed,
+        onTap: onPaymentsPressed,
         child: Row(
-          spacing: AppSizes.small,
+          spacing: AppSizes.sm,
           children: [
-            Icon(LucideIcons.truck, color: AppColors.focus, size: AppSizes.medium),
+            Icon(LucideIcons.credit_card, color: AppColors.focus, size: AppSizes.medium),
             Text(
-              'Calcular frete',
+              'Pagamentos',
               style: AppTextStyles.bodyMedium.copyWith(
                 color: AppColors.focus,
                 letterSpacing: -0.5
               ),
-            )
+            ),
+            Icon(LucideIcons.chevron_right, color: AppColors.focus, size: AppSizes.medium),
           ],
         ),
       ),

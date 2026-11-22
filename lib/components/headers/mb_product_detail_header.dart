@@ -8,7 +8,8 @@ class MBProductDetailHeader extends StatelessWidget {
 
   final String? storeImageURL;
   final String storeName;
-  final double? rating;
+  final String? rating;
+  final String? location;
   final VoidCallback? onTap;
 
   const MBProductDetailHeader({
@@ -16,6 +17,7 @@ class MBProductDetailHeader extends StatelessWidget {
     this.storeImageURL,
     required this.storeName,
     this.rating,
+    this.location,
     this.onTap,
   });
 
@@ -44,10 +46,10 @@ class MBProductDetailHeader extends StatelessWidget {
                 Row(
                   spacing: 2,
                   children: [
-                    MBSimpleLocationContainer(location: 'Santos - SP  • '),
+                    MBSimpleLocationContainer(location: '$location  • '),
                     Icon(Icons.star_rounded, size: 10, color: AppColors.warning,),
                     Text(
-                      '123',
+                      rating ?? '',
                       style: AppTextStyles.appBarTitle.copyWith(
                         letterSpacing: -0.5,
                         fontSize: 12,

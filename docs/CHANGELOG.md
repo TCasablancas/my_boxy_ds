@@ -20,6 +20,7 @@ Modelo:
 ## Não lançado
 
 ### Adicionado
+- `MBCommentProductStackCard` (`cards/mb_comment_product_stack_card.dart`): card de comentário tocável, com camadas visuais estáticas para simular stack e sem ações internas.
 - `MBRatingDistributionCard` (`cards/mb_rating_distribution_card.dart`): barras de avaliações por nota (5 a 1), com seleção para filtro (`selectedRatings`, `onRatingTap`).
 - `MBCommentProductCard`: parâmetros opcionais `userAlias`, `rating`, `likesCount`, `photosCount`, `width` (padrão 300; `null` ocupa a largura), `maxLines` (padrão 2; `null` mostra tudo), `onLikeTap`, `onPhotosTap`.
 
