@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/my_boxy_ds.dart';
 
 enum StoreImageSize {
+  smaller,
   small,
   medium,
   large,
@@ -21,7 +22,8 @@ class MBStoreImageContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final basedSize = size == StoreImageSize.small ? 20.0
-      : size == StoreImageSize.medium ? 30.0 : 60.0;
+      : size == StoreImageSize.medium ? 30.0
+      : size == .smaller ? 16.0 : 60.0;
 
     final basedBorder = size == StoreImageSize.small ? AppRadius.allMedium
       : size == StoreImageSize.medium ? AppRadius.allXLarge : AppRadius.allLarge;

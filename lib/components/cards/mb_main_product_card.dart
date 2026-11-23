@@ -15,14 +15,14 @@ class MBMainProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: product.onPressed,
-      borderRadius: BorderRadius.circular(8.0),
+      // borderRadius: BorderRadius.circular(10.0),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(16.0),
+          borderRadius: BorderRadius.circular(10.0),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withAlpha(30),
+              color: Colors.grey.withAlpha(40),
               spreadRadius: 1,
               blurRadius: 5,
               offset: const Offset(0, 3), // changes position of shadow
@@ -32,15 +32,12 @@ class MBMainProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MBProductCardHeader(
-              storeImageURL: product.storeImageUrl,
-              storeName: product.storeName,
-              rating: 4.5,
-            ),
             Stack(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 3.0),
+                  padding: const EdgeInsets.fromLTRB(
+                    3.0, 3.0, 3.0, 0.0
+                  ),
                   child: MBProductCardImageContainer(url: product.imageUrl),
                 ),
                 Positioned(
@@ -53,6 +50,10 @@ class MBMainProductCard extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            MBProductCardHeader(
+              storeImageURL: product.storeImageUrl,
+              storeName: product.storeName,
             ),
             MBProductCardLabel(
               title: product.title, price: product.price
