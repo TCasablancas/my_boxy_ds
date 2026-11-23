@@ -62,16 +62,19 @@ class MBSectionTitled extends StatelessWidget {
             )
           ),
           SizedBox(height: child != null ? 8.0 : 4.0),
-          text != null && text!.isNotEmpty && child == null
-            ? Text(
-              text ?? '',
+          // Sem child e sem texto, fica só o título (antes quebrava no `child!`).
+          if (child != null)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: child,
+            )
+          else if (text?.isNotEmpty ?? false)
+            Text(
+              text!,
               style: AppTextStyles.bodyMedium.copyWith(
                 color: AppColors.textSecondary,
                 letterSpacing: -0.3
               )
-            ) : Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: child!,
             ),
         ],
       )
