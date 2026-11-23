@@ -46,7 +46,7 @@ class MBSectionTitled extends StatelessWidget {
                   )
                 ),
                 if (actionTitle != null || actionIcon != null) ...[
-                  Spacer(),
+                  // Spacer(),
                   Expanded(
                     child: MBTextButton(
                       icon: actionIcon,

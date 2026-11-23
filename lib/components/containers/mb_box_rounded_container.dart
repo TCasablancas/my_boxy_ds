@@ -21,7 +21,9 @@ class MBBoxRoundedContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: padding ?? EdgeInsets.symmetric(horizontal:  16, vertical: 8),
+      padding: padding ?? EdgeInsets.symmetric(
+        horizontal: AppSizes.medium, vertical: AppSizes.small
+      ),
       margin: margin ?? EdgeInsets.all(0),
       decoration: BoxDecoration(
         color: background ?? AppColors.white,

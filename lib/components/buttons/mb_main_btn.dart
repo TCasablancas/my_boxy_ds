@@ -65,7 +65,7 @@ class MBMainButton extends StatelessWidget {
         child: Container(
           height: 46,
           width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.0),
             border: buttonType == MBMainButtonType.outlined

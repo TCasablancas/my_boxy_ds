@@ -26,6 +26,7 @@ class MBMainView extends StatefulWidget {
   final Widget? floatingBottomMenu;
   final MBFloatingMenuController? floatingMenuController;
   final List<Widget>? footerActions;
+  final EdgeInsets? footerPadding;
   final VoidCallback? onBackTap;
   final Color? footerContainerShadow;
 
@@ -50,6 +51,7 @@ class MBMainView extends StatefulWidget {
     this.floatingBottomMenu,
     this.floatingMenuController,
     this.footerActions,
+    this.footerPadding,
     this.onBackTap,
     this.footerContainerShadow,
   });
@@ -223,7 +225,7 @@ class _MBMainViewState extends State<MBMainView> {
 
   Widget _buildFooterActions() {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: AppSizes.small),
+      padding: widget.footerPadding ?? EdgeInsets.all(0.0),
       child: Column(
         spacing: 16,
         crossAxisAlignment: CrossAxisAlignment.center,

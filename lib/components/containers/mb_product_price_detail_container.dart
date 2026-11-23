@@ -73,7 +73,9 @@ class MBProductPriceDetailContainer extends StatelessWidget {
               )
             ],
           ),
-          MBSeparator(color: AppColors.grey300),
+          MBSeparator(
+            color: AppColors.grey300
+          ),
           Row(
             children: [
               Row(
