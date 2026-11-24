@@ -6,16 +6,16 @@ import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 
 class MBProductDetailHeader extends StatelessWidget {
 
-  final String? storeImageURL;
-  final String storeName;
+  final String? imageURL;
+  final String title;
   final String? rating;
   final String? location;
   final VoidCallback? onTap;
 
   const MBProductDetailHeader({
     super.key,
-    this.storeImageURL,
-    required this.storeName,
+    this.imageURL,
+    required this.title,
     this.rating,
     this.location,
     this.onTap,
@@ -35,13 +35,13 @@ class MBProductDetailHeader extends StatelessWidget {
         Row(
           spacing: 8,
           children: [
-            MBStoreImageContainer(url: storeImageURL ?? '', size: .medium),
+            MBStoreImageContainer(url: imageURL ?? '', size: .medium),
             Flexible(
               child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  storeName,
+                  title,
                   textAlign: TextAlign.left,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
