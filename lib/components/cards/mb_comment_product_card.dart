@@ -5,8 +5,13 @@ import 'package:my_boxy_ds/components/containers/mb_user_header_container.dart';
 import 'package:my_boxy_ds/components/mb_separator.dart';
 import 'package:my_boxy_ds/my_boxy_ds.dart';
 
+enum MBCommentProductCardType {
+  review, question
+}
+
 class MBCommentProductCard extends StatelessWidget {
 
+  final MBCommentProductCardType? type;
   final String? commentId;
   final String userName;
   final String createdAt;
@@ -22,9 +27,11 @@ class MBCommentProductCard extends StatelessWidget {
   final VoidCallback? onTap;
   final VoidCallback? onLikeTap;
   final VoidCallback? onPhotosTap;
+  final bool? hasAnswer;
 
   const MBCommentProductCard({
     super.key,
+    this.type = .review,
     this.commentId,
     required this.userName,
     required this.createdAt,
@@ -40,6 +47,7 @@ class MBCommentProductCard extends StatelessWidget {
     this.shadow,
     this.onLikeTap,
     this.onPhotosTap,
+    this.hasAnswer,
   });
 
   @override
@@ -72,6 +80,7 @@ class MBCommentProductCard extends StatelessWidget {
               imageUrl: imageUrl,
               hasBackground: false,
               paddingH: true,
+              hasNavigation: type == .review,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppSizes.medium),
@@ -84,18 +93,64 @@ class MBCommentProductCard extends StatelessWidget {
                 )
               ),
             ),
-            MBSeparator(
-              marginEdges: EdgeInsets.only(top: AppSizes.medium, bottom: AppSizes.small),
+            type == .review ? _reviewActions(colorCount) : _questionReply(),
+            SizedBox(height: hasAnswer == true ? 0 : 12)
+          ]
+        ),
+      )
+    );
+  }
+
+  Widget _questionReply() {
+    return Column(
+      children: [
+        MBSeparator(
+          marginEdges: EdgeInsets.only(top: AppSizes.medium),
+        ),
+        Row(children: [
+          Padding(
+            padding: EdgeInsets.only(
+              left: AppSizes.medium, right: AppSizes.small
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(
-                AppSizes.medium, AppSizes.sm, AppSizes.medium, AppSizes.md
+            child: SizedBox(
+              width: 22,
+              child: Icon(
+                LucideIcons.corner_down_right,
+                size: 16, color: AppColors.grey400,
               ),
-              child: Row(
-                spacing: AppSizes.small,
-                children: [
-                  Expanded(
-                    child: MBBoxRoundedContainer(
+            ),
+          ),
+          Expanded(
+            child: MBUserHeaderContainer(
+              userName: 'Liriah Aromas',
+              userAlias: '2 semanas atrás',
+              imageUrl: '',
+              hasBackground: false,
+              paddingH: false,
+              hasNavigation: false,
+            )
+          ),
+        ]
+        )
+      ],
+    );
+  }
+
+  Widget _reviewActions(Color? colorCount) {
+    return Column(
+      children: [
+        MBSeparator(
+          marginEdges: EdgeInsets.only(top: AppSizes.medium, bottom: AppSizes.small),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(
+              AppSizes.medium, AppSizes.sm, AppSizes.medium, AppSizes.md
+          ),
+          child: Row(
+            spacing: AppSizes.small,
+            children: [
+              Expanded(
+                  child: MBBoxRoundedContainer(
                       background: AppColors.grey100,
                       padding: const EdgeInsets.symmetric(vertical: 4.0),
                       child: MBTextButton(
@@ -105,10 +160,10 @@ class MBCommentProductCard extends StatelessWidget {
                         onPressed: onTap,
                         horizontalAlign: .center,
                       )
-                    )
-                  ),
-                  Expanded(
-                    child: MBBoxRoundedContainer(
+                  )
+              ),
+              Expanded(
+                  child: MBBoxRoundedContainer(
                       background: AppColors.grey100,
                       padding: const EdgeInsets.symmetric(vertical: 4.0),
                       child: MBTextButton(
@@ -118,11 +173,11 @@ class MBCommentProductCard extends StatelessWidget {
                         onPressed: onPhotosTap,
                         horizontalAlign: .center,
                       )
-                    )
-                  ),
-                  Spacer(),
-                  Expanded(
-                    child: MBBoxRoundedContainer(
+                  )
+              ),
+              Spacer(),
+              Expanded(
+                  child: MBBoxRoundedContainer(
                       background: AppColors.accent.withAlpha(40),
                       padding: const EdgeInsets.symmetric(vertical: 4.0),
                       child: MBTextButton(
@@ -132,14 +187,12 @@ class MBCommentProductCard extends StatelessWidget {
                         onPressed: onLikeTap,
                         horizontalAlign: .center,
                       )
-                    )
                   )
-                ],
-              ),
-            )
-          ]
-        ),
-      )
+              )
+            ],
+          ),
+        )
+      ],
     );
   }
 }

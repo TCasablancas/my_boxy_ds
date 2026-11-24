@@ -10,6 +10,7 @@ class MBUserHeaderContainer extends StatelessWidget {
   final bool? hasBackground;
   final VoidCallback? onProfileTap;
   final bool? paddingH;
+  final bool? hasNavigation;
 
   const MBUserHeaderContainer({
     super.key,
@@ -19,6 +20,7 @@ class MBUserHeaderContainer extends StatelessWidget {
     this.hasBackground,
     this.onProfileTap,
     this.paddingH,
+    this.hasNavigation = true,
   });
 
   /// URL http(s) vem da rede; caminho local vem do arquivo; vazio fica sem foto.
@@ -33,7 +35,7 @@ class MBUserHeaderContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onProfileTap,
+      onTap: (hasNavigation ?? false) ? onProfileTap : null,
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: paddingH == true ? 16 : 0, vertical: 12
@@ -73,7 +75,11 @@ class MBUserHeaderContainer extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            Icon(Icons.arrow_forward_ios_rounded, color: Colors.grey[500], size: 12),
+            hasNavigation ?? false ?
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: Colors.grey[500], size: 12
+              ) : SizedBox.shrink()
           ],
         ),
       ),
