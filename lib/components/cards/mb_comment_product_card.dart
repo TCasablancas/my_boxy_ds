@@ -29,6 +29,14 @@ class MBCommentProductCard extends StatelessWidget {
   final VoidCallback? onPhotosTap;
   final bool? hasAnswer;
 
+  /// Resposta da loja (tipo `.question`); só aparece com [hasAnswer] verdadeiro.
+  final String? answerText;
+  final String? answerAuthorName;
+  final String? answerAuthorImageUrl;
+
+  /// Data da resposta já formatada.
+  final String? answeredAt;
+
   const MBCommentProductCard({
     super.key,
     this.type = .review,
@@ -48,6 +56,10 @@ class MBCommentProductCard extends StatelessWidget {
     this.onLikeTap,
     this.onPhotosTap,
     this.hasAnswer,
+    this.answerText,
+    this.answerAuthorName,
+    this.answerAuthorImageUrl,
+    this.answeredAt,
   });
 
   @override
@@ -93,7 +105,8 @@ class MBCommentProductCard extends StatelessWidget {
                 )
               ),
             ),
-            type == .review ? _reviewActions(colorCount) : _questionReply(),
+            if (type == .review) _reviewActions(colorCount)
+            else if (hasAnswer == true) _questionReply(),
             SizedBox(height: hasAnswer == true ? 0 : 12)
           ]
         ),
@@ -103,6 +116,7 @@ class MBCommentProductCard extends StatelessWidget {
 
   Widget _questionReply() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         MBSeparator(
           marginEdges: EdgeInsets.only(top: AppSizes.medium),
@@ -122,16 +136,26 @@ class MBCommentProductCard extends StatelessWidget {
           ),
           Expanded(
             child: MBUserHeaderContainer(
-              userName: 'Liriah Aromas',
-              userAlias: '2 semanas atrás',
-              imageUrl: '',
+              userName: answerAuthorName ?? '',
+              userAlias: answeredAt ?? '',
+              imageUrl: answerAuthorImageUrl ?? '',
               hasBackground: false,
               paddingH: false,
               hasNavigation: false,
             )
           ),
         ]
-        )
+        ),
+        Padding(
+          // Alinha com o nome da loja, ao lado do ícone de resposta
+          padding: const EdgeInsets.fromLTRB(
+            AppSizes.medium + 22 + AppSizes.small, 0, AppSizes.medium, AppSizes.medium
+          ),
+          child: Text(
+            answerText ?? '',
+            style: AppTextStyles.description.copyWith(letterSpacing: -0.5),
+          ),
+        ),
       ],
     );
   }

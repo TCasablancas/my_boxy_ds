@@ -74,8 +74,9 @@ class MBUserHeaderContainer extends StatelessWidget {
                 ],
               ),
             ),
-            const Spacer(),
-            hasNavigation ?? false ?
+            if (hasNavigation ?? false)
+              const Spacer(),
+            (hasNavigation ?? false) ?
               Icon(
                 Icons.arrow_forward_ios_rounded,
                 color: Colors.grey[500], size: 12

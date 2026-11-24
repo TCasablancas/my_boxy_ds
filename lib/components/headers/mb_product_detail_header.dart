@@ -6,20 +6,24 @@ import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 
 class MBProductDetailHeader extends StatelessWidget {
 
-  final String? storeImageURL;
-  final String storeName;
+  final String? imageURL;
+  final String title;
   final String? rating;
   final String? location;
   final VoidCallback? onTap;
 
   const MBProductDetailHeader({
     super.key,
-    this.storeImageURL,
-    required this.storeName,
+    this.imageURL,
+    required this.title,
     this.rating,
     this.location,
     this.onTap,
   });
+
+  /// Sem [location] e sem [rating] a linha de localização/nota some (ex.: cabeçalho
+  /// só com foto e nome do produto). Sem [onTap] não mostra a seta.
+  bool get _hasDetails => location != null || rating != null;
 
   @override
   Widget build(BuildContext context) {
@@ -31,19 +35,22 @@ class MBProductDetailHeader extends StatelessWidget {
         Row(
           spacing: 8,
           children: [
-            MBStoreImageContainer(url: storeImageURL ?? '', size: .medium),
-            Column(
+            MBStoreImageContainer(url: imageURL ?? '', size: .medium),
+            Flexible(
+              child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  storeName,
+                  title,
                   textAlign: TextAlign.left,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: AppTextStyles.appBarTitle.copyWith(
                     letterSpacing: -0.5,
                     color: AppColors.grey900
                   )
                 ),
-                Row(
+                if (_hasDetails) Row(
                   spacing: 2,
                   children: [
                     MBSimpleLocationContainer(location: '$location  • '),
@@ -61,7 +68,8 @@ class MBProductDetailHeader extends StatelessWidget {
                 )
               ],
             ),
-            Icon(LucideIcons.chevron_right, size: 12, color: AppColors.grey400,)
+            ),
+            if (onTap != null) Icon(LucideIcons.chevron_right, size: 12, color: AppColors.grey400,)
           ],
         )
       ),
