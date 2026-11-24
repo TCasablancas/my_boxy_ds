@@ -38,7 +38,7 @@ class MBHomeStoreItemCarousel extends StatelessWidget {
                 child: MBProductCardHeader(
                   storeImageURL: firstProduct?.storeImageUrl,
                   storeName: storeName,
-                  rating: firstProduct?.rating?.toDouble(),
+                  // rating: firstProduct?.rating?.toDouble(),
                 ),
               ),
               MBFavoriteIconButton(
