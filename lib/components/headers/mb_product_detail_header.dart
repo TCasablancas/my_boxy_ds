@@ -21,6 +21,10 @@ class MBProductDetailHeader extends StatelessWidget {
     this.onTap,
   });
 
+  /// Sem [location] e sem [rating] a linha de localização/nota some (ex.: cabeçalho
+  /// só com foto e nome do produto). Sem [onTap] não mostra a seta.
+  bool get _hasDetails => location != null || rating != null;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -32,18 +36,21 @@ class MBProductDetailHeader extends StatelessWidget {
           spacing: 8,
           children: [
             MBStoreImageContainer(url: storeImageURL ?? '', size: .medium),
-            Column(
+            Flexible(
+              child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   storeName,
                   textAlign: TextAlign.left,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: AppTextStyles.appBarTitle.copyWith(
                     letterSpacing: -0.5,
                     color: AppColors.grey900
                   )
                 ),
-                Row(
+                if (_hasDetails) Row(
                   spacing: 2,
                   children: [
                     MBSimpleLocationContainer(location: '$location  • '),
@@ -61,7 +68,8 @@ class MBProductDetailHeader extends StatelessWidget {
                 )
               ],
             ),
-            Icon(LucideIcons.chevron_right, size: 12, color: AppColors.grey400,)
+            ),
+            if (onTap != null) Icon(LucideIcons.chevron_right, size: 12, color: AppColors.grey400,)
           ],
         )
       ),

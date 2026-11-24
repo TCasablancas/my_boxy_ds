@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
+import 'package:lottie/lottie.dart';
 import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 
 import '../buttons/mb_square_icon_btn.dart';
@@ -20,6 +21,7 @@ class MBMessageTextInputContainer extends StatelessWidget {
     this.maxLength,
     this.isError,
     this.onSend,
+    this.isSending = false,
   });
 
   final String? title;
@@ -31,6 +33,9 @@ class MBMessageTextInputContainer extends StatelessWidget {
   final int? maxLength;
   final bool? isError;
   final VoidCallback? onSend;
+
+  /// Enquanto envia, o avião vira o loading (e o toque não faz nada).
+  final bool isSending;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +76,7 @@ class MBMessageTextInputContainer extends StatelessWidget {
                 ),
                 Positioned(
                   bottom: 8, right: 8,
-                  child: MBSquareIconBtn(
+                  child: isSending ? _sendingIndicator() : MBSquareIconBtn(
                     icon: LucideIcons.send_horizontal,
                     padding: AppSizes.md,
                     onTap: onSend,
@@ -82,6 +87,24 @@ class MBMessageTextInputContainer extends StatelessWidget {
           ),
         ],
       )
+    );
+  }
+
+  /// Mesmo tamanho e fundo do botão de enviar, com o loading no lugar do ícone.
+  Widget _sendingIndicator() {
+    return Container(
+      padding: const EdgeInsets.all(AppSizes.md),
+      decoration: const BoxDecoration(
+        color: AppColors.primaryLight,
+        borderRadius: AppRadius.allXLarge,
+      ),
+      child: Lottie.asset(
+        'assets/animations/loading_icon_white.json',
+        package: 'my_boxy_ds',
+        width: 18,
+        height: 18,
+        fit: BoxFit.contain,
+      ),
     );
   }
 }
