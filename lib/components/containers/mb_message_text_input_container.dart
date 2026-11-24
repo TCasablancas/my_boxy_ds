@@ -13,9 +13,9 @@ class MBMessageTextInputContainer extends StatelessWidget {
     super.key,
     this.title,
     this.description,
-    this.controller,
+    required this.controller,
     this.hintText,
-    this.enabled,
+    this.enabled = true,
     this.minHeight,
     this.maxLength,
     this.isError,
@@ -24,9 +24,9 @@ class MBMessageTextInputContainer extends StatelessWidget {
 
   final String? title;
   final String? description;
-  final TextEditingController? controller;
+  final TextEditingController controller;
   final String? hintText;
-  final bool? enabled;
+  final bool enabled;
   final double? minHeight;
   final int? maxLength;
   final bool? isError;
@@ -60,9 +60,9 @@ class MBMessageTextInputContainer extends StatelessWidget {
                   padding: EdgeInsets.only(right: 40),
                   child: SingleChildScrollView(
                     child: MBTextAreaInput(
-                      controller: controller ?? TextEditingController(),
+                      controller: controller,
                       hintText: hintText,
-                      enabled: enabled ?? false,
+                      enabled: enabled,
                       minHeight: minHeight ?? 0.0,
                       maxLength: maxLength,
                       isError: isError ?? false,
