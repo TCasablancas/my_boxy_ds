@@ -1,0 +1,87 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
+import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
+
+import '../buttons/mb_square_icon_btn.dart';
+import '../input/mb_text_area_input.dart';
+import '../labels/mb_title_subtitled_label.dart';
+import 'mb_box_rounded_container.dart';
+
+class MBMessageTextInputContainer extends StatelessWidget {
+
+  const MBMessageTextInputContainer({
+    super.key,
+    this.title,
+    this.description,
+    this.controller,
+    this.hintText,
+    this.enabled,
+    this.minHeight,
+    this.maxLength,
+    this.isError,
+    this.onSend,
+  });
+
+  final String? title;
+  final String? description;
+  final TextEditingController? controller;
+  final String? hintText;
+  final bool? enabled;
+  final double? minHeight;
+  final int? maxLength;
+  final bool? isError;
+  final VoidCallback? onSend;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: AppColors.white,
+        borderRadius: AppRadius.allXLarge,
+      ),
+      width: MediaQuery.sizeOf(context).width,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(
+              AppSizes.medium, AppSizes.md, AppSizes.medium, AppSizes.small
+            ),
+            child: MBTitleSubtitled(
+              title: title ?? '', description: description ?? '',
+            ),
+          ),
+          MBBoxRoundedContainer(
+            background: AppColors.grey100,
+            padding: EdgeInsets.all(0),
+            margin: EdgeInsets.all(AppSizes.small),
+            child: Stack(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: 40),
+                  child: SingleChildScrollView(
+                    child: MBTextAreaInput(
+                      controller: controller ?? TextEditingController(),
+                      hintText: hintText,
+                      enabled: enabled ?? false,
+                      minHeight: minHeight ?? 0.0,
+                      maxLength: maxLength,
+                      isError: isError ?? false,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 8, right: 8,
+                  child: MBSquareIconBtn(
+                    icon: LucideIcons.send_horizontal,
+                    padding: AppSizes.md,
+                    onTap: onSend,
+                  ),
+                )
+              ],
+            )
+          ),
+        ],
+      )
+    );
+  }
+}
