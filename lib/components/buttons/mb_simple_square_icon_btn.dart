@@ -6,6 +6,7 @@ class MBSimpleSquareIconBtn extends StatelessWidget {
   final String title;
   final String? description;
   final bool? shadow;
+  final Color? backgroundColor;
   final VoidCallback? onPressed;
 
   const MBSimpleSquareIconBtn({
@@ -14,6 +15,7 @@ class MBSimpleSquareIconBtn extends StatelessWidget {
     required this.title,
     this.description,
     this.shadow,
+    this.backgroundColor,
     this.onPressed,
   });
 
@@ -26,7 +28,7 @@ class MBSimpleSquareIconBtn extends StatelessWidget {
           height: 72,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: AppColors.white,
+            color: backgroundColor ?? AppColors.white,
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               if (shadow ?? true)
