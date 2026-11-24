@@ -11,6 +11,9 @@ class MBSquareIconBtn extends StatelessWidget {
   final bool? hasBackground;
   final Color? iconColor;
   final Color? backgroundColor;
+
+  /// Borda opcional (ex.: verde para item já no carrinho). Sem ela, nada muda.
+  final Color? borderColor;
   final VoidCallback? onTap;
   final double? width;
   final double? height;
@@ -25,6 +28,7 @@ class MBSquareIconBtn extends StatelessWidget {
     this.hasBackground,
     this.iconColor,
     this.backgroundColor,
+    this.borderColor,
     this.onTap,
     this.width,
     this.height,
@@ -43,8 +47,12 @@ class MBSquareIconBtn extends StatelessWidget {
             padding: EdgeInsets.all(padding ?? 0.0),
             decoration: hasBackground == null ? BoxDecoration(
               color: backgroundColor ?? AppColors.primaryLight,
-              borderRadius: radius ?? AppRadius.allXLarge
-            ) : null,
+              borderRadius: radius ?? AppRadius.allXLarge,
+              border: borderColor == null ? null : Border.all(color: borderColor!, width: 1.5),
+            ) : borderColor == null ? null : BoxDecoration(
+              borderRadius: radius ?? AppRadius.allXLarge,
+              border: Border.all(color: borderColor!, width: 1.5),
+            ),
             child: Icon(icon, size: iconSize ?? 18, color: iconColor ?? AppColors.primaryDark)
           ),
           if (title != null)
