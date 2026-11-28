@@ -3,8 +3,8 @@ import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
 
-import '../buttons/mb_square_icon_btn.dart';
-import '../input/mb_text_area_input.dart';
+import '../buttons/mb_icon_btn.dart';
+import '../input/mb_text_input.dart';
 import '../labels/mb_title_subtitled_label.dart';
 import 'mb_box_rounded_container.dart';
 
@@ -64,21 +64,22 @@ class MBMessageTextInputContainer extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(right: 40),
                   child: SingleChildScrollView(
-                    child: MBTextAreaInput(
+                    child: MBTextInput(
                       controller: controller,
                       hintText: hintText,
                       enabled: enabled,
-                      minHeight: minHeight ?? 0.0,
+                      height: minHeight ?? AppSizes.inputHeight,
                       maxLength: maxLength,
                       isError: isError ?? false,
+                      hasBackground: true,
                     ),
                   ),
                 ),
                 Positioned(
-                  bottom: 8, right: 8,
-                  child: isSending ? _sendingIndicator() : MBSquareIconBtn(
+                  bottom: AppSizes.small,
+                  right: AppSizes.small,
+                  child: isSending ? _sendingIndicator() : MBIconBtn(
                     icon: LucideIcons.send_horizontal,
-                    padding: AppSizes.md,
                     onTap: onSend,
                   ),
                 )

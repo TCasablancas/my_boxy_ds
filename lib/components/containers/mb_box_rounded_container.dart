@@ -8,6 +8,7 @@ class MBBoxRoundedContainer extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final Color? background;
   final Border? border;
+  final BorderRadius? borderRadius;
 
   const MBBoxRoundedContainer({
     super.key,
@@ -16,6 +17,7 @@ class MBBoxRoundedContainer extends StatelessWidget {
     this.margin,
     this.background,
     this.border,
+    this.borderRadius,
   });
 
   @override
@@ -27,7 +29,7 @@ class MBBoxRoundedContainer extends StatelessWidget {
       margin: margin ?? EdgeInsets.all(0),
       decoration: BoxDecoration(
         color: background ?? AppColors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: borderRadius ?? BorderRadius.circular(16),
         border: border
       ),
       child: child

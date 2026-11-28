@@ -20,11 +20,11 @@ class MBFavoriteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 36,
-      height: 36,
+      width: 30,
+      height: 30,
       decoration: BoxDecoration(
         color: background ? MBButtonColors.backgroundAlt : Colors.transparent,
-        borderRadius: AppRadius.allLarge,
+        borderRadius: AppRadius.allFull,
       ),
       alignment: Alignment.center,
       child: Center(

@@ -11,9 +11,13 @@ class MBBottomFixedMenu extends StatelessWidget {
   final VoidCallback? onCartTap;
   final VoidCallback? onMenuTap;
 
+  /// Itens no carrinho, mostrados no badge do botão. Nulo ou 0 esconde o badge.
+  final int? cartItemsCount;
+
   const MBBottomFixedMenu({
     super.key,
     this.extraActionIcon,
+    this.cartItemsCount,
     required this.onExtraActionTap,
     required this.onCartTap,
     required this.onMenuTap,
@@ -48,7 +52,7 @@ class MBBottomFixedMenu extends StatelessWidget {
                 onPressed: () => onExtraActionTap?.call(),
               ),
               MBFloatingCartButton(
-                items: 3,
+                items: cartItemsCount,
                 onPressed: () => onCartTap?.call(),
               ),
               MBRoundedIconButton(

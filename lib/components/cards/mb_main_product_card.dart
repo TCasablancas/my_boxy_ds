@@ -41,7 +41,7 @@ class MBMainProductCard extends StatelessWidget {
                   child: MBProductCardImageContainer(url: product.imageUrl),
                 ),
                 Positioned(
-                  bottom: 8, right: 12,
+                  top: 8, right: 8,
                   child: MBFavoriteButton(
                     isActive: product.isFavorite,
                     defaultActive: product.isFavorite ?? false,

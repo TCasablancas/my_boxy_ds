@@ -153,13 +153,13 @@ abstract final class AppTextStyles {
   );
 
   static TextStyle snackbar(Color? color) => TextStyle(
-        fontSize: 13,
-        fontFamily: AppFonts.primary,
-        fontWeight: FontWeight.w500,
-        letterSpacing: -0.2,
-        height: 1.4,
-        color: color,
-      );
+    fontSize: 13,
+    fontFamily: AppFonts.primary,
+    fontWeight: FontWeight.w500,
+    letterSpacing: -0.2,
+    height: 1.4,
+    color: color,
+  );
 
   static TextStyle input() => TextStyle(
         color: Colors.grey[700],
