@@ -36,8 +36,6 @@ class MBTextInput extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final bool hasBackground;
 
-  static const _footerSpace = 28.0;
-
   @override
   Widget build(BuildContext context) {
     return hasBackground ? Container(

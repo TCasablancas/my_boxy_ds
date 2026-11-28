@@ -385,10 +385,6 @@ class _MBMainInputState extends State<MBMainInput> {
   @override
   Widget build(BuildContext context) {
     final state = _visualState;
-    final isNeutralGray =
-      widget.readOnly || (_effectiveError == null &&
-      (!_focusNode.hasFocus || widget.controller.text.isEmpty));
-    final labelColor = isNeutralGray ? Colors.grey[500] : state.border;
 
     return Padding(
       padding: widget.padding ?? const EdgeInsets.all(0.0),
