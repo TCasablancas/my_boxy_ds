@@ -17,15 +17,15 @@ void main() {
     final changes = <bool>[];
     await tester.pumpWidget(_app(MBSimplePillTag(title: 'Cerâmica', onSelectedChanged: changes.add)));
 
-    expect(_background(tester, 'Cerâmica'), AppColors.neutral100);
+    expect(_background(tester, 'Cerâmica'), AppColors.white);
 
     await tester.tap(find.text('Cerâmica'));
     await tester.pumpAndSettle();
-    expect(_background(tester, 'Cerâmica'), AppColors.primary);
+    expect(_background(tester, 'Cerâmica'), AppColors.primaryLight);
 
     await tester.tap(find.text('Cerâmica'));
     await tester.pumpAndSettle();
-    expect(_background(tester, 'Cerâmica'), AppColors.neutral100);
+    expect(_background(tester, 'Cerâmica'), AppColors.white);
     expect(changes, [true, false]);
   });
 
@@ -40,9 +40,9 @@ void main() {
     await tester.tap(find.text('C'));
     await tester.pumpAndSettle();
 
-    expect(_background(tester, 'A'), AppColors.primary);
-    expect(_background(tester, 'B'), AppColors.neutral100);
-    expect(_background(tester, 'C'), AppColors.primary);
+    expect(_background(tester, 'A'), AppColors.primaryLight);
+    expect(_background(tester, 'B'), AppColors.white);
+    expect(_background(tester, 'C'), AppColors.primaryLight);
   });
 
   testWidgets('controlado: segue isSelected e só avisa o toque', (tester) async {
@@ -57,6 +57,6 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(requested, isTrue);
-    expect(_background(tester, 'A'), AppColors.neutral100);
+    expect(_background(tester, 'A'), AppColors.white);
   });
 }
