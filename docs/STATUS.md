@@ -154,6 +154,7 @@ Não há token dedicado de espaçamento: hoje `AppSizes` cumpre esse papel.
 |---|---|---|---|
 | `input/mb_main_input.dart` | MBMainInput | sim | sim |
 | `input/mb_simple_input.dart` | MBSimpleInput | sim | sim |
+| `input/mb_text_input.dart` | MBTextInput | sim | sim |
 
 ### labels
 

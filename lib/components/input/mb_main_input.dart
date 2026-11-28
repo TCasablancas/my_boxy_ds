@@ -229,6 +229,8 @@ class MBMainInput extends StatefulWidget {
   final double? height;
   final String? complementaryLabel;
   final bool? isNumber;
+  final Color? backgroundColor;
+  final Border? border;
 
   const MBMainInput({
     super.key,
@@ -244,6 +246,8 @@ class MBMainInput extends StatefulWidget {
     this.height,
     this.complementaryLabel,
     this.isNumber,
+    this.backgroundColor,
+    this.border,
   });
 
   @override
@@ -351,7 +355,7 @@ class _MBMainInputState extends State<MBMainInput> {
 
   IconButton? _obscureTextIcon(bool obscureText) {
     return obscureText ? IconButton(
-      icon: Icon(_obscureText ? LucideIcons.eye_closed : LucideIcons.eye),
+      icon: Icon(_obscureText ? LucideIcons.eye_closed : LucideIcons.eye, size: 16,),
       tooltip: _obscureText ? 'Mostrar senha' : 'Ocultar senha',
       onPressed: () { setState(() { _obscureText = !_obscureText; }); },
     ) : null;
@@ -403,8 +407,8 @@ class _MBMainInputState extends State<MBMainInput> {
               child: AnimatedContainer(
                 duration: _duration,
                 decoration: BoxDecoration(
-                    color: widget.readOnly ? AppColors.grey300 : AppColors.white,
-                    border: Border.all(
+                    color: widget.backgroundColor ?? (widget.readOnly ? AppColors.grey300 : AppColors.white),
+                    border: widget.border ?? Border.all(
                       color: state.border,
                       width: 1.5,
                     ),
@@ -420,7 +424,11 @@ class _MBMainInputState extends State<MBMainInput> {
                         child: Text(
                           widget.label,
                           textAlign: TextAlign.left,
-                          style: AppTextStyles.snackbar(labelColor),
+                          style: AppTextStyles.priceInstallment.copyWith(
+                            letterSpacing: -0.5,
+                            color: AppColors.grey500,
+                            fontFamily: AppFonts.primary
+                          )
                         ),
                       ),
                     ),

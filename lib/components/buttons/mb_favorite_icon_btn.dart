@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lucide/flutter_lucide.dart';
 
 import 'mb_button_tokens.dart';
 
@@ -66,8 +67,8 @@ class _MBFavoriteIconButtonState extends State<MBFavoriteIconButton>
           child: Opacity(
             opacity: _isActive ? 1 : .7,
             child: Icon(
-              _isActive ? Icons.favorite : Icons.favorite_border,
-              size: 20,
+              _isActive ? LucideIcons.heart : LucideIcons.heart_plus,
+              size: 16,
               color: _isActive
                   ? MBButtonColors.mainRed
                   : MBButtonColors.textSecondary,

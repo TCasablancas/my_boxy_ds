@@ -23,6 +23,9 @@ class MBMainView extends StatefulWidget {
   final VoidCallback? onExtraActionTap;
   final VoidCallback? onCartTap;
   final VoidCallback? onMenuTap;
+
+  /// Itens no carrinho, repassados ao badge do [MBBottomFixedMenu].
+  final int? cartItemsCount;
   final Widget? floatingBottomMenu;
   final MBFloatingMenuController? floatingMenuController;
   final List<Widget>? footerActions;
@@ -48,6 +51,7 @@ class MBMainView extends StatefulWidget {
     this.onExtraActionTap,
     this.onCartTap,
     this.onMenuTap,
+    this.cartItemsCount,
     this.floatingBottomMenu,
     this.floatingMenuController,
     this.footerActions,
@@ -201,6 +205,7 @@ class _MBMainViewState extends State<MBMainView> {
                     extraActionIcon: widget.extraActionIcon,
                     onExtraActionTap: widget.onExtraActionTap,
                     onCartTap: widget.onCartTap,
+                    cartItemsCount: widget.cartItemsCount,
                     onMenuTap: widget.onMenuTap ?? _floatingMenuController.toggle,
                   ),
                 ),

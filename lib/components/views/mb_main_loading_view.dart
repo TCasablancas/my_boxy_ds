@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:my_boxy_ds/ui/design_tokens/design_tokens.dart';
-import 'package:lottie/lottie.dart';
 
 class MBMainLoadingView extends StatefulWidget {
   const MBMainLoadingView({super.key, this.controller});
@@ -139,13 +138,13 @@ class _MBMainLoadingViewState extends State<MBMainLoadingView>
                           ],
                         ),
                         const Spacer(),
-                        // CircularProgressIndicator(color: AppColors.primary),
-                        Lottie.asset(
-                          'assets/animations/loading_icon_green.json',
-                          package: 'my_boxy_ds',
+                        SizedBox(
                           width: 26,
                           height: 26,
-                          fit: BoxFit.contain,
+                          child: CircularProgressIndicator(
+                            color: AppColors.primary,
+                            strokeWidth: 2,
+                          ),
                         ),
                       ],
                     ),
