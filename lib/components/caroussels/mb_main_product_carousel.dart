@@ -323,7 +323,7 @@ class _MBMainProductCarouselState extends State<MBMainProductCarousel>
                   ),
                 ),
                 Positioned(
-                  top: 12, right: 12,
+                  bottom: 12, left: 12,
                   child: MBBoxRoundedContainer(
                     background: AppColors.grey900.withAlpha(180),
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
@@ -332,22 +332,22 @@ class _MBMainProductCarouselState extends State<MBMainProductCarousel>
                       child: Row(
                         children: [
                           Expanded(
-                              child: MBTextButton(
-                                icon: LucideIcons.image,
-                                title: '$_imageCount',
-                                textColor: AppColors.grey400,
-                                onPressed: (){},
-                                horizontalAlign: .center,
+                            child: MBTextButton(
+                              icon: LucideIcons.image,
+                              title: '$_imageCount',
+                              textColor: AppColors.grey400,
+                              onPressed: (){},
+                              horizontalAlign: .center,
                               )
                           ),
                           Expanded(
-                              child: MBTextButton(
-                                icon: LucideIcons.video,
-                                title: '$_videoCount',
-                                textColor: AppColors.grey400,
-                                onPressed: (){},
-                                horizontalAlign: .center,
-                              )
+                            child: MBTextButton(
+                              icon: LucideIcons.video,
+                              title: '$_videoCount',
+                              textColor: AppColors.grey400,
+                              onPressed: (){},
+                              horizontalAlign: .center,
+                            )
                           )
                         ],
                       ),

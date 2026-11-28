@@ -27,51 +27,60 @@ class MBProductDetailHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-        child:
-        Row(
-          spacing: 8,
-          children: [
-            MBStoreImageContainer(url: imageURL ?? '', size: .medium),
-            Flexible(
-              child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  textAlign: TextAlign.left,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.appBarTitle.copyWith(
-                    letterSpacing: -0.5,
-                    color: AppColors.grey900
-                  )
-                ),
-                if (_hasDetails) Row(
-                  spacing: 2,
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: AppSizes.sm, vertical: 0
+      ),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: AppRadius.allFull,
+      ),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+          child:
+          Row(
+            spacing: 8,
+            children: [
+              MBStoreImageContainer(url: imageURL ?? '', size: .medium),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    MBSimpleLocationContainer(location: '$location  • '),
-                    Icon(Icons.star_rounded, size: 10, color: AppColors.warning,),
                     Text(
-                      rating ?? '',
+                      title,
+                      textAlign: TextAlign.left,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       style: AppTextStyles.appBarTitle.copyWith(
                         letterSpacing: -0.5,
-                        fontSize: 12,
-                        height: 1.4,
                         color: AppColors.grey900
-                      ),
+                      )
+                    ),
+                    if (_hasDetails) Row(
+                      spacing: 2,
+                      children: [
+                        MBSimpleLocationContainer(location: '$location  • '),
+                        Icon(Icons.star_rounded, size: 10, color: AppColors.warning,),
+                        Text(
+                          rating ?? '',
+                          style: AppTextStyles.appBarTitle.copyWith(
+                            letterSpacing: -0.5,
+                            fontSize: 12,
+                            height: 1.4,
+                            color: AppColors.grey900
+                          ),
+                        )
+                      ],
                     )
                   ],
-                )
-              ],
-            ),
-            ),
-            if (onTap != null) Icon(LucideIcons.chevron_right, size: 12, color: AppColors.grey400,)
-          ],
-        )
+                ),
+              ),
+              if (onTap != null) Icon(LucideIcons.chevron_right, size: 12, color: AppColors.grey400,)
+            ],
+          )
+        ),
       ),
     );
   }
